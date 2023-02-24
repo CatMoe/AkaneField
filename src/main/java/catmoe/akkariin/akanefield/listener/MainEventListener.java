@@ -124,7 +124,7 @@ public class MainEventListener implements Listener {
         // FirstJoinCheck
         //
         if (firstJoinCheck.isDenied(ip, name)) {
-            e.setCancelReason(ComponentBuilder.buildColorized(MessageManager.firstJoinMessage));
+            e.setCancelReason(ComponentBuilder.buildColorized(MessageManager.getFirstJoinMessage(null)));
             e.setCancelled(true);
             return;
         }
