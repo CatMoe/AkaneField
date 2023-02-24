@@ -46,7 +46,6 @@ catmoe\akkariin\akanefield\common\antivpn\proxycheck\ProxyCheckProvider$VPNResul
 catmoe\akkariin\akanefield\utils\Metrics$1.class
 catmoe\akkariin\akanefield\common\detectors\AttackDurationDetector.class
 catmoe\akkariin\akanefield\common\tasks\TimedWhitelistTask$1.class
-catmoe\akkariin\akanefield\objects\DynamicBar.class
 catmoe\akkariin\akanefield\utils\Metrics$AdvancedBarChart.class
 catmoe\akkariin\akanefield\common\helper\ServerType.class
 catmoe\akkariin\akanefield\common\thread\AnimationThread.class
@@ -79,7 +78,6 @@ catmoe\akkariin\akanefield\common\service\UserDataService.class
 catmoe\akkariin\akanefield\common\server\packet\VerificationPacket.class
 catmoe\akkariin\akanefield\common\objects\attack\AttackLog.class
 catmoe\akkariin\akanefield\common\utils\FilesUpdater.class
-catmoe\akkariin\akanefield\common\thread\AttackAnalyzerThread.class
 catmoe\akkariin\akanefield\utils\Metrics$CustomChart.class
 catmoe\akkariin\akanefield\utils\Metrics$SimplePie.class
 catmoe\akkariin\akanefield\common\service\BlackListService.class

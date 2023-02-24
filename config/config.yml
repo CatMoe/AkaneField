@@ -1,0 +1,195 @@
+version: 0.1
+# 调试信息开关
+debug: false
+# 性能探测
+detect-server-performance: true
+enable-latency-thread: false
+# 当攻击停止时 是否自动关闭actionbar
+disable-notifications-after-attack: true
+# 当服务器被攻击时 忽略任何类型的信息
+disable-console-attack-message: false
+# 自动删除器
+auto-purger:
+  #Type: LIMIT/AFTER_ATTACK
+  # LIMIT : 到达上限后 自动清理IP (指定value)
+  # AFTER_ATTACK : 攻击模式解除后自动删除
+  blacklist:
+    type: AFTER_ATTACK
+    value: 15000
+    enabled: true
+  whitelist:
+    type: AFTER_ATTACK
+    value: 2500
+    enabled: false
+  # 日志自动删除器
+  logs:
+    # 隔多少天删除不必要的日志
+    value: 5
+    # 是否开启
+    enabled: true
+
+# keep  当模式激活后未满足触发条件多少秒后 自动解除模式 以秒为单位
+# trigger  当机器人加入/Ping/未知数据包 在一秒内大于此阈值时 自动启动模式
+antibotmode:
+  keep: 15
+  trigger: 10
+  # 防渗透模式戒备时间
+  keep-slow: 25
+  # 断开已连接的玩家
+  disconnect: false
+
+# 适用于Motd洪水的戒备模式
+pingmode:
+  keep: 10
+  trigger: 100
+  send_info: true
+
+packetmode:
+  keep: 15
+  trigger: 15
+  # 是否将已经确认为恶意的无效握手包的发送者IP加入黑名单?
+  blacklist-invalid-protocol: true
+
+# 自动白名单 当玩家游玩多久后自动添加白名单 以分钟为单位
+playtime_for_whitelist: 10
+
+# 秒为单位
+taskmanager:
+  clearcache: 60
+  auth: 300
+  register: 120
+  update: 15
+
+checks:
+  firstjoin:
+    enabled: true
+  # 当同IP以不同用户名在反机器人激活时 应该怎么样才应该将玩家列入黑名单里
+  namechanger:
+    # 清理缓存时间 秒为单位
+    time: 200
+    # 被踢出的账户数量 当到达这个数量时 将自动列入黑名单
+    limit: 3
+    enabled: true
+  # 同IP加入检测.
+  superjoin:
+    time: 300
+    # 指定在指定的时间内加入多少次才应该被算作是机器人并加入黑名单 
+    limit: 35
+    #enable?
+    enabled: true
+  auth:
+    time: 300
+    # Ping服务器列表检测次数. 取随机数 最小值-最大值
+    ping: 2-5
+    # 同取随机数 玩家应该加入多少次服务器才能通过认证
+    timer: 3-10
+    # 当认证完毕 玩家应该在多少毫秒内加入服务器
+    between: 8000
+    # 黑名单启用条件 如果你不知道该项有什么用 请不要动
+    percent: 90
+    # 玩家如果尝试失败多少次 就应该被列入黑名单
+    maxfails: 25
+    # 当玩家需要通过Ping服务器来认证时 是否在Motd的Server Brand上显示它们的ping次数?
+    ping_interface: true
+  legalname:
+    # 合法名称正则设置
+    name-regex: "[a-zA-Z0-9_]*"
+    enabled: true
+  invalidname:
+    # 无效的玩家名
+    invalid:
+      - "MCSTORM_IO"
+      - "MC_BOT_IO"
+    # 是否将因为这个而被踢出的玩家自动列入黑名单?
+    blacklist: true
+    enabled: true
+  strange-register:
+    # 命令检测 通常为register或其它东西idk
+    # 从FlameCord搬过来的() 可能存在小号误报的情况
+    # 默认禁用 需要开启的话建议拉大点
+    listen:
+      - "/register"
+      - "/reg"
+      - "/l"
+      - "/login"
+    # 有多少位玩家能够同时共用一个密码
+    # 当到达上限时 新玩家使用同样密码注册则会被检测
+    limit: 3
+    # 当玩家触发检测时 是否将玩家列入黑名单?
+    blacklist: true
+    # 是否立即触发反机器人模式?
+    antibotmode: true
+    # 是否开启检查
+    enabled: false
+  # 实验性检查
+  # 此检查将尝试检查玩家的数据包 以发现可能的猫腻
+  # 如果启用之后您遇到了一些问题 建议禁用它
+  slowjoin:
+  # time: 缓冲 以秒为单位
+  # trigger: 触发阈值
+  # condition除非在开发环境下 否则应该设定为0
+  # blacklist: 触发检测后是否列入黑名单
+  # kick: 触发检测后是否立即踢出
+  # antibotmode: 如果有玩家触发检测 是否立即激活攻击模式
+  # enable: 字面意思.
+    packet:
+      time: 120
+      trigger: 5
+      condition: 0
+      blacklist: false
+      kick: true
+      antibotmode: true
+      enabled: false
+    account:
+      time: 0
+      trigger: 4
+      condition: 0
+      blacklist: true
+      kick: true
+      antibotmode: true
+      enabled: true
+
+# IPTables & TPSet
+# 不适用于面板服务器
+# 仅在Linux上可用
+# 必须以管理员身份运行服务器
+firewall:
+  enabled: false
+  # IPSet组名
+  ip-set-id: "akanefield"
+  # IP应该在多少秒后过期 0表示在插件卸载前永不过期
+  timeout: 600
+  # 是否需要同步插件自带的黑名单
+  reset-on-blacklist-clear: true
+  # 插件执行的root命令设置
+  setup-commands:
+    - "sudo ipset create %set% hash:ip %options% %t%"
+    - "sudo iptables -N AkaneField"
+    - "sudo iptables -F AkaneField"
+    - "sudo iptables -A AkaneField -p tcp -m set --match-set %set% src -j DROP"
+    - "sudo iptables -A INPUT -p tcp -j AkaneField"
+  shutdown-commands:
+    - "sudo iptables -F AkaneField"
+    - "sudo iptables -D INPUT -p tcp -j AkaneField"
+    - "sudo iptables -X AkaneField"
+    - "sudo ipset destroy %set%"
+  #Command executed to blacklist an ip
+  blacklist-command: "sudo ipset add %set% %ip%"
+  un-blacklist-command:
+    - "sudo ipset del %set% %ip%"
+
+# ip-api vpn检查
+# 注: 可能会在将来删除
+ip-api:
+  enabled: true
+# https://proxycheck.io/ 许可证密匙
+proxycheck:
+  # 当密匙无效时自动禁用
+  api-key: "enter-here-your-key"
+# 当触发攻击模式时 自动过滤什么样的消息
+attack-filter:
+  - "InitialHandler"
+  - "The UUID the player is connecting with now is NOT Mojang-assigned"
+# 将被永久过滤的消息
+persistent-filter: 
+  - "=w=3"

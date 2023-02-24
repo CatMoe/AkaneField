@@ -1,0 +1,197 @@
+version: 0.1
+prefix: "&bAkane&fField &7>> "
+onping:
+  normal: "&b请继续刷新服务器列表 &f$1&b/&f$2"
+  ready: "&b已通过反机器人认证!"
+commands:
+  perms: "&fUnknown command. Type \"/help\" for help."
+  cleared: "&c$1&f has been &ccleared! "
+  added: "&c$1&f has been added in the &c$2"
+  removed: "&c$1&f has been removed from the &c$2"
+  wrong-args: "&b未知命令 请使用 &f/af help &b打开帮助菜单"
+  no-blacklist: "&cThis ID does not appear to be associated with anything!"
+  invalid-log-value: "&cThe provided value is not associated to a log!"
+  reload: "&bAkane&fField &b已成功重载配置文件. 部分内容可能需要重启服务器才能生效"
+notifications:
+  action: "&a已在ActionBar显示反机器人状态."
+
+#连接数占位符: %cps%(每秒连接数) - %bots%(又称JPS. 每秒加入服务器的数量) - %pings%(每秒ping服务器的数量) - %packets%(每秒拦截的数据包数量)
+#连接数总计: %totalpackets% - %totalbots% - %totalpings%
+#基本状态: %whitelist%(白名单统计) - %blacklist%(黑名单统计) - %type%(攻击状态)
+#杂项: %underverification%(未处理的代理检察数量) - %queue%(队列检查缓存数量) - %animation%(▛▜▟▙轮转动画) - %prefix%(前缀)
+actionbar:
+  offline: "%prefix%&cJoin&7/&cPing &f%bots%&7/&f%pings% &4- &cVerify &f%underverification% &4- &cWhitelist &f%whitelist% » &c&l%type%"
+  antibot: "%prefix%&cBot&7/&cPing &f%bots%&7/&f%pings% &4- &cBlacklist&7/&cQueue&7/&cWhitelist &f%blacklist%&7/&f%queue%&7/&f%whitelist% &4- &cVerify &f%underverification% » &c&l%type%"
+  packets: "%prefix%&cPackets &f%packets%/sec &4- &cBlocked &f%totalpackets% &4- &cVerify &f%underverification% » &c&l%type%"
+stats:
+  - "&cCurrent Session Stats:"
+  - ""
+  - "&cBot Blocked &f%totalbots%"
+  - "&cTotal Ping &f%totalpings%"
+  - "&cTotal Packets &f%totalpackets%"
+  - "&cWhitelisted IP &f%whitelist%"
+  - "&cBlacklisted IP &f%blacklist%"
+  - ""
+  - "&cCurrent server latency is &f%latency%"
+
+# 注意 此项之后可能会迁移到kick.reason . 因此请保留一份副本
+# 也请保留这条消息以作为一个提示 因为修改后可能怒不通知
+reason:
+  # ... 自己想写什么就写什么吧 给我整不知道咋写了
+  names: "MANY_ALTS"
+  joins: "JOIN_FLOOD"
+  pings: "MOTD_FLOOD"
+  # STRANGE_PLAYER是一项综合性检查 如果您好奇这是用来干什么的 请联系我
+  strange: "奇怪的玩家"
+  vpn: "疑似使用VPN或代理"
+  admin: "一位管理员将您列入黑名单"
+  # ..?
+  check: "无法认证您是否是机器人"
+
+help:
+  - ""
+  - "&c/akanefield &ctoggle &factionbar &7- &fEnables notifications"
+  - "&c/akanefield &cstats &7- &fShows antibot stats"
+  - "&c/akanefield &cclear &fblacklist/whitelist &7- &fClear blacklist or whitelist"
+  - "&c/akanefield &cwhitelist &fadd/remove &f<ip> &7- &fManage whitelist"
+  - "&c/akanefield &cblacklist &fadd/remove &f<ip>&7- &fManage blacklist"
+  - "&c/akanefield logs list <amount> &7- &fReturns some info of an attack"
+  - "&c/akanefield logs last <id> &7- Shows last <amount> attacks"
+  - "&c/akanefield &cfirewall &7- &fShows some firewall info"
+  - "&c/akanefield &ccheck &f<id> &7- &fCheck for blacklisted player"
+  - "&c/akanefield &creload &7- &fReloads the config & messages"
+  - ""
+
+attack-log:
+  - "&cAttack ID&f %id%"
+  - "&cAttack date&f %attack%"
+  - "&cBlacklisted IPs &f%blacklist%"
+  - "&cBlocked bots &f%bots%"
+  - "&cBlocked pings &f%pings%"
+  - "&cBlocked Packets &f%packets%"
+  - "&cAverage CPS &f%avg%"
+  - "&cAttack Power &f%power%"
+  - "&cDuration &f%duration%"
+
+# IPTables & IPSet 不适用于除Linux之外的其它系统! 
+# 为了避免垃圾邮件 我们不再在控制台提醒这个(应该是好事吧w=)
+firewall:
+  - "&cFirewall status: %status%"
+  - ""
+  - "&cIP in queue: %queue%"
+  - "&cIP blacklisted: %blacklist%"
+  - ""
+  - "&cThese are the UAB firewall stats that will only work if you have it enabled in the config!"
+  - "&cThe attack will be mitigated when all IPs have been blocked!"
+blacklist_info:
+  - "&c&lBLACKLIST INFO:"
+  - ""
+  - "&cReason &7» &c$reason"
+  - "&cIP &7» &c$ip"
+  - "&cNickName &7» &c$nick"
+  - "&cID &7» &c$id"
+  - ""
+
+# 踢出消息
+kick:
+  # 全局占位符 你不能异想天开创造属于自己的占位符 它已经在程序内硬编码 如果您不需要 请不要使用或留空 抱歉w..
+  # 虽然下方配置没有大小写区分 但是占位符是有大小写区分的 务必注意..
+  # 消息内的部分特定 [$占位符] 仅只是更好的解释它们会被替换成什么 实际上跟$1 $2这样子的东西无异..
+  url: "&7shioeaxiki.lolwtfmc.me" # [$URL]
+  servername: "&bSakuraStarOcean" # [$ServerName]
+  line: "" # [$Line]
+  # [$Custom?] ?为1-10
+  custom1: "&bAkane&fField"
+  custom2: "By"
+  custom3: "CatMoe Team"
+  custom4: "w'"
+  custom5: "\\"
+  custom6: "酱紫的话"
+  custom7: "就不需要改Theme的时候连着改一堆消息啦w!"
+  custom8: "虽然我知道这不是什么新奇玩意w.."
+  custom9: "但是 它确实很方便"
+  custom10: "对吧?"
+
+# 玩家第一次(当前BungeeCord会话)时踢出的消息
+first_join:
+  - "[$ServerName]"
+  - ""
+  - "[$Line]"
+  - "&b看起来您在服务器启动后从未加入过服务器!"
+  - "&b麻烦请重新加入服务器来完成认证 =w="
+  - "[$Line]"
+  - ""
+  - "[$URL]"
+
+# 当玩家刚好在反机器人模式激活后不久加入服务器踢出的消息
+# [$queue] = 待处理的IP数量
+# [$blacklist] = 当前会话中已被列入黑名单的IP数量
+antibotmode:
+  - "[$ServerName]"
+  - ""
+  - "[$Line]"
+  - "&c防机器人已启用! 我们暂时无法接纳您的连接w.. 抱歉!"
+  - "&b黑名单数量: &f[$queue]&f/&b[$blacklist]"
+  - "&7当我们收集完被用来攻击的IP代理后 您就可以进入认证环节啦w!"
+  - "[$Line]"
+  - ""
+  - "[$URL]"
+
+# 当玩家同时登录了太多的账户时踢出的消息
+account-online:
+  - "[$ServerName]"
+  - ""
+  - "[$Line]"
+  - "&c看起来好像到达登录上限惹!"
+  - "&e究竟是什么让你一个游戏都不够用呢"
+  - "[$Line]"
+  - ""
+  - "[$URL]"
+
+# 当反机器人需要玩家通过Ping服务器(即刷新服务器列表) 时踢出的消息
+# [$pingcount] = 需要ping的数量
+ping:
+  - "[$ServerName]"
+  - ""
+  - "[$Line]"
+  - "&b请刷新服务器列表 &f[$pingcount] &b来完成认证! 麻烦了w.."
+  - "&7注: 如果您未将服务器加入刷新列表 则需要先添加 再尝试刷新"
+  - "[$Line]"
+  - ""
+  - "[$URL]"
+
+# 当通过Ping认证后 玩家尝试加入踢出玩家时的消息 并指出要在多少秒内重新连接
+# [$delay] = 限时 单位为秒
+timer:
+  - "[$ServerName]"
+  - ""
+  - "[$Line]"
+  - "&b请在 &f[$delay] &b秒内加入服务器w!"
+  - "[$Line]"
+  - ""
+  - "[$URL]"
+
+# 当玩家被列入黑名单尝试加入时被踢出的消息
+# [$reason] = 列入黑名单的理由 请看上方的"reason"
+# [$id] = 惩罚标识号 虽然没什么用就是 被黑名单了就是被黑名单了 w-
+blacklisted:
+  - "[$ServerName]"
+  - ""
+  - "[$Line]"
+  - "&cw! 您被列入黑名单惹! ;w;"
+  - "&c如果您认为您没有做错什么 请联系管理员!"
+  - ""
+  - "&b黑名单ID  &f[$id]"
+  - "&b理由  &f[$id]"
+  - "[$Line]"
+  - ""
+  - "[$URL]"
+
+fastjoin-queue:
+  - "[$ServerName]"
+  - ""
+  - "[$Line]"
+  - "&b您已加入排队队列 请过会再尝试重新加入! w'"
+  - "[$Line]"
+  - ""
+  - "[$URL]"

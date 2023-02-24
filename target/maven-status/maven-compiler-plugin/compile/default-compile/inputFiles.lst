@@ -57,7 +57,6 @@ X:\Workspace\AkaneField\src\main\java\catmoe\akkariin\akanefield\common\service\
 X:\Workspace\AkaneField\src\main\java\catmoe\akkariin\akanefield\common\checks\NameChangerCheck.java
 X:\Workspace\AkaneField\src\main\java\catmoe\akkariin\akanefield\common\detectors\AbstractDetector.java
 X:\Workspace\AkaneField\src\main\java\catmoe\akkariin\akanefield\event\ModeEnableEvent.java
-X:\Workspace\AkaneField\src\main\java\catmoe\akkariin\akanefield\objects\DynamicBar.java
 X:\Workspace\AkaneField\src\main\java\catmoe\akkariin\akanefield\common\thread\DynamicCounterThread.java
 X:\Workspace\AkaneField\src\main\java\catmoe\akkariin\akanefield\common\checks\AccountCheck.java
 X:\Workspace\AkaneField\src\main\java\catmoe\akkariin\akanefield\listener\PingListener.java
@@ -86,7 +85,6 @@ X:\Workspace\AkaneField\src\main\java\catmoe\akkariin\akanefield\common\server\p
 X:\Workspace\AkaneField\src\main\java\catmoe\akkariin\akanefield\commands\subcommands\AddRemoveBlacklistCommand.java
 X:\Workspace\AkaneField\src\main\java\catmoe\akkariin\akanefield\common\antivpn\VPNProvider.java
 X:\Workspace\AkaneField\src\main\java\catmoe\akkariin\akanefield\event\DuringAttackIPJoinEvent.java
-X:\Workspace\AkaneField\src\main\java\catmoe\akkariin\akanefield\common\thread\AttackAnalyzerThread.java
 X:\Workspace\AkaneField\src\main\java\catmoe\akkariin\akanefield\common\IServerPlatform.java
 X:\Workspace\AkaneField\src\main\java\catmoe\akkariin\akanefield\Notificator.java
 X:\Workspace\AkaneField\src\main\java\catmoe\akkariin\akanefield\common\antivpn\proxycheck\ConnectionCheck.java
