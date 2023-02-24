@@ -13,8 +13,6 @@ public class MessageManager {
     public static String reloadMessage;
     public static String normalPingInterface;
     public static String verifiedPingInterface;
-    public static String titleTitle;
-    public static String titleSubtitle;
     public static String commandNoPerms;
     public static String commandCleared;
     public static String commandAdded;
@@ -38,7 +36,6 @@ public class MessageManager {
     public static String reasonVPN;
     public static String reasonAdmin;
     public static String toggledActionbar;
-    public static String toggledTitle;
     public static String toggledBossBar;
     public static String commandWrongArgument;
     public static String reasonBlacklistAdmin;
@@ -58,8 +55,6 @@ public class MessageManager {
         reloadMessage = messages.getString("commands.reload");
         normalPingInterface = messages.getString("onping.normal");
         verifiedPingInterface = messages.getString("onping.ready");
-        titleTitle = messages.getString("title.title");
-        titleSubtitle = messages.getString("title.subtitle");
         commandNoPerms = messages.getString("commands.perms");
         commandCleared = messages.getString("commands.cleared");
         commandAdded = messages.getString("commands.added");
@@ -83,7 +78,6 @@ public class MessageManager {
         reasonVPN = messages.getString("reason.vpn");
         reasonAdmin = messages.getString("reason.admin");
         toggledActionbar = messages.getString("notifications.action");
-        toggledTitle = messages.getString("notifications.title");
         toggledBossBar = messages.getString("notifications.bossbar");
         commandWrongArgument = messages.getString("commands.wrong-args");
         reasonBlacklistAdmin = messages.getString("reason.admin");
