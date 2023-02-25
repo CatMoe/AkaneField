@@ -41,12 +41,12 @@ antibotmode:
 # 适用于Motd洪水的戒备模式
 pingmode:
   keep: 10
-  trigger: 100
+  trigger: 4
   send_info: true
 
 packetmode:
   keep: 15
-  trigger: 15
+  trigger: 2
   # 是否将已经确认为恶意的无效握手包的发送者IP加入黑名单?
   blacklist-invalid-protocol: true
 

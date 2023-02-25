@@ -30,9 +30,9 @@ public class AttackTrackerService implements IService {
 
     @Override
     public void load() {
-        List<File> logFiles = Arrays.stream(FileUtil.getFiles(FileUtil.UABFolder.LOGS))
+        List<File> logFiles = Arrays.stream(FileUtil.getFiles(FileUtil.AkaneFieldFolder.LOGS))
                 .filter(s -> s.getName().contains(".log")).collect(Collectors.toList());
-        String nextAttackID = FileUtil.getEncodedBase64("attack.id", FileUtil.UABFolder.LOGS);
+        String nextAttackID = FileUtil.getEncodedBase64("attack.id", FileUtil.AkaneFieldFolder.LOGS);
         try {
             this.nextAttackID = Integer.parseInt(nextAttackID);
         } catch (NumberFormatException e) {
@@ -78,13 +78,13 @@ public class AttackTrackerService implements IService {
     public void unload() {
         for (AttackLog log : attackLogList) {
             try {
-                FileUtil.writeBase64("attack-" + log.getID() + ".log", FileUtil.UABFolder.LOGS, log);
+                FileUtil.writeBase64("attack-" + log.getID() + ".log", FileUtil.AkaneFieldFolder.LOGS, log);
             } catch (Exception e) {
                 plugin.getLogHelper().warn("Unable to serialize attack-" + log.getID() + ".log (reason: "
                         + e.getMessage() + "), skipping...");
             }
         }
-        FileUtil.writeLine("attack.id", FileUtil.UABFolder.LOGS, String.valueOf(nextAttackID));
+        FileUtil.writeLine("attack.id", FileUtil.AkaneFieldFolder.LOGS, String.valueOf(nextAttackID));
     }
 
     public List<AttackLog> getLastAttacks(int amount) {

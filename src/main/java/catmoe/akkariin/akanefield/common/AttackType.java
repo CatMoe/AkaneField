@@ -4,7 +4,7 @@ public enum AttackType {
     JOIN,
     MOTD,
     COMBINED,
-    INVALID_PACKETS,
-    SLOW_JOIN,
+    Firewall,
+    SlowJoin,
     NONE;
 }

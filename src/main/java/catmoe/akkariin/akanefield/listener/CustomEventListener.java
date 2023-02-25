@@ -37,7 +37,7 @@ public class CustomEventListener implements Listener {
             }
         }
 
-        if (e.getEnabledMode().equals(ModeType.ANTIBOT) || e.getEnabledMode().equals(ModeType.SLOW)) {
+        if (e.getEnabledMode().equals(ModeType.FastJoin) || e.getEnabledMode().equals(ModeType.SlowJoin)) {
             if (ConfigManger.antibotDisconnect) {
                 e.disconnectBots();
             }
@@ -72,7 +72,7 @@ public class CustomEventListener implements Listener {
 
     @EventHandler
     public void onAttackStart(ModeEnableEvent e) {
-        if (e.getEnabledMode() == ModeType.OFFLINE)
+        if (e.getEnabledMode() == ModeType.Block)
             return;
 
         trackerService.onNewAttackStart();

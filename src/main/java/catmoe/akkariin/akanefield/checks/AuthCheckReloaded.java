@@ -213,7 +213,7 @@ public class AuthCheckReloaded {
     private void addToCompletingPingCheck(String ip, int generatedPingAmount) {
         pingMap.put(ip, new FancyInteger(0));
         pingData.put(ip, generatedPingAmount);
-        checking.put(ip, AuthCheckType.PING);
+        checking.put(ip, AuthCheckType.Motd);
     }
 
     /**
@@ -222,7 +222,7 @@ public class AuthCheckReloaded {
      *         resto dei controlli
      */
     private boolean hasCompletedPingCheck(String ip) {
-        return completedCheck.get(ip) != null && completedCheck.get(ip).equals(AuthCheckType.PING);
+        return completedCheck.get(ip) != null && completedCheck.get(ip).equals(AuthCheckType.Motd);
     }
 
     /**
@@ -231,7 +231,7 @@ public class AuthCheckReloaded {
      * @return Ritorna se il player sta eseguendo il ping check
      */
     private boolean isCompletingPingCheck(String ip) {
-        return checking.get(ip) != null && checking.get(ip).equals(AuthCheckType.PING);
+        return checking.get(ip) != null && checking.get(ip).equals(AuthCheckType.Motd);
     }
 
     /**
@@ -249,7 +249,7 @@ public class AuthCheckReloaded {
      * @param ip IP da aggiungere
      */
     private void addToPingCheckCompleted(String ip) {
-        completedCheck.put(ip, AuthCheckType.PING);
+        completedCheck.put(ip, AuthCheckType.Motd);
     }
 
     /**

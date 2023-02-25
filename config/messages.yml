@@ -1,5 +1,5 @@
 version: 0.1
-prefix: "&bAkane&fField &7>> "
+prefix: "&bAkane&fField &7» "
 onping:
   normal: "&b请继续刷新服务器列表 &f$1&b/&f$2"
   ready: "&b已通过反机器人认证!"
@@ -18,11 +18,11 @@ notifications:
 #连接数占位符: %cps%(每秒连接数) - %bots%(又称JPS. 每秒加入服务器的数量) - %pings%(每秒ping服务器的数量) - %packets%(每秒拦截的数据包数量)
 #连接数总计: %totalpackets% - %totalbots% - %totalpings%
 #基本状态: %whitelist%(白名单统计) - %blacklist%(黑名单统计) - %type%(攻击状态)
-#杂项: %underverification%(未处理的代理检察数量) - %queue%(队列检查缓存数量) - %animation%(▛▜▟▙轮转动画) - %prefix%(前缀)
+#杂项: %underverification%(未处理的代理检察数量) - %queue%(队列检查缓存数量) - %animation%(▛▜▟▙轮转动画) - %prefix%(前缀) - %type%(状态. SlowJoin,FastJoin,Firewall,Motd.Block)
 actionbar:
-  offline: "%prefix%&cJoin&7/&cPing &f%bots%&7/&f%pings% &4- &cVerify &f%underverification% &4- &cWhitelist &f%whitelist% » &c&l%type%"
-  antibot: "%prefix%&cBot&7/&cPing &f%bots%&7/&f%pings% &4- &cBlacklist&7/&cQueue&7/&cWhitelist &f%blacklist%&7/&f%queue%&7/&f%whitelist% &4- &cVerify &f%underverification% » &c&l%type%"
-  packets: "%prefix%&cPackets &f%packets%/sec &4- &cBlocked &f%totalpackets% &4- &cVerify &f%underverification% » &c&l%type%"
+  offline: "%prefix%&b%type% &7- &bProxy Verify &f%underverification% &7- &bCPS &f%cps% &7- &bWhitelist &f%whitelist% &7- &bBlacklist &f%blacklist%"
+  antibot: "%prefix%&c%type% &7- &bCPS &f%cps% &7- &bBlocked &f%bots% &7- &bBlacklist &f%blacklist%"
+  packets: "%prefix%&c%type% &7- &bCPS &f%cps% &7- &bPrevent &f%totalpackets%"
 stats:
   - "&cCurrent Session Stats:"
   - ""

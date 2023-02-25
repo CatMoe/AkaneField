@@ -35,16 +35,16 @@ public class AttackTypeDetector extends AbstractDetector {
      * public void tick() {
      * ModeType current = manager.getModeType();
      * 
-     * if(current.equals(ModeType.SLOW)) {
-     * manager.setAttackType(AttackType.SLOW_JOIN);
+     * if(current.equals(ModeType.SlowJoin)) {
+     * manager.setAttackType(AttackType.SlowJoin);
      * return;
      * }
-     * if(current.equals(ModeType.PING)){
+     * if(current.equals(ModeType.Motd)){
      * manager.setAttackType(AttackType.MOTD);
      * return;
      * }
      * if(manager.isPacketModeEnabled()){
-     * manager.setAttackType(AttackType.INVALID_PACKETS);
+     * manager.setAttackType(AttackType.Firewall);
      * return;
      * }
      * 

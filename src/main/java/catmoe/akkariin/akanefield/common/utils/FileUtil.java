@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileUtil {
-    public static File getOrCreateFile(String fileID, UABFolder folder) {
+    public static File getOrCreateFile(String fileID, AkaneFieldFolder folder) {
         File file = new File(ServerUtil.getDataFolder() + "/" + folder.getFolder(), fileID);
         if (!file.exists()) {
             try {
@@ -22,7 +22,7 @@ public class FileUtil {
         return file;
     }
 
-    public static void writeBase64(String fileID, UABFolder folder, Object o) {
+    public static void writeBase64(String fileID, AkaneFieldFolder folder, Object o) {
         File file = getOrCreateFile(fileID, folder);
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -34,7 +34,7 @@ public class FileUtil {
         }
     }
 
-    public static String getEncodedBase64(String fileID, UABFolder folder) {
+    public static String getEncodedBase64(String fileID, AkaneFieldFolder folder) {
         String str = "";
         File file = getOrCreateFile(fileID, folder);
         try {
@@ -63,14 +63,14 @@ public class FileUtil {
         return str;
     }
 
-    public static File[] getFiles(UABFolder folder) {
+    public static File[] getFiles(AkaneFieldFolder folder) {
         File f = new File(ServerUtil.getDataFolder() + "/" + folder.getFolder());
         File[] array = f.listFiles();
 
         return array == null ? new File[] {} : array;
     }
 
-    public static void writeLine(String fileID, UABFolder folder, String line) {
+    public static void writeLine(String fileID, AkaneFieldFolder folder, String line) {
         File file = getOrCreateFile(fileID, folder);
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -82,7 +82,7 @@ public class FileUtil {
         }
     }
 
-    public enum UABFolder {
+    public enum AkaneFieldFolder {
         BACKUP,
         DATA,
         LOGS;

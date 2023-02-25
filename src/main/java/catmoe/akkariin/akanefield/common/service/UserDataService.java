@@ -25,8 +25,8 @@ public class UserDataService implements IService {
     @SuppressWarnings("unchecked")
     public void load() {
         try {
-            String encodedUsers = FileUtil.getEncodedBase64("users.dat", FileUtil.UABFolder.DATA);
-            String encodedConnections = FileUtil.getEncodedBase64("profiles.dat", FileUtil.UABFolder.DATA);
+            String encodedUsers = FileUtil.getEncodedBase64("users.dat", FileUtil.AkaneFieldFolder.DATA);
+            String encodedConnections = FileUtil.getEncodedBase64("profiles.dat", FileUtil.AkaneFieldFolder.DATA);
             if (encodedUsers == null && encodedConnections == null) {
                 return;
             }
@@ -55,8 +55,8 @@ public class UserDataService implements IService {
     @Override
     public void unload() {
         connectionProfiles.removeIf(c -> c.getDaysFromLastJoin() >= 30);
-        FileUtil.writeBase64("users.dat", FileUtil.UABFolder.DATA, firstJoin);
-        FileUtil.writeBase64("profiles.dat", FileUtil.UABFolder.DATA, connectionProfiles);
+        FileUtil.writeBase64("users.dat", FileUtil.AkaneFieldFolder.DATA, firstJoin);
+        FileUtil.writeBase64("profiles.dat", FileUtil.AkaneFieldFolder.DATA, connectionProfiles);
     }
 
     public void registerJoin(String ip, String nickname) {

@@ -39,13 +39,13 @@ catmoe\akkariin\akanefield\common\antivpn\VPNProvider.class
 catmoe\akkariin\akanefield\AntiBotManager.class
 catmoe\akkariin\akanefield\common\objects\config\SlowCheckConfig.class
 catmoe\akkariin\akanefield\common\server\packet\SatellitePacket.class
-catmoe\akkariin\akanefield\common\utils\FileUtil$UABFolder.class
 catmoe\akkariin\akanefield\common\tasks\TimedWhitelistTask.class
 catmoe\akkariin\akanefield\common\objects\profile\BlackListProfile.class
 catmoe\akkariin\akanefield\common\antivpn\proxycheck\ProxyCheckProvider$VPNResults.class
 catmoe\akkariin\akanefield\utils\Metrics$1.class
 catmoe\akkariin\akanefield\common\detectors\AttackDurationDetector.class
 catmoe\akkariin\akanefield\common\tasks\TimedWhitelistTask$1.class
+catmoe\akkariin\akanefield\common\utils\FileUtil$AkaneFieldFolder.class
 catmoe\akkariin\akanefield\utils\Metrics$AdvancedBarChart.class
 catmoe\akkariin\akanefield\common\helper\ServerType.class
 catmoe\akkariin\akanefield\common\thread\AnimationThread.class

@@ -52,14 +52,10 @@ public class AttackLogCommand implements SubCommand {
                 return;
             }
 
-            sender.sendMessage("§8§l§n___________________________________________");
-            sender.sendMessage("");
-            sender.sendMessage("§f§lRunning §c§lULTIMATE§F§L | ANTIBOT §r§7- V" + plugin.getVersion());
             AttackLog attackLog = log.get();
             List<String> messages = MessageManager.getMessageList("attack-log").stream()
                     .map(attackLog::replaceInformation).map(Utils::colora).collect(Collectors.toList());
             messages.forEach(sender::sendMessage);
-            sender.sendMessage("§8§l§n___________________________________________");
         }
 
         if (args[1].equals("list")) {

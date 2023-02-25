@@ -44,7 +44,7 @@ public class MessageManager {
     public static String attackAnalyzerIncrease;
     public static List<String> firewallMessage;
     public static String attackAnalyzerDecrease;
-    public static String bossBarIdleMessage;
+    public static String bossBarBlockMessage;
     public static String fastJoinQueueMessage;
     public static List<String> satelliteStatus;
 
