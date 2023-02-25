@@ -86,7 +86,6 @@ catmoe\akkariin\akanefield\common\detectors\FastJoinBypassDetector.class
 catmoe\akkariin\akanefield\common\objects\LimitedList.class
 catmoe\akkariin\akanefield\common\antivpn\proxycheck\query\HTTPQuery.class
 catmoe\akkariin\akanefield\common\IAntiBotPlugin.class
-catmoe\akkariin\akanefield\common\BarColor.class
 catmoe\akkariin\akanefield\common\objects\config\ProxyCheckConfig.class
 catmoe\akkariin\akanefield\listener\HandShakeListener.class
 catmoe\akkariin\akanefield\common\helper\PerformanceMode.class
@@ -100,7 +99,6 @@ catmoe\akkariin\akanefield\common\objects\FancyPair.class
 catmoe\akkariin\akanefield\common\objects\filter\Proxy247Filter.class
 catmoe\akkariin\akanefield\checks\PacketCheck.class
 catmoe\akkariin\akanefield\common\utils\Version.class
-catmoe\akkariin\akanefield\common\BarStyle.class
 catmoe\akkariin\akanefield\commands\subcommands\FirewallCommand.class
 catmoe\akkariin\akanefield\common\thread\DynamicCounterThread.class
 catmoe\akkariin\akanefield\common\tasks\AutoWhitelistTask.class

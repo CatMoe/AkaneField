@@ -30,11 +30,11 @@ public class ClearCommand implements SubCommand {
     public void execute(CommandSender sender, String[] args) {
         if (args[1].equals("whitelist")) {
             antiBotManager.getWhitelistService().clear();
-            sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getCommandCleared("whiteList")));
+            sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getCommandCleared("白名单")));
         } else {
             if (args[1].equals("blacklist")) {
                 antiBotManager.getBlackListService().clear();
-                sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getCommandCleared("blackList")));
+                sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getCommandCleared("黑名单")));
             } else {
                 sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.commandWrongArgument));
             }
