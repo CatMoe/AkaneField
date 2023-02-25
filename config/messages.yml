@@ -1,4 +1,4 @@
-version: 0.1
+version: 0.2.1
 prefix: "&bAkane&fField &7» "
 onping:
   normal: "&b请继续刷新服务器列表 &f$1&b/&f$2"
@@ -21,8 +21,8 @@ notifications:
 #杂项: %underverification%(未处理的代理检察数量) - %queue%(队列检查缓存数量) - %animation%(▛▜▟▙轮转动画) - %prefix%(前缀) - %durationsec%(持续时长 但是返回秒)
 actionbar:
   offline: "%prefix%&bZzz... &7- &bProxy Verify &f%underverification% &7- &bCPS &f%cps% &7- &bWhitelist &f%whitelist% &7- &bBlacklist &f%blacklist%"
-  antibot: "%prefix%&bType &f%type% &7- &bCPS &f%cps% &7- &bBlocked &f%bots% &7- &bBlacklist &f%blacklist% &7- &bVerify &f%underverification% &7- &bDuration &f%duration%"
-  packets: "%prefix%&bType &fFirewall &7- &bCPS &f%cps% &7- &bPrevent &f%totalpackets% &7- &bVerify &f%underverification% &7- &bDuration &f%duration%"
+  antibot: "%prefix%&bType &f%type% &7- &bConnection &f%connection% &7- &bCPS &f%cps% &7- &bBlocked &f%totalbots% &7- &bBlacklist &f%blacklist% &7- &bVerify &f%underverification% &7- &bDuration &f%duration%"
+  packets: "%prefix%&bType &fFirewall &7- &bConnection &f%connection% &7- &bCPS &f%cps% &7- &bPrevent &f%totalpackets% &7- &bVerify &f%underverification% &7- &bDuration &f%duration%"
 stats:
   - ""
   - "&b当前会话信息"
@@ -72,7 +72,6 @@ attack-log:
   - "&b阻止的Ping数量 &f%pings%"
   - "&b阻止的数据包数量 &f%packets%"
   - "&b平均CPS &f%avg%"
-  - "&b极限CPS &f%power%"
   - "&b持续时间 &f%duration%"
   - ""
 
