@@ -8,7 +8,6 @@ import catmoe.akkariin.akanefield.common.objects.profile.BlackListReason;
 import catmoe.akkariin.akanefield.common.tasks.TimedWhitelistTask;
 import catmoe.akkariin.akanefield.common.utils.MessageManager;
 
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
@@ -38,6 +37,9 @@ public class IPAPIProvider implements VPNProvider {
             plugin.getAntiBotManager().getWhitelistService().whitelist(ip);
             plugin.scheduleDelayedTask(new TimedWhitelistTask(plugin, ip, 30));
         }
+        try {
+        } catch (Exception e) {
+        }
 
     }
 
@@ -55,8 +57,7 @@ public class IPAPIProvider implements VPNProvider {
             VPNJSONResponse response = gson.fromJson(reader, VPNJSONResponse.class);
             reader.close();
             return response;
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
         }
 
         return null;

@@ -5,34 +5,34 @@ onping:
   ready: "&b已通过反机器人认证!"
 commands:
   perms: "&fUnknown command. Type \"/help\" for help."
-  cleared: "&c$1&f has been &ccleared! "
-  added: "&c$1&f has been added in the &c$2"
-  removed: "&c$1&f has been removed from the &c$2"
-  wrong-args: "&b未知命令 请使用 &f/af help &b打开帮助菜单"
-  no-blacklist: "&cThis ID does not appear to be associated with anything!"
-  invalid-log-value: "&cThe provided value is not associated to a log!"
+  cleared: "&b已成功清理 &f$1!"
+  added: "&f$1&b 已被添加到 &f$2"
+  removed: "&f$1&b 已从 &f$2 &b中删除."
+  wrong-args: "&b未知命令 请使用 &f/af help &b查看可用命令"
+  no-blacklist: "&c未找到有关此玩家的黑名单"
+  invalid-log-value: "&c未找到日志."
   reload: "&bAkane&fField &b已成功重载配置文件. 部分内容可能需要重启服务器才能生效"
 notifications:
-  action: "&a已在ActionBar显示反机器人状态."
+  action: "&a已切换机器人显示状态"
 
 #连接数占位符: %cps%(每秒连接数) - %bots%(又称JPS. 每秒加入服务器的数量) - %pings%(每秒ping服务器的数量) - %packets%(每秒拦截的数据包数量)
 #连接数总计: %totalpackets% - %totalbots% - %totalpings%
 #基本状态: %whitelist%(白名单统计) - %blacklist%(黑名单统计) - %type%(攻击状态 SlowJoin,FastJoin,Firewall,Motd.Block) - %duration%(时长)
-#杂项: %underverification%(未处理的代理检察数量) - %queue%(队列检查缓存数量) - %animation%(▛▜▟▙轮转动画) - %prefix%(前缀)
+#杂项: %underverification%(未处理的代理检察数量) - %queue%(队列检查缓存数量) - %animation%(▛▜▟▙轮转动画) - %prefix%(前缀) - %durationsec%(持续时长 但是返回秒)
 actionbar:
-  offline: "%prefix%&b%type% &7- &bProxy Verify &f%underverification% &7- &bCPS &f%cps% &7- &bWhitelist &f%whitelist% &7- &bBlacklist &f%blacklist%"
-  antibot: "%prefix%&c%type% &7- &bCPS &f%cps% &7- &bBlocked &f%bots% &7- &bBlacklist &f%blacklist%"
-  packets: "%prefix%&c%type% &7- &bCPS &f%cps% &7- &bPrevent &f%totalpackets%"
+  offline: "%prefix%&bZzz... &7- &bProxy Verify &f%underverification% &7- &bCPS &f%cps% &7- &bWhitelist &f%whitelist% &7- &bBlacklist &f%blacklist%"
+  antibot: "%prefix%&bType &f%type% &7- &bCPS &f%cps% &7- &bBlocked &f%bots% &7- &bBlacklist &f%blacklist% &7- &bVerify &f%underverification% &7- &bDuration &f%duration%"
+  packets: "%prefix%&bType &fFirewall &7- &bCPS &f%cps% &7- &bPrevent &f%totalpackets% &7- &bVerify &f%underverification% &7- &bDuration &f%duration%"
 stats:
-  - "&cCurrent Session Stats:"
   - ""
-  - "&cBot Blocked &f%totalbots%"
-  - "&cTotal Ping &f%totalpings%"
-  - "&cTotal Packets &f%totalpackets%"
-  - "&cWhitelisted IP &f%whitelist%"
-  - "&cBlacklisted IP &f%blacklist%"
+  - "&b当前会话信息"
   - ""
-  - "&cCurrent server latency is &f%latency%"
+  - "&b已拦截加入 &f%totalbots%"
+  - "&bMotd提供次数 &f%totalpings%"
+  - "&b已拦截数据包 &f%totalpackets%"
+  - "&b白名单数量 &f%whitelist%"
+  - "&c黑名单数量 &f%blacklist%"
+  - ""
 
 # 注意 此项之后可能会迁移到kick.reason . 因此请保留一份副本
 # 也请保留这条消息以作为一个提示 因为修改后可能怒不通知
@@ -41,7 +41,8 @@ reason:
   names: "MANY_ALTS"
   joins: "JOIN_FLOOD"
   pings: "MOTD_FLOOD"
-  # STRANGE_PLAYER是一项综合性检查 如果您好奇这是用来干什么的 请联系我
+  # STRANGE_PLAYER是一项综合性检查 说白了 我就是懒得写详细信息(
+  # 该检查主要用于防止慢速机器人.
   strange: "奇怪的玩家"
   vpn: "疑似使用VPN或代理"
   admin: "一位管理员将您列入黑名单"
@@ -50,29 +51,29 @@ reason:
 
 help:
   - ""
-  - "&c/akanefield &ctoggle &factionbar &7- &fEnables notifications"
-  - "&c/akanefield &cstats &7- &fShows antibot stats"
-  - "&c/akanefield &cclear &fblacklist/whitelist &7- &fClear blacklist or whitelist"
-  - "&c/akanefield &cwhitelist &fadd/remove &f<ip> &7- &fManage whitelist"
-  - "&c/akanefield &cblacklist &fadd/remove &f<ip>&7- &fManage blacklist"
-  - "&c/akanefield logs list <amount> &7- &fReturns some info of an attack"
-  - "&c/akanefield logs last <id> &7- Shows last <amount> attacks"
-  - "&c/akanefield &cfirewall &7- &fShows some firewall info"
-  - "&c/akanefield &ccheck &f<id> &7- &fCheck for blacklisted player"
-  - "&c/akanefield &creload &7- &fReloads the config & messages"
+  - "&b可用子命令列表:"
+  - "&bstats &f- &b查看当前代理会话中的统计信息"
+  - "&bclear &bblacklist/whitelist &f- &b清理黑名单/白名单"
+  - "&bwhitelist &badd/remove &b<ip> &f- &b向白名单添加或删除地址"
+  - "&bblacklist &badd/remove &b<ip> &f- &b向黑名单添加或删除地址"
+  - "&blogs list <数量> &f- &b返回日志列表"
+  - "&blogs last <id> &f- &b查看指定日志的统计信息"
+  - "&bfirewall &f- &b查看Linux Centeral防火墙统计信息"
+  - "&bcheck &f<id> &f- &b检查玩家是否被黑名单禁止"
+  - "&breload &f- &b重载部分配置文件和消息文件."
   - ""
 
 attack-log:
   - ""
-  - "&cAttack ID&f %id%"
-  - "&cAttack date&f %attack%"
-  - "&cBlacklisted IPs &f%blacklist%"
-  - "&cBlocked bots &f%bots%"
-  - "&cBlocked pings &f%pings%"
-  - "&cBlocked Packets &f%packets%"
-  - "&cAverage CPS &f%avg%"
-  - "&cAttack Power &f%power%"
-  - "&cDuration &f%duration%"
+  - "&b日志ID &f %id%"
+  - "&b攻击初始日期&f %attack%"
+  - "&b黑名单数量&f %blacklist%"
+  - "&b阻止机器人数量 &f%bots%"
+  - "&b阻止的Ping数量 &f%pings%"
+  - "&b阻止的数据包数量 &f%packets%"
+  - "&b平均CPS &f%avg%"
+  - "&b极限CPS &f%power%"
+  - "&b持续时间 &f%duration%"
   - ""
 
 # IPTables & IPSet 不适用于除Linux之外的其它系统! 
@@ -86,12 +87,13 @@ firewall:
   - "&cThese are the UAB firewall stats that will only work if you have it enabled in the config!"
   - "&cThe attack will be mitigated when all IPs have been blocked!"
 blacklist_info:
-  - "&c&lBLACKLIST INFO:"
   - ""
-  - "&cReason &7» &c$reason"
-  - "&cIP &7» &c$ip"
-  - "&cNickName &7» &c$nick"
-  - "&cID &7» &c$id"
+  - "&b黑名单信息"
+  - ""
+  - "&b理由 &f$reason"
+  - "&b地址 &f$ip"
+  - "&b用户 &f$nick"
+  - "&bID &f$id"
   - ""
 
 # 踢出消息

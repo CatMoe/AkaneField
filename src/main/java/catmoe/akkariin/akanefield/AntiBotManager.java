@@ -13,6 +13,7 @@ import catmoe.akkariin.akanefield.common.service.WhitelistService;
 import catmoe.akkariin.akanefield.common.thread.DynamicCounterThread;
 import catmoe.akkariin.akanefield.common.utils.ConfigManger;
 import catmoe.akkariin.akanefield.common.utils.MessageManager;
+import catmoe.akkariin.akanefield.common.utils.TimeUtil;
 import catmoe.akkariin.akanefield.event.ModeEnableEvent;
 import catmoe.akkariin.akanefield.task.ModeDisableTask;
 import catmoe.akkariin.akanefield.utils.EventCaller;
@@ -305,7 +306,8 @@ public class AntiBotManager implements IAntiBotManager {
                 .replace("%animation%", iAntiBotPlugin.getAnimationThread().getEmote())
                 .replace("%prefix%", MessageManager.prefix)
                 .replace("%underverification%", String.valueOf(VPNService.getUnderVerificationSize()))
-                .replace("%duration%", String.valueOf(getAttackDuration()))
+                .replace("%duration%", TimeUtil.formatSeconds(attackDurationDetector.getAttackDuration()))
+                .replace("%durationsec%", String.valueOf(getAttackDuration()))
                 .replace("%cps%", String.valueOf(connectionPerSecond.getSlowCount()))
                 .replace("%connection%", String.valueOf(connectionPerSecond.getSpeedCount()));
     }
