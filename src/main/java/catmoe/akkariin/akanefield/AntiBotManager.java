@@ -302,10 +302,9 @@ public class AntiBotManager implements IAntiBotManager {
                 .replace("%totalbots%", String.valueOf(joinPerSecond.getTotal()))
                 .replace("%totalpings%", String.valueOf(pingPerSecond.getTotal()))
                 .replace("%totalpackets%", String.valueOf(packetPerSecond.getTotal()))
-                .replace("%latency%", iAntiBotPlugin.getLatencyThread().getLatency())
                 .replace("%animation%", iAntiBotPlugin.getAnimationThread().getEmote())
                 .replace("%prefix%", MessageManager.prefix)
                 .replace("%underverification%", String.valueOf(VPNService.getUnderVerificationSize()))
-                .replace("%cps%", String.valueOf(connectionPerSecond.getSlowCount()));
+                .replace("%cps%", String.valueOf(connectionPerSecond.getSpeedCount()));
     }
 }
