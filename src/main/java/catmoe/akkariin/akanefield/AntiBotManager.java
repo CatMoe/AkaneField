@@ -305,6 +305,8 @@ public class AntiBotManager implements IAntiBotManager {
                 .replace("%animation%", iAntiBotPlugin.getAnimationThread().getEmote())
                 .replace("%prefix%", MessageManager.prefix)
                 .replace("%underverification%", String.valueOf(VPNService.getUnderVerificationSize()))
-                .replace("%cps%", String.valueOf(connectionPerSecond.getSpeedCount()));
+                .replace("%duration%", String.valueOf(getAttackDuration()))
+                .replace("%cps%", String.valueOf(connectionPerSecond.getSlowCount()))
+                .replace("%connection%", String.valueOf(connectionPerSecond.getSpeedCount()));
     }
 }

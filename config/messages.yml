@@ -17,8 +17,8 @@ notifications:
 
 #连接数占位符: %cps%(每秒连接数) - %bots%(又称JPS. 每秒加入服务器的数量) - %pings%(每秒ping服务器的数量) - %packets%(每秒拦截的数据包数量)
 #连接数总计: %totalpackets% - %totalbots% - %totalpings%
-#基本状态: %whitelist%(白名单统计) - %blacklist%(黑名单统计) - %type%(攻击状态)
-#杂项: %underverification%(未处理的代理检察数量) - %queue%(队列检查缓存数量) - %animation%(▛▜▟▙轮转动画) - %prefix%(前缀) - %type%(状态. SlowJoin,FastJoin,Firewall,Motd.Block)
+#基本状态: %whitelist%(白名单统计) - %blacklist%(黑名单统计) - %type%(攻击状态 SlowJoin,FastJoin,Firewall,Motd.Block) - %duration%(时长)
+#杂项: %underverification%(未处理的代理检察数量) - %queue%(队列检查缓存数量) - %animation%(▛▜▟▙轮转动画) - %prefix%(前缀)
 actionbar:
   offline: "%prefix%&b%type% &7- &bProxy Verify &f%underverification% &7- &bCPS &f%cps% &7- &bWhitelist &f%whitelist% &7- &bBlacklist &f%blacklist%"
   antibot: "%prefix%&c%type% &7- &bCPS &f%cps% &7- &bBlocked &f%bots% &7- &bBlacklist &f%blacklist%"
@@ -63,6 +63,7 @@ help:
   - ""
 
 attack-log:
+  - ""
   - "&cAttack ID&f %id%"
   - "&cAttack date&f %attack%"
   - "&cBlacklisted IPs &f%blacklist%"
@@ -72,6 +73,7 @@ attack-log:
   - "&cAverage CPS &f%avg%"
   - "&cAttack Power &f%power%"
   - "&cDuration &f%duration%"
+  - ""
 
 # IPTables & IPSet 不适用于除Linux之外的其它系统! 
 # 为了避免垃圾邮件 我们不再在控制台提醒这个(应该是好事吧w=)
