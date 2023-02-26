@@ -33,8 +33,8 @@ public class PacketCheck {
         for (String invalidPlugin : invalidPlugins) {
             if (ProxyServer.getInstance().getPluginManager().getPlugin(invalidPlugin) != null) {
                 iAntiBotPlugin.getLogHelper().warn(
-                        "The packet check has been automatically disabled to prevent false positives given by the presence of the plugin "
-                                + invalidPlugin + " (which could alter its correct functioning)");
+                        "我们无法确认AkaneField对 "
+                                + invalidPlugin + " 插件的兼容性 如果您遇到任何问题 请报告");
                 ConfigManger.getPacketCheckConfig().setEnabled(false);
             }
         }

@@ -131,7 +131,6 @@ public final class AkaneFieldProxy extends Plugin implements IAntiBotPlugin, ISe
         commandManager.register(new ReloadCommand(this));
         commandManager.register(new FirewallCommand(this));
         commandManager.register(new AttackLogCommand(this));
-        // commandManager.register(new SatelliteCommand(this));
         ProxyServer.getInstance().getPluginManager().registerCommand(this, commandManager);
         ProxyServer.getInstance().getPluginManager().registerListener(this, new PingListener(this));
         ProxyServer.getInstance().getPluginManager().registerListener(this, new MainEventListener(this));

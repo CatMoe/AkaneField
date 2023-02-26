@@ -1,12 +1,11 @@
-version: 0.2.2
+version: 0.2.3
 # 调试信息开关
 debug: false
-# 性能探测
 webhook:
   enabled: false
   url: ""
+# 性能探测
 detect-server-performance: true
-enable-latency-thread: false
 # 当攻击停止时 是否自动关闭actionbar
 disable-notifications-after-attack: true
 # 当服务器被攻击时 忽略任何类型的信息

@@ -59,23 +59,18 @@ public class AttackLogCommand implements SubCommand {
         }
 
         if (args[1].equals("list")) {
-            sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("log.founding")));
+            sender.sendMessage(
+                    Utils.colora(MessageManager.prefix + MessageManager.getMessage("log.founding")));
             List<AttackLog> lastAttacks = plugin.getAttackTrackerService().getLastAttacks(value);
             if (lastAttacks.size() == 0) {
                 sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("log.empty")));
                 return;
             }
-            try {
-                return;
-            } catch (Exception e) {
-                sender.sendMessage(
-                        Utils.colora(MessageManager.prefix + MessageManager.getMessage("log.invalid-value")));
-            }
             for (AttackLog attack : lastAttacks) {
                 TextComponent component = new TextComponent(
-                        Utils.colora("&b" + attack.getAttackDate() + " " + MessageManager.getMessage("log.clicktips")));
+                        Utils.colora("&b" + attack.getAttackDate() + MessageManager.getMessage("log.clicktips")));
                 component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-                        new ComponentBuilder("§b点击查看日志§f " + attack.getID() + " §b的详细信息").create()));
+                        new ComponentBuilder(MessageManager.getMessage("log.clickhover")).create()));
                 component.setClickEvent(
                         new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/akanefield logs info " + attack.getID()));
                 sender.sendMessage(component);
