@@ -3,8 +3,8 @@ version: 0.2.1
 debug: false
 # 性能探测
 webhook:
-  enabled: true
-  url: "https://discord.com/api/webhooks/1079314577545777252/oj3QIYvHMTRI_uyYCNLj0mbIcbB7KIAFIEiuQUZ_ofddQhhcQlYxx0whLEu_jsIC_QoM"
+  enabled: false
+  url: ""
 detect-server-performance: true
 enable-latency-thread: false
 # 当攻击停止时 是否自动关闭actionbar
