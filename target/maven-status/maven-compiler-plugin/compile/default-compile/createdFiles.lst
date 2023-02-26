@@ -34,6 +34,7 @@ catmoe\akkariin\akanefield\common\antivpn\proxycheck\ProxyCheckProvider.class
 catmoe\akkariin\akanefield\common\checks\FirstJoinCheck.class
 catmoe\akkariin\akanefield\event\DuringAttackIPJoinEvent.class
 catmoe\akkariin\akanefield\Notificator.class
+catmoe\akkariin\akanefield\common\utils\WebhookSender.class
 catmoe\akkariin\akanefield\commands\subcommands\CheckIDCommand.class
 catmoe\akkariin\akanefield\common\antivpn\VPNProvider.class
 catmoe\akkariin\akanefield\AntiBotManager.class

@@ -4,6 +4,7 @@ import catmoe.akkariin.akanefield.common.objects.config.ProxyCheckConfig;
 import catmoe.akkariin.akanefield.common.IConfiguration;
 import catmoe.akkariin.akanefield.common.objects.config.SlowCheckConfig;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.SplittableRandom;
 
@@ -11,6 +12,8 @@ public class ConfigManger {
     private static IConfiguration CONFIG;
 
     public static double version;
+    public static String DiscordWebHookUrl;
+    public static boolean DiscordWebHookEnabled;
     public static boolean isDebugModeOnline;
     public static boolean detectServerPerformance;
     public static boolean enableLatencyThread;
@@ -67,6 +70,8 @@ public class ConfigManger {
         CONFIG = cfg;
 
         version = cfg.getDouble("version");
+        DiscordWebHookUrl = cfg.getString("webhook.url");
+        DiscordWebHookEnabled = cfg.getBoolean("webhook.enabled");
         isDebugModeOnline = cfg.getBoolean("debug");
         enableLatencyThread = cfg.getBoolean("enable-latency-thread");
         enableBossBarAutomaticNotification = cfg.getBoolean("enable-bossbar-automatic-notification");
@@ -118,6 +123,14 @@ public class ConfigManger {
         packetSlowCheckConfig = new SlowCheckConfig(cfg, "checks.slowjoin.packet");
         accountCheckConfig = new SlowCheckConfig(cfg, "checks.slowjoin.account");
         proxyCheckConfig = new ProxyCheckConfig(cfg);
+    }
+
+    public static String getDiscordWebHookUrl() {
+        return DiscordWebHookUrl;
+    }
+
+    public static boolean getDiscordWebHookEnabled() {
+        return DiscordWebHookEnabled;
     }
 
     public static SlowCheckConfig getAccountCheckConfig() {
@@ -193,5 +206,18 @@ public class ConfigManger {
         int min = Math.min(i[0], i[1]);
         int max = Math.max(i[0], i[1]);
         return new int[] { min, max };
+    }
+
+    // Discord Webhook
+    public static void WebhookSend(String[] args) {
+        String webhookUrl = getDiscordWebHookUrl();
+        WebhookSender sender = new WebhookSender(webhookUrl);
+        String message = "Test Message";
+        if (DiscordWebHookEnabled == true) {
+            try {
+                sender.sendMessage(message);
+            } catch (IOException e) {
+            }
+        }
     }
 }
