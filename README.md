@@ -23,7 +23,7 @@ Jar不带默认配置 因此您需要自己创建一个文件夹 用于存放配
 将两者都拖入到 `BungeeCord\plugins\` 里 然后启动服务器
 根据您的情况调整配置 启用Firewall等 `Linux Central IPTables & IPSet`
 启动服务器.
-
+  
 **自行编译**
 从储存库里复制config文件夹.
 将构建成功的软件包和 `config` 文件夹拖入 `BungeeCord\plugins\` 里
