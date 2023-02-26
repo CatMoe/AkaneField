@@ -1,6 +1,14 @@
 # AkaneField  
 
-简单的反机器人. 仅适用于BungeeCord  
+高性能 · 次世代 · 攻撃対策  
+仅适用于BungeeCord 如果您正在使用Velocity这样的东西  
+请使用EpicGuard或者其它反机器人 项目完全基于BungeeCord设计 请不要问何时添加Velocity或其它代理支持.  
+如果您正在使用Velocity 请使用[EpicGuard](https://github.com/4drian3d/EpicGuard)这样的东西作为替代品  
+  
+此项目本是为 `SakuraStarOcean` 制作. 但是我想让其它人也避免机器人的攻击.  
+如果您觉得此项目帮助到您 请在 [爱发电](https://afdian.net/a/catmoe-studios) 上支持我们!  
+  
+随时接受任何fork和推送请求 只要不故意破坏其性能或功能.  
 **从源代码编译**  
 
 在开始前. 您需要准备 `maven` `git` 和 `JDK17`
