@@ -41,12 +41,12 @@ public class MessageManager {
     public static String reasonBlacklistAdmin;
     public static String commandNoBlacklist;
     public static List<String> blacklistProfileString;
-    public static String attackAnalyzerIncrease;
     public static List<String> firewallMessage;
-    public static String attackAnalyzerDecrease;
     public static String bossBarBlockMessage;
     public static String fastJoinQueueMessage;
     public static List<String> satelliteStatus;
+    public static String LogInvalidValue;
+    public static String LogisEmpty;
 
     public static String kickURL;
     public static String kickServerName;
@@ -84,6 +84,7 @@ public class MessageManager {
         pingMessage = convertToString(messages.getStringList("ping"));
         timerMessage = convertToString(messages.getStringList("timer"));
         blacklistedMessage = convertToString(messages.getStringList("blacklisted"));
+
         reasonTooManyNicks = messages.getString("reason.names");
         reasonTooManyJoins = messages.getString("reason.joins");
         reasonTooManyPings = messages.getString("reason.pings");
@@ -91,16 +92,19 @@ public class MessageManager {
         reasonCheck = messages.getString("reason.check");
         reasonVPN = messages.getString("reason.vpn");
         reasonAdmin = messages.getString("reason.admin");
+
         toggledActionbar = messages.getString("notifications.action");
         commandWrongArgument = messages.getString("commands.wrong-args");
         reasonBlacklistAdmin = messages.getString("reason.admin");
         commandNoBlacklist = messages.getString("commands.no-blacklist");
         blacklistProfileString = messages.getStringList("blacklist_info");
-        attackAnalyzerIncrease = messages.getString("analyzer.increase");
         firewallMessage = messages.getStringList("firewall");
-        attackAnalyzerDecrease = messages.getString("analyzer.decrease");
         fastJoinQueueMessage = convertToString(messages.getStringList("fastjoin-queue"));
         satelliteStatus = messages.getStringList("satellitestats");
+
+        LogInvalidValue = messages.getString("log.invalid-value");
+        LogisEmpty = messages.getString("log.empty");
+
         kickURL = messages.getString("kick.url");
         kickServerName = messages.getString("kick.servername");
         kickLine = messages.getString("kick.line");

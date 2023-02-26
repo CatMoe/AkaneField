@@ -111,7 +111,6 @@ public class AttackLog implements Serializable {
 
     public String replaceInformation(String message) {
         return message.replace("%avg%", Formatter.format(getAverageConnections()))
-                .replace("%power%", getAttackPower().name())
                 .replace("%duration%", TimeUtil.formatMilliseconds(attackDuration))
                 .replace("%packets%", Formatter.format(blockedPackets))
                 .replace("%pings%", Formatter.format(getBlockedPings()))

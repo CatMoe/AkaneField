@@ -48,33 +48,36 @@ public class AttackLogCommand implements SubCommand {
         if (args[1].equals("info")) {
             Optional<AttackLog> log = plugin.getAttackTrackerService().getAttackLog(value);
             if (!log.isPresent()) {
-                sender.sendMessage(Utils.colora(MessageManager.getMessage("commands.invalid-log-value")));
+                sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("log.empty")));
                 return;
             }
 
             AttackLog attackLog = log.get();
-            List<String> messages = MessageManager.getMessageList("attack-log").stream()
+            List<String> messages = MessageManager.getMessageList("log.attack-log").stream()
                     .map(attackLog::replaceInformation).map(Utils::colora).collect(Collectors.toList());
             messages.forEach(sender::sendMessage);
         }
 
         if (args[1].equals("list")) {
-            sender.sendMessage(
-                    Utils.colora(MessageManager.prefix + "&fHere is a list of the last &c" + value + " &fattacks"));
+            sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("log.founding")));
             List<AttackLog> lastAttacks = plugin.getAttackTrackerService().getLastAttacks(value);
             if (lastAttacks.size() == 0) {
                 sender.sendMessage(Utils.colora(MessageManager.prefix + "&fThere are no attacks to show!"));
                 return;
             }
             for (AttackLog attack : lastAttacks) {
-                TextComponent component = new TextComponent(Utils.colora("&c" + attack.getAttackDate() + " &7-> &f"
-                        + attack.getID() + " &7(&c" + attack.getAttackPower() + "&7) &7(&o&nHover me!&7)"));
+                TextComponent component = new TextComponent(
+                        Utils.colora("&b" + attack.getAttackDate() + " &f[&bClick&f]"));
                 component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-                        new ComponentBuilder("§a§n» Click to see more details!").create()));
+                        new ComponentBuilder("§b点击查看日志§f " + attack.getID() + " §b的详细信息").create()));
                 component.setClickEvent(
                         new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/akanefield logs info " + attack.getID()));
                 sender.sendMessage(component);
             }
+        }
+        try {
+        } catch (IllegalArgumentException e) {
+            sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("log.invalid-value")));
         }
     }
 

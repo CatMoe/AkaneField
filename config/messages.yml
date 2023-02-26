@@ -10,10 +10,24 @@ commands:
   removed: "&f$1&b 已从 &f$2 &b中删除."
   wrong-args: "&b未知命令 请使用 &f/af help &b查看可用命令"
   no-blacklist: "&c未找到有关此玩家的黑名单"
-  invalid-log-value: "&c未找到日志."
   reload: "&bAkane&fField &b已成功重载配置文件. 部分内容可能需要重启服务器才能生效"
 notifications:
   action: "&a已切换机器人显示状态"
+log:
+  invalid-value: "&bw..? 这真的是一个有效的正数吗?"
+  empty: "&b未找到任何符合条件的攻击日志"
+  founding: "&b正在列出符合条件的攻击日志.."
+  attack-log:
+    - ""
+    - "&b日志ID &f %id%"
+    - "&b攻击初始日期&f %attack%"
+    - "&b黑名单数量&f %blacklist%"
+    - "&b阻止机器人数量 &f%bots%"
+    - "&b阻止的Ping数量 &f%pings%"
+    - "&b阻止的数据包数量 &f%packets%"
+    - "&b平均CPS &f%avg%"
+    - "&b持续时间 &f%duration%"
+    - ""
 
 #连接数占位符: %cps%(每秒连接数) - %bots%(又称JPS. 每秒加入服务器的数量) - %pings%(每秒ping服务器的数量) - %packets%(每秒拦截的数据包数量)
 #连接数总计: %totalpackets% - %totalbots% - %totalpings%
@@ -61,18 +75,6 @@ help:
   - "&bfirewall &f- &b查看Linux Centeral防火墙统计信息"
   - "&bcheck &f<id> &f- &b检查玩家是否被黑名单禁止"
   - "&breload &f- &b重载部分配置文件和消息文件."
-  - ""
-
-attack-log:
-  - ""
-  - "&b日志ID &f %id%"
-  - "&b攻击初始日期&f %attack%"
-  - "&b黑名单数量&f %blacklist%"
-  - "&b阻止机器人数量 &f%bots%"
-  - "&b阻止的Ping数量 &f%pings%"
-  - "&b阻止的数据包数量 &f%packets%"
-  - "&b平均CPS &f%avg%"
-  - "&b持续时间 &f%duration%"
   - ""
 
 # IPTables & IPSet 不适用于除Linux之外的其它系统! 
