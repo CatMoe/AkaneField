@@ -16,17 +16,17 @@
 Jar不带默认配置 因此您需要自己创建一个文件夹 用于存放配置
 
 **Releases**  
-正确的Releases包应该有一下两个文件:
+正确的Releases包应该有一下两个文件:  
 
-- `AkaneField`文件夹 包含`blacklist` `whitelist` `config` `messages`
-- 软件包本身 `AkaneField-version.jar`
-将两者都拖入到 `BungeeCord\plugins\` 里 然后启动服务器
-根据您的情况调整配置 启用Firewall等 `Linux Central IPTables & IPSet`
-启动服务器.
-  
+- `AkaneField`文件夹 包含`blacklist` `whitelist` `config` `messages`  
+- 软件包本身 `AkaneField-version.jar`  
+将两者都拖入到 `BungeeCord\plugins\` 里 然后启动服务器  
+根据您的情况调整配置 启用Firewall等 `Linux Central IPTables & IPSet`  
+启动服务器.  
+
 **自行编译**  
-从储存库里复制config文件夹.
-将构建成功的软件包和 `config` 文件夹拖入 `BungeeCord\plugins\` 里
-将 `config` 文件夹重命名为 `AkaneField`
-根据情况调整配置
+从储存库里复制config文件夹.  
+将构建成功的软件包和 `config` 文件夹拖入 `BungeeCord\plugins\` 里  
+将 `config` 文件夹重命名为 `AkaneField`  
+根据情况调整配置  
 启动服务器
