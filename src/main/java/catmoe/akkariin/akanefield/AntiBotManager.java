@@ -308,6 +308,7 @@ public class AntiBotManager implements IAntiBotManager {
                 .replace("%underverification%", String.valueOf(VPNService.getUnderVerificationSize()))
                 .replace("%duration%", TimeUtil.formatSeconds(attackDurationDetector.getAttackDuration()))
                 .replace("%durationsec%", String.valueOf(getAttackDuration()))
+                .replace("%totalblocks%", String.valueOf(connectionPerSecond.getTotal()))
                 .replace("%cps%", String.valueOf(connectionPerSecond.getSlowCount()))
                 .replace("%connection%", String.valueOf(connectionPerSecond.getSpeedCount()));
     }

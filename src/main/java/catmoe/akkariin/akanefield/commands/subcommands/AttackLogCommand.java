@@ -62,22 +62,24 @@ public class AttackLogCommand implements SubCommand {
             sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("log.founding")));
             List<AttackLog> lastAttacks = plugin.getAttackTrackerService().getLastAttacks(value);
             if (lastAttacks.size() == 0) {
-                sender.sendMessage(Utils.colora(MessageManager.prefix + "&fThere are no attacks to show!"));
+                sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("log.empty")));
                 return;
+            }
+            try {
+                return;
+            } catch (Exception e) {
+                sender.sendMessage(
+                        Utils.colora(MessageManager.prefix + MessageManager.getMessage("log.invalid-value")));
             }
             for (AttackLog attack : lastAttacks) {
                 TextComponent component = new TextComponent(
-                        Utils.colora("&b" + attack.getAttackDate() + " &f[&bClick&f]"));
+                        Utils.colora("&b" + attack.getAttackDate() + " " + MessageManager.getMessage("log.clicktips")));
                 component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
                         new ComponentBuilder("§b点击查看日志§f " + attack.getID() + " §b的详细信息").create()));
                 component.setClickEvent(
                         new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/akanefield logs info " + attack.getID()));
                 sender.sendMessage(component);
             }
-        }
-        try {
-        } catch (IllegalArgumentException e) {
-            sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("log.invalid-value")));
         }
     }
 

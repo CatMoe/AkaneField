@@ -17,6 +17,7 @@ public class MessageManager {
     public static String commandCleared;
     public static String commandAdded;
     public static String commandRemove;
+    public static String commandPlayerOnly;
     public static String actionbarOffline;
     public static String actionbarAntiBotMode;
     public static String actionbarPackets;
@@ -73,6 +74,7 @@ public class MessageManager {
         commandCleared = messages.getString("commands.cleared");
         commandAdded = messages.getString("commands.added");
         commandRemove = messages.getString("commands.removed");
+        commandPlayerOnly = messages.getString("commands.player-only");
         actionbarOffline = messages.getString("actionbar.offline");
         actionbarAntiBotMode = messages.getString("actionbar.antibot");
         actionbarPackets = messages.getString("actionbar.packets");
