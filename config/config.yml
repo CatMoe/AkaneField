@@ -101,7 +101,7 @@ checks:
     # 无效的玩家名
     invalid:
       - "MCSTORM_IO"
-      - "MC_BOT_IO"
+      - "BOT"
     # 是否将因为这个而被踢出的玩家自动列入黑名单?
     blacklist: true
     enabled: true
@@ -155,6 +155,7 @@ checks:
 # 不适用于面板服务器
 # 仅在Linux上可用
 # 必须以管理员身份运行服务器
+# 需要重启服务器以生效这些
 firewall:
   enabled: false
   # IPSet组名

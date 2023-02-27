@@ -144,16 +144,16 @@ public class AntiBotManager implements IAntiBotManager {
     @Override
     public void disableMode(ModeType type) {
         if (type.equals(ModeType.FastJoin)) {
-            this.isAntiBotModeOnline = false;
+            this.isAntiBotModeOnline = true;
         }
         if (type.equals(ModeType.SlowJoin)) {
-            this.isSlowAntiBotModeOnline = false;
+            this.isSlowAntiBotModeOnline = true;
         }
         if (type.equals(ModeType.Firewall)) {
-            this.isPacketModeEnabled = false;
+            this.isPacketModeEnabled = true;
         }
         if (type.equals(ModeType.Motd)) {
-            this.isPingModeEnabled = false;
+            this.isPingModeEnabled = true;
         }
         if (type != ModeType.Block) {
             this.modeType = ModeType.Block;
@@ -299,6 +299,9 @@ public class AntiBotManager implements IAntiBotManager {
                 .replace("%queue%", String.valueOf(queueService.size()))
                 .replace("%whitelist%", String.valueOf(whitelistService.size()))
                 .replace("%blacklist%", String.valueOf(blackListService.size()))
+                .replace("%firewall-blacklist%", String.valueOf(iAntiBotPlugin.getFirewallService().getBlacklistedIP()))
+                .replace("%firewall-queue%", String.valueOf(iAntiBotPlugin.getFirewallService().getIPQueue()))
+                .replace("%target%", String.valueOf(iAntiBotPlugin.getFirewallService().getFirewallStatus()))
                 .replace("%type%", String.valueOf(modeType.toString()))
                 .replace("%packets%", String.valueOf(packetPerSecond.getSlowCount()))
                 .replace("%totalbots%", String.valueOf(joinPerSecond.getTotal()))

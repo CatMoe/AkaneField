@@ -1,9 +1,13 @@
 # AkaneField  
 
-**高性能 · 次世代 · 攻撃対策**  
-仅适用于BungeeCord 如果您正在使用Velocity这样的东西  
-请使用EpicGuard或者其它反机器人 项目完全基于BungeeCord设计 请不要问何时添加Velocity或其它代理支持.  
+**パフォーマンス · 次世代 · 最も攻撃解決する**  
+**不支持除BungeeCord之外的所有平台!**  
+
+我们永远不会添加其它代理的支持.
 如果您正在使用Velocity 请使用[EpicGuard](https://github.com/4drian3d/EpicGuard)这样的东西作为替代品  
+> 由于 樱花星海 服务器代理核心为BungeeCord 我没有必要添加其它支持 望周知  
+> 我只是给其它人可以使用这个东西的权利 我没有必要接受全部功能请求  
+> 话虽如此 我们欢迎您通过分叉来添加功能. 但是您必须遵守GPL3许可证.  
   
 此项目本是为 `SakuraStarOcean` 制作. 但是我想让其他人也避免自己的服务器遭到攻击而造成影响.  
 如果您觉得此项目帮助到您 请考虑在 [爱发电](https://afdian.net/a/catmoe-studios) 上支持我们!  
@@ -18,10 +22,8 @@
 3. 使用maven构建. 并且清理上一次构建的信息 `mvn clean install`
 4. 完成后 从 `.\target\` 中取出来即可  
 Jar不带默认配置 因此您需要自己创建一个文件夹 用于存放配置  
-    
-**安装**
+**安装**  
   
-
 **Releases**  
 请注意: 为防止任何人伸手就来 之后可能会删除Release包 请自行学会如何使用maven构建项目.  
 正确的Releases包应该有一下两个文件:  

@@ -28,13 +28,14 @@ public class PacketCheck {
         this.blacklist = plugin.getAntiBotManager().getBlackListService();
         this.whitelistService = plugin.getAntiBotManager().getWhitelistService();
 
-        List<String> invalidPlugins = Arrays.asList("Geyser-BungeeCord", "Protocolize");
+        List<String> invalidPlugins = Arrays.asList("Geyser-BungeeCord", "Protocolize", "HAProxyDetector");
 
         for (String invalidPlugin : invalidPlugins) {
             if (ProxyServer.getInstance().getPluginManager().getPlugin(invalidPlugin) != null) {
                 iAntiBotPlugin.getLogHelper().warn(
                         "我们无法确认AkaneField对 "
-                                + invalidPlugin + " 插件的兼容性 如果您遇到任何问题 请报告");
+                                + invalidPlugin + " 插件的兼容性 如果您遇到任何问题 请报告给CatMoe");
+                iAntiBotPlugin.getLogHelper().warn("");
                 ConfigManger.getPacketCheckConfig().setEnabled(false);
             }
         }

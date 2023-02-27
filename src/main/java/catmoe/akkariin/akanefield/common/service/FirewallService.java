@@ -3,6 +3,7 @@ package catmoe.akkariin.akanefield.common.service;
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.IConfiguration;
 import catmoe.akkariin.akanefield.common.objects.FancyPair;
+import catmoe.akkariin.akanefield.common.utils.MessageManager;
 import catmoe.akkariin.akanefield.common.utils.RuntimeUtil;
 
 import java.util.ArrayDeque;
@@ -57,13 +58,11 @@ public class FirewallService {
         }
         if (!isEnabled)
             return;
-        plugin.getLogHelper().info("Trying to hook in IPTables & IPSet...");
+        plugin.getLogHelper().info(MessageManager.getMessage("firewall.hooking"));
 
         FancyPair<Boolean, String> checkInstallation = checkInstallation();
         if (!checkInstallation.getElementA()) {
-            plugin.getLogHelper().error("Unable to hook intro IPTables & IPSet!");
-            plugin.getLogHelper().error("It looks like they haven't been installed!");
-            plugin.getLogHelper().error("Printing error....");
+            plugin.getLogHelper().error(MessageManager.getMessage("firewall.not-install"));
             plugin.getLogHelper().error(checkInstallation.getElementB());
             isEnabled = false;
             return;
@@ -72,10 +71,10 @@ public class FirewallService {
         if (!isEnabled)
             return;
         setupFirewall();
-        plugin.getLogHelper().info("Hooked intro IPTables & IPSet!");
+        plugin.getLogHelper().info(MessageManager.getMessage("firewall.hooked"));
 
         try {
-            plugin.getLogHelper().info("Processing Firewall IPs... (it may take a while!)");
+            plugin.getLogHelper().info(MessageManager.getMessage("firewall.processing"));
 
             int processed = 0;
             int percentCheck = 10;
@@ -88,13 +87,13 @@ public class FirewallService {
                 int percent = Math.round((float) processed / total * 100);
                 if (percent >= percentCheck && total > 500) {
                     percentCheck += 10;
-                    plugin.getLogHelper().info("[FIREWALL] Process status: " + percent + "%");
+                    plugin.getLogHelper().info("&b进度: &f" + percent + "&b%");
                 }
             }
 
-            plugin.getLogHelper().info("Firewall loading completed...");
+            plugin.getLogHelper().info(MessageManager.getMessage("firewall.enable"));
         } catch (Exception e) {
-            plugin.getLogHelper().error("Error during firewall initialization!");
+            plugin.getLogHelper().error(MessageManager.getMessage("firewall.exception"));
         }
     }
 
@@ -130,7 +129,8 @@ public class FirewallService {
     }
 
     public String getFirewallStatus() {
-        return isEnabled ? "ENABLED" : "DISABLED";
+        return isEnabled ? MessageManager.getMessage("firewall.enabled")
+                : MessageManager.getMessage("firewall.disabled");
     }
 
     public int getIPQueue() {

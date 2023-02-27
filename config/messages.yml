@@ -53,6 +53,7 @@ log:
 # 至于CPS占位符 仍需要很大的改善 怎么说呢 现在的cps计数器就是过了一秒清零 算不上真正意义上的connection per/sec了 :|
 #连接数总计: %totalpackets% - %totalbots% - %totalpings% - %totalblocks%(前三位前辈的加起来)
 #基本状态: %whitelist%(白名单统计) - %blacklist%(黑名单统计) - %type%(攻击状态 SlowJoin,FastJoin,Firewall,Motd.Block) - %duration%(时长)
+# IPTables & IPSet 防火墙状态: %firewall-status%(详见下面的firewall.enabled/disabled) - %firewall-queue%(待列入防火墙的ip数量队列) - %firewall-blacklist%(已列入系统防火墙的ip数量)
 #杂项: %underverification%(未处理的代理检察数量) - %queue%(队列检查缓存数量) - %animation%(▛▜▟▙轮转动画) - %prefix%(前缀) - %durationsec%(持续时长 但是返回秒)
 #CPU(已弃用 因侦听降低性能): %syscpu%(系统CPU用量) - %proccpu%(线程CPU用量)  百分比计量 当然 自个加个%就好了
 actionbar:
@@ -103,14 +104,26 @@ help:
 
 # IPTables & IPSet 不适用于除Linux之外的其它系统! 
 # 为了避免垃圾邮件 我们不再在控制台提醒这个(应该是好事吧w=)
-# %status%(状态 DISABLED/ENABLED) - %queue%(被用于攻击的IP代理处理队列) - %blacklist%(已被列入黑名单的数量)
-firewall-status:
-  - ""
-  - "&bLinux防火墙状态 &f%status%"
-  - ""
-  - "&b处理队列 &f%queue%"
-  - "&b黑名单数量 &f%blacklist%"
-  - ""
+# %status%(返回的状态看下面的enabled/disabled) - %queue%(被用于攻击的IP代理处理队列) - %blacklist%(已被列入黑名单的数量)
+firewall:
+  hooking: "正在尝试挂钩 IPTables & IPSet 防火墙服务.."
+  hooked: "挂钩服务成功."
+  processing: "正在初始化防火墙 请稍后.."
+  enable: "防火墙已成功加载."
+  # 应检查您是否安装了IPTables和IPSet.
+  not-install: "未能检测到 IPTables & IPSet 服务! 请检查您是否安装了这两项服务"
+  failed: "系统防火墙服务挂钩失败 将使用内置防火墙..."
+  exception: "在初始化时发生了错误.. 抱歉w.."
+  # %status%返回的状态文本设置
+  enabled: "已激活"
+  disabled: "未激活"
+  status:
+    - ""
+    - "&bIPTables & IPSet 防火墙状态 &f%status%"
+    - ""
+    - "&b处理队列 &f%queue%"
+    - "&b黑名单数量 &f%blacklist%"
+    - ""
 blacklist_info:
   - ""
   - "&b黑名单信息"
