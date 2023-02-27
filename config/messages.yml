@@ -139,7 +139,7 @@ kick:
   # 全局占位符 你不能异想天开创造属于自己的占位符 它已经在程序内硬编码 如果您不需要 请不要使用或留空 抱歉w..
   # 虽然下方配置没有大小写区分 但是占位符是有大小写区分的 务必注意..
   # 消息内的部分特定 [$占位符] 仅只是更好的解释它们会被替换成什么 实际上跟$1 $2这样子的东西无异..
-  url: "&7shioeaxiki.lolwtfmc.me" # [$URL]
+  url: "&7mc.miaomoe.net" # [$URL]
   servername: "&bSakuraStarOcean" # [$ServerName]
   line: "" # [$Line]
   # [$Custom?] ?为1-10
