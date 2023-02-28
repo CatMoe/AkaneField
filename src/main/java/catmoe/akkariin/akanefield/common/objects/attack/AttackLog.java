@@ -1,7 +1,6 @@
 package catmoe.akkariin.akanefield.common.objects.attack;
 
 import catmoe.akkariin.akanefield.common.IAntiBotManager;
-import catmoe.akkariin.akanefield.common.utils.Formatter;
 import catmoe.akkariin.akanefield.common.utils.TimeUtil;
 
 import java.io.Serializable;
@@ -109,13 +108,19 @@ public class AttackLog implements Serializable {
         return total / duration;
     }
 
+    public long getTotalBlocked() {
+        long total = blockedBots + blockedPings + blockedPackets;
+        return total;
+    }
+
     public String replaceInformation(String message) {
-        return message.replace("%avg%", Formatter.format(getAverageConnections()))
+        return message.replace("%avg%", String.valueOf(getAverageConnections()))
                 .replace("%duration%", TimeUtil.formatMilliseconds(attackDuration))
-                .replace("%packets%", Formatter.format(blockedPackets))
-                .replace("%pings%", Formatter.format(getBlockedPings()))
-                .replace("%bots%", Formatter.format(getBlockedBots()))
-                .replace("%blacklist%", Formatter.format(newBlacklist - previousBlacklist))
-                .replace("%attack%", attackDate).replace("%id%", String.valueOf(getID()));
+                .replace("%totalblocked%", String.valueOf(getTotalBlocked()))
+                .replace("%totalpackets%", String.valueOf(blockedPackets))
+                .replace("%totalpings%", String.valueOf(getBlockedPings()))
+                .replace("%totalbots%", String.valueOf(getBlockedBots()))
+                .replace("%blacklist%", String.valueOf(newBlacklist - previousBlacklist))
+                .replace("%date%", attackDate).replace("%id%", String.valueOf(getID()));
     }
 }

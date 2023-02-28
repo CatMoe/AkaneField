@@ -4,6 +4,7 @@ import catmoe.akkariin.akanefield.common.cache.JoinCache;
 import catmoe.akkariin.akanefield.common.detectors.AttackDurationDetector;
 import catmoe.akkariin.akanefield.common.helper.LogHelper;
 import catmoe.akkariin.akanefield.common.ModeType;
+
 import catmoe.akkariin.akanefield.common.IAntiBotManager;
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.service.BlackListService;
@@ -11,6 +12,7 @@ import catmoe.akkariin.akanefield.common.service.VPNService;
 import catmoe.akkariin.akanefield.common.service.QueueService;
 import catmoe.akkariin.akanefield.common.service.WhitelistService;
 import catmoe.akkariin.akanefield.common.thread.DynamicCounterThread;
+import catmoe.akkariin.akanefield.common.utils.CPUMonitor;
 //import catmoe.akkariin.akanefield.common.utils.CPUMonitor;
 import catmoe.akkariin.akanefield.common.utils.ConfigManger;
 import catmoe.akkariin.akanefield.common.utils.MessageManager;
@@ -144,16 +146,16 @@ public class AntiBotManager implements IAntiBotManager {
     @Override
     public void disableMode(ModeType type) {
         if (type.equals(ModeType.FastJoin)) {
-            this.isAntiBotModeOnline = true;
+            this.isAntiBotModeOnline = false;
         }
         if (type.equals(ModeType.SlowJoin)) {
-            this.isSlowAntiBotModeOnline = true;
+            this.isSlowAntiBotModeOnline = false;
         }
         if (type.equals(ModeType.Firewall)) {
-            this.isPacketModeEnabled = true;
+            this.isPacketModeEnabled = false;
         }
         if (type.equals(ModeType.Motd)) {
-            this.isPingModeEnabled = true;
+            this.isPingModeEnabled = false;
         }
         if (type != ModeType.Block) {
             this.modeType = ModeType.Block;
@@ -314,10 +316,13 @@ public class AntiBotManager implements IAntiBotManager {
                 .replace("%durationsec%", String.valueOf(getAttackDuration()))
                 .replace("%totalblocks%", String.valueOf(connectionPerSecond.getTotal()))
                 .replace("%cps%", String.valueOf(connectionPerSecond.getSlowCount()))
+                // 添加了缓存办法 原有的属性将被弃用
                 // .replace("%proccpu%",
                 // String.valueOf(CPUMonitor.getRoundCurrentProcessCpuLoad()))
                 // .replace("%syscpu%",
                 // String.valueOf(CPUMonitor.getRoundCurrentSystemCpuLoad()))
+                .replace("%proccpu%", String.valueOf(CPUMonitor.getCacheRoundCurrentProcessCpuLoad()))
+                .replace("%syscpu%", String.valueOf(CPUMonitor.getCacheRoundCurrentSystemCpuLoad()))
                 .replace("%connection%", String.valueOf(connectionPerSecond.getSpeedCount()));
     }
 }

@@ -18,7 +18,14 @@ notifications:
 # 日志命令
 log:
   # "/af logs list %" 当%为非整数(字母 小数 负数etc)时 提示的消息
-  invalid-value: "&bw..? 这真的是一个有效的正数吗?"
+  # 当值为负数时
+  # 不会真的有人想输入负数吧 *=w=
+  # 真该给整个配置文件输出的消息都增强点攻击性的 *=w=
+  negative-number: "&b你的脑子是长在下面的吗 *=w="
+  # 非数字或值太大
+  non-number: "&bw? 这真的是数字吗"
+  # idk 留着就行 当然我也不知道触发什么错误会导致这个 不过留着最好
+  invalid-value: "&bw..? 我无法理解您输入的值 请检查参数 然后再试"
   # 没有任何攻击日志
   empty: "&b未找到任何符合条件的攻击日志"
   # 寻找攻击日志
@@ -26,25 +33,26 @@ log:
   # 提示玩家这是可以点的 如果不需要 设为空
   clicktips: "&f[&bClick&f]"
   # 当鼠标悬浮到日志上时 应该显示什么
-  clickhover: ""
+  clickhover: "&b点击查看日志"
   # 具体信息
   # %id% - 日志id 记录攻击模式激活时的次数
-  # %attack% - 初始日期 我实在想不到写什么了 之后可能会改
-  # %bots% - 阻止的机器人数量
-  # %pings% - 阻止的Ping Motd数量
-  # %packets% - 阻止的未知数据包数量
+  # %date% - 初始日期
+  # %totalbots% - 阻止的机器人数量
+  # %totalpings% - 阻止的Ping Motd数量
+  # %totalpackets% - 阻止的未知数据包数量
   # %avg% - 平均cps
   # %duration% - 持续时间
   #
   # 未添加: %totalblock%
-  attack-log:
+  log-info:
     - ""
     - "&b日志ID &f %id%"
-    - "&b攻击初始日期&f %attack%"
+    - "&b攻击初始日期&f %date%"
     - "&b黑名单数量&f %blacklist%"
-    - "&b阻止机器人数量 &f%bots%"
-    - "&b阻止的Ping数量 &f%pings%"
-    - "&b阻止的数据包数量 &f%packets%"
+    - "&b共计阻止 &f%totalblocked%"
+    - "&b阻止机器人数量 &f%totalbots%"
+    - "&b阻止的Ping数量 &f%totalpings%"
+    - "&b阻止的数据包数量 &f%totalpackets%"
     - "&b平均CPS &f%avg%"
     - "&b持续时间 &f%duration%"
     - ""
@@ -58,8 +66,8 @@ log:
 #CPU(已弃用 因侦听降低性能): %syscpu%(系统CPU用量) - %proccpu%(线程CPU用量)  百分比计量 当然 自个加个%就好了
 actionbar:
   offline: "%prefix%&bZzz... &7- &bVerify &f%underverification% &7- &bCPS &f%cps% &7- &bWhitelist &f%whitelist% &7- &bBlacklist &f%blacklist%"
-  antibot: "%prefix%&bType &f%type% &7- &bConnection &f%connection% &7- &bCPS &f%cps%&7- &bBlocked &f%totalblocks% &7- &bBlacklist &f%blacklist% &7- &bVerify &f%underverification% &7- &bDuration &f%duration%"
-  packets: "%prefix%&bType &fFirewall &7- &bConnection &f%connection% &7- &bCPS &f%cps% &7- &bPrevent &f%totalblocks% &7- &bVerify &f%underverification% &7- &bDuration &f%duration%"
+  antibot: "%prefix%&bType &f%type% &7- &bCPS &f%cps% &7- &bBlocked &f%totalblocks% &7- &bBlacklist &f%blacklist% &7- &bVerify &f%underverification% &7- &bDuration &f%duration%"
+  packets: "%prefix%&bType &fFirewall &7- &bCPS &f%cps% &7- &bPrevent &f%totalblocks% &7- &bVerify &f%underverification% &7- &bDuration &f%duration%"
 # 当前会话中的统计信息
 stats:
   - ""
@@ -106,14 +114,14 @@ help:
 # 为了避免垃圾邮件 我们不再在控制台提醒这个(应该是好事吧w=)
 # %status%(返回的状态看下面的enabled/disabled) - %queue%(被用于攻击的IP代理处理队列) - %blacklist%(已被列入黑名单的数量)
 firewall:
-  hooking: "正在尝试挂钩 IPTables & IPSet 防火墙服务.."
-  hooked: "挂钩服务成功."
+  hooking: "&b正在尝试挂钩 IPTables & IPSet 防火墙服务.."
+  hooked: "&b挂钩服务成功."
   processing: "正在初始化防火墙 请稍后.."
-  enable: "防火墙已成功加载."
+  enable: "&b防火墙已成功加载."
   # 应检查您是否安装了IPTables和IPSet.
-  not-install: "未能检测到 IPTables & IPSet 服务! 请检查您是否安装了这两项服务"
-  failed: "系统防火墙服务挂钩失败 将使用内置防火墙..."
-  exception: "在初始化时发生了错误.. 抱歉w.."
+  not-install: "&c未能检测到 IPTables & IPSet 服务! 请检查您是否安装了这两项服务"
+  failed: "&c系统防火墙服务挂钩失败 将使用内置防火墙..."
+  exception: "&c在初始化时发生了错误.. 抱歉w.."
   # %status%返回的状态文本设置
   enabled: "已激活"
   disabled: "未激活"
@@ -224,7 +232,7 @@ blacklisted:
   - "&c如果您认为您没有做错什么 请联系管理员!"
   - ""
   - "&b黑名单ID  &f[$id]"
-  - "&b理由  &f[$id]"
+  - "&b理由  &f[$reason]"
   - "[$Line]"
   - ""
   - "[$URL]"

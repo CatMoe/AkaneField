@@ -13,8 +13,8 @@ import java.util.concurrent.CompletableFuture;
 
 public final class CPUMonitor {
     private int index = 0;
-    private volatile double recentProcessCpuLoadSnapshot = 0;
-    private volatile double recentSystemCpuLoadSnapshot = 0;
+    private volatile static double recentProcessCpuLoadSnapshot = 0;
+    private volatile static double recentSystemCpuLoadSnapshot = 0;
     private final double[] recentSystemUsage = new double[20];
     private final double[] recentProcessUsage = new double[20];
 
@@ -46,18 +46,18 @@ public final class CPUMonitor {
             this.recentSystemUsage[this.index] = currentSystemCpuLoad();
         });
         future.thenRunAsync(() -> {
-            this.recentProcessCpuLoadSnapshot = this.recentProcessCpuLoad();
-            this.recentSystemCpuLoadSnapshot = this.recentSystemCpuLoad();
+            CPUMonitor.recentProcessCpuLoadSnapshot = this.recentProcessCpuLoad();
+            CPUMonitor.recentSystemCpuLoadSnapshot = this.recentSystemCpuLoad();
             this.nextIndex();
         });
     }
 
     public double recentProcessCpuLoadSnapshot() {
-        return this.recentProcessCpuLoadSnapshot;
+        return CPUMonitor.recentProcessCpuLoadSnapshot;
     }
 
-    public double recentSystemCpuLoadSnapshot() {
-        return this.recentSystemCpuLoadSnapshot;
+    public static double recentSystemCpuLoadSnapshot() {
+        return CPUMonitor.recentSystemCpuLoadSnapshot;
     }
 
     private double recentProcessCpuLoad() {
@@ -91,11 +91,11 @@ public final class CPUMonitor {
         return ((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getSystemCpuLoad() * 100;
     }
 
-    public static String getRoundCurrentProcessCpuLoad() {
-        return String.format("%.1f", currentProcessCpuLoad());
+    public static String getCacheRoundCurrentProcessCpuLoad() {
+        return String.format("%.1f", recentProcessCpuLoadSnapshot);
     }
 
-    public static String getRoundCurrentSystemCpuLoad() {
-        return String.format("%.1f", currentSystemCpuLoad());
+    public static String getCacheRoundCurrentSystemCpuLoad() {
+        return String.format("%.1f", recentSystemCpuLoadSnapshot);
     }
 }

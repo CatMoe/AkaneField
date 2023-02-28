@@ -32,7 +32,7 @@ public class FirewallCommand implements SubCommand {
     @Override
     @SuppressWarnings("deprecation")
     public void execute(CommandSender sender, String[] args) {
-        List<String> messages = MessageManager.getMessageList("firewall-status").stream()
+        List<String> messages = MessageManager.getMessageList("firewall.status").stream()
                 .map(FirewallCommand::ReplaceInfo).map(Utils::colora).collect(Collectors.toList());
         messages.forEach(sender::sendMessage);
     }

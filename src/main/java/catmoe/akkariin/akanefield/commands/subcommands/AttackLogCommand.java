@@ -41,8 +41,17 @@ public class AttackLogCommand implements SubCommand {
 
         try {
             value = Integer.parseInt(args[2]);
+            if (value < 0) {
+                sender.sendMessage(
+                        Utils.colora(MessageManager.prefix + MessageManager.getMessage("log.negative-number")));
+                return;
+            }
+        } catch (NumberFormatException e) {
+            sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("log.non-number")));
+            return;
         } catch (Exception e) {
-            value = -1;
+            sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("logs.invalid-value")));
+            return;
         }
 
         if (args[1].equals("info")) {
@@ -53,7 +62,7 @@ public class AttackLogCommand implements SubCommand {
             }
 
             AttackLog attackLog = log.get();
-            List<String> messages = MessageManager.getMessageList("log.attack-log").stream()
+            List<String> messages = MessageManager.getMessageList("log.log-info").stream()
                     .map(attackLog::replaceInformation).map(Utils::colora).collect(Collectors.toList());
             messages.forEach(sender::sendMessage);
         }
