@@ -41,6 +41,22 @@ public class Notificator implements INotificator {
                 .forEach(ac -> ac.sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ServerUtil.colorize(str))));
     }
 
+    /*
+     * public void sendUnderAttackTitle(String title, String subtitle) {
+     * Title t = ProxyServer.getInstance().createTitle();
+     * t.title(new TextComponent(
+     * ServerUtil.colorize(AkaneFieldProxy.getInstance().getAntiBotManager().
+     * replaceInfo(title))));
+     * t.subTitle(new TextComponent(
+     * ServerUtil.colorize(AkaneFieldProxy.getInstance().getAntiBotManager().
+     * replaceInfo(subtitle))));
+     * t.stay(20);
+     * t.fadeIn(0);
+     * t.fadeOut(0);
+     * titles.forEach(t::send);
+     * }
+     */
+
     public void init(IAntiBotPlugin plugin) {
         plugin.scheduleRepeatingTask(() -> {
             if (plugin.getAntiBotManager().isPacketModeEnabled()) {

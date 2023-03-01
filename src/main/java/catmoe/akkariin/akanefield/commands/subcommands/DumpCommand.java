@@ -30,32 +30,31 @@ public class DumpCommand implements SubCommand {
     @SuppressWarnings("deprecation")
     public void execute(CommandSender sender, String[] args) {
         PasteBinBuilder pasteBinBuilder = PasteBinBuilder.builder();
-        pasteBinBuilder.addLine("Name: " + ProxyServer.getInstance().getName());
-        pasteBinBuilder.addLine("Version: " + ProxyServer.getInstance().getVersion());
-        pasteBinBuilder.addLine("Online Count: " + ProxyServer.getInstance().getOnlineCount());
-        pasteBinBuilder.addLine("Plugins:");
+        pasteBinBuilder
+                .addLine(MessageManager.getMessage("dump.info.proxy-name") + ProxyServer.getInstance().getName());
+        pasteBinBuilder
+                .addLine(MessageManager.getMessage("dump.info.proxy-version") + ProxyServer.getInstance().getVersion());
+        pasteBinBuilder.addLine(
+                MessageManager.getMessage("dump.info.online-players") + ProxyServer.getInstance().getOnlineCount());
+        pasteBinBuilder.addLine(MessageManager.getMessage("dump.info.plugins-list"));
         for (Plugin plugin : ProxyServer.getInstance().getPluginManager().getPlugins()) {
-            if (plugin.getDescription().getName().contains("Protocol")
-                    || plugin.getDescription().getName().contains("Geyser")) {
-                pasteBinBuilder.addLine(plugin.getDescription().getName() + " - " + plugin.getDescription().getVersion()
-                        + " - It could cause problems!");
-            } else {
-                pasteBinBuilder
-                        .addLine(plugin.getDescription().getName() + " - " + plugin.getDescription().getVersion());
-            }
+            pasteBinBuilder.addLine(plugin.getDescription().getName() + " - " + plugin.getDescription().getVersion());
         }
-        pasteBinBuilder.addLine("Plugin Info:");
-        pasteBinBuilder.addLine("Version: " + plugin.getVersion());
-        pasteBinBuilder.addLine("Whitelist Size: " + plugin.getAntiBotManager().getWhitelistService().size());
-        pasteBinBuilder.addLine("Blacklist Size: " + plugin.getAntiBotManager().getBlackListService().size());
-        pasteBinBuilder.addLine("Users: " + plugin.getUserDataService().size());
+        pasteBinBuilder.addLine(MessageManager.getMessage("dump.info.plugin-info"));
+        pasteBinBuilder.addLine(MessageManager.getMessage("dump.info.version") + plugin.getVersion());
+        pasteBinBuilder.addLine(MessageManager.getMessage("dump.info.whitelist")
+                + plugin.getAntiBotManager().getWhitelistService().size());
+        pasteBinBuilder.addLine(MessageManager.getMessage("dump.info.blacklist")
+                + plugin.getAntiBotManager().getBlackListService().size());
+        pasteBinBuilder.addLine(
+                MessageManager.getMessage("dump.info.database-player-count") + plugin.getUserDataService().size());
         plugin.runTask(pasteBinBuilder::pasteSync, true);
         pasteBinBuilder.pasteSync();
-        sender.sendMessage(Utils.colora(MessageManager.prefix + "&fsending request to server, wait please..."));
+        sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("dump.uploading")));
         plugin.scheduleDelayedTask(() -> {
             if (pasteBinBuilder.isReady()) {
-                sender.sendMessage(new TextComponent(Utils.colora(MessageManager.prefix + "&fDump is ready: "
-                        + pasteBinBuilder.getUrl() + " &7(It will reset in a week!)")));
+                sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("dump.uploaded")));
+                sender.sendMessage(new TextComponent(Utils.colora(MessageManager.prefix + pasteBinBuilder.getUrl())));
             }
         }, true, 2500L);
     }

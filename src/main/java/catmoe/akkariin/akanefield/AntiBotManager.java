@@ -5,6 +5,9 @@ import catmoe.akkariin.akanefield.common.detectors.AttackDurationDetector;
 import catmoe.akkariin.akanefield.common.helper.LogHelper;
 import catmoe.akkariin.akanefield.common.ModeType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import catmoe.akkariin.akanefield.common.IAntiBotManager;
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.service.BlackListService;
@@ -16,10 +19,15 @@ import catmoe.akkariin.akanefield.common.utils.CPUMonitor;
 //import catmoe.akkariin.akanefield.common.utils.CPUMonitor;
 import catmoe.akkariin.akanefield.common.utils.ConfigManger;
 import catmoe.akkariin.akanefield.common.utils.MessageManager;
+import catmoe.akkariin.akanefield.common.utils.ServerUtil;
 import catmoe.akkariin.akanefield.common.utils.TimeUtil;
 import catmoe.akkariin.akanefield.event.ModeEnableEvent;
 import catmoe.akkariin.akanefield.task.ModeDisableTask;
 import catmoe.akkariin.akanefield.utils.EventCaller;
+import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.Title;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 public class AntiBotManager implements IAntiBotManager {
     private final IAntiBotPlugin iAntiBotPlugin;
@@ -291,6 +299,26 @@ public class AntiBotManager implements IAntiBotManager {
     @Override
     public JoinCache getJoinCache() {
         return joinCache;
+    }
+
+    public void UnderAttackNotification(ProxiedPlayer player) {
+        final List<ProxiedPlayer> titles = new ArrayList<>();
+        try {
+            if (getAttackDuration() == 1) {
+                titles.add(player);
+                Title t = ProxyServer.getInstance().createTitle();
+                t.title(new TextComponent(ServerUtil.colorize(MessageManager.getMessage("underattack.title.title"))));
+                t.subTitle(new TextComponent(
+                        ServerUtil.colorize(MessageManager.getMessage("underattack.title.subtitle"))));
+                t.stay(MessageManager.attackNotificationTitleStay);
+                t.fadeIn(MessageManager.attackNotificationTitleFadeIn);
+                t.fadeOut(MessageManager.attackNotificationTitleFadeOut);
+            } else {
+                titles.remove(player);
+            }
+        } catch (Exception e) {
+            return;
+        }
     }
 
     @Override

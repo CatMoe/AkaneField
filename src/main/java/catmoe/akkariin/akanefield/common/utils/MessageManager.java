@@ -63,6 +63,12 @@ public class MessageManager {
     public static String kickCustom9;
     public static String kickCustom10;
 
+    public static String attackNotificationTitleTitle;
+    public static String attackNotificationTitlesubTitle;
+    public static int attackNotificationTitleFadeIn;
+    public static int attackNotificationTitleStay;
+    public static int attackNotificationTitleFadeOut;
+
     public static void init(IConfiguration messages) {
         configManger = messages;
         version = messages.getDouble("version");
@@ -121,6 +127,11 @@ public class MessageManager {
         kickCustom9 = messages.getString("kick.custom9");
         kickCustom10 = messages.getString("kickcustom10");
 
+        attackNotificationTitleTitle = messages.getString("underattack.title.title");
+        attackNotificationTitlesubTitle = messages.getString("underattack.title.subtitle");
+        attackNotificationTitleFadeIn = messages.getInt("underattack.title.fade-in");
+        attackNotificationTitleStay = messages.getInt("underattack.title.stay");
+        attackNotificationTitleFadeOut = messages.getInt("underattack.title.fade-out");
     }
 
     public static String getCommandNoPerms() {

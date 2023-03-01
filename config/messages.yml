@@ -15,6 +15,54 @@ commands:
 notifications:
   action: "&a已切换机器人显示状态"
 
+# 当服务器被攻击时 应该发送什么消息 (计划 暂未实现)
+underattack:
+  # 发送标题
+  title:
+    title: "test"
+    subtitle: "test"
+    fade-in: 1
+    stay: 18
+    fade-out: 1
+  # 发送聊天 支持多行
+  chat: ""
+  # 发送bossbar 暂不支持多行 :|
+  bossbar:
+    # 样式 不适用于1.8以及更低版本.
+    style: ""
+    # 颜色
+    color: ""
+    # bossbar栏信息
+    message: ""
+
+dump:
+  # 正在上传
+  uploading: "正在上传信息至pastebin.com"
+  # 上传成功
+  uploaded: "已成功上传."
+  # 转储里的信息描述
+  # 加空格可能看着比较顺眼吧
+  info:
+    # 代理名 
+    # e.x. 如果使用的是WaterFall 那么输出则会为 proxy-name: Waterfall
+    proxy-name: "代理名: "
+    # 代理版本: 
+    # e.x. 代理版本: git:Waterfall-Bootstrap:1.19-R0.1-SNAPSHOT:dca72ca:511 (最新WaterFall)
+    proxy-version: "代理版本: "
+    # Dump时玩家在线人数
+    online-players-count: "在线人数: "
+    # 插件列表
+    # e.x
+    # 插件列表:
+    # AkaneField - 0.2.3
+    plugins-list: "插件列表:"
+    # 当前插件信息以及状态列表
+    plugin-info: "插件信息: "
+    version: "版本: "
+    whitelist: "白名单数量: "
+    blacklist: "黑名单数量: "
+    database-player-count: "数据库玩家数量: "
+
 # 日志命令
 log:
   # "/af logs list %" 当%为非整数(字母 小数 负数etc)时 提示的消息
@@ -108,6 +156,7 @@ help:
   - "&bfirewall &f- &b查看Linux Centeral防火墙统计信息"
   - "&bcheck &f<id> &f- &b检查玩家是否被黑名单禁止"
   - "&breload &f- &b重载部分配置文件和消息文件."
+  - "&bdump &f- &b将插件和代理信息上传到pastebin"
   - ""
 
 # IPTables & IPSet 不适用于除Linux之外的其它系统! 
