@@ -63,11 +63,14 @@ public class MessageManager {
     public static String kickCustom9;
     public static String kickCustom10;
 
+    public static boolean attackNotificationTitleEnabled;
     public static String attackNotificationTitleTitle;
     public static String attackNotificationTitlesubTitle;
     public static int attackNotificationTitleFadeIn;
     public static int attackNotificationTitleStay;
     public static int attackNotificationTitleFadeOut;
+    public static boolean attackNotificationChatEnabled;
+    public static List<String> attackNotificationChatMessages;
 
     public static void init(IConfiguration messages) {
         configManger = messages;
@@ -127,11 +130,14 @@ public class MessageManager {
         kickCustom9 = messages.getString("kick.custom9");
         kickCustom10 = messages.getString("kickcustom10");
 
+        attackNotificationTitleEnabled = messages.getBoolean("underattack.title.title");
         attackNotificationTitleTitle = messages.getString("underattack.title.title");
         attackNotificationTitlesubTitle = messages.getString("underattack.title.subtitle");
         attackNotificationTitleFadeIn = messages.getInt("underattack.title.fade-in");
         attackNotificationTitleStay = messages.getInt("underattack.title.stay");
         attackNotificationTitleFadeOut = messages.getInt("underattack.title.fade-out");
+        attackNotificationChatEnabled = messages.getBoolean("underattack.chat.enabled");
+        attackNotificationChatMessages = messages.getStringList("underattack.chat.messages");
     }
 
     public static String getCommandNoPerms() {

@@ -19,21 +19,16 @@ notifications:
 underattack:
   # 发送标题
   title:
+    enabled: true
     title: "test"
     subtitle: "test"
     fade-in: 1
     stay: 18
     fade-out: 1
-  # 发送聊天 支持多行
-  chat: ""
-  # 发送bossbar 暂不支持多行 :|
-  bossbar:
-    # 样式 不适用于1.8以及更低版本.
-    style: ""
-    # 颜色
-    color: ""
-    # bossbar栏信息
-    message: ""
+  # 发送聊天
+  chat:
+    enabled: true
+    messages: ""
 
 dump:
   # 正在上传
