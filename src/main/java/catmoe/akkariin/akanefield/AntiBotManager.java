@@ -15,8 +15,6 @@ import catmoe.akkariin.akanefield.common.service.VPNService;
 import catmoe.akkariin.akanefield.common.service.QueueService;
 import catmoe.akkariin.akanefield.common.service.WhitelistService;
 import catmoe.akkariin.akanefield.common.thread.DynamicCounterThread;
-import catmoe.akkariin.akanefield.common.utils.CPUMonitor;
-//import catmoe.akkariin.akanefield.common.utils.CPUMonitor;
 import catmoe.akkariin.akanefield.common.utils.ConfigManger;
 import catmoe.akkariin.akanefield.common.utils.MessageManager;
 import catmoe.akkariin.akanefield.common.utils.ServerUtil;
@@ -349,8 +347,6 @@ public class AntiBotManager implements IAntiBotManager {
                 // String.valueOf(CPUMonitor.getRoundCurrentProcessCpuLoad()))
                 // .replace("%syscpu%",
                 // String.valueOf(CPUMonitor.getRoundCurrentSystemCpuLoad()))
-                .replace("%proccpu%", String.valueOf(CPUMonitor.getCacheRoundCurrentProcessCpuLoad()))
-                .replace("%syscpu%", String.valueOf(CPUMonitor.getCacheRoundCurrentSystemCpuLoad()))
                 .replace("%connection%", String.valueOf(connectionPerSecond.getSpeedCount()));
     }
 }

@@ -35,7 +35,8 @@ public class DumpCommand implements SubCommand {
         pasteBinBuilder
                 .addLine(MessageManager.getMessage("dump.info.proxy-version") + ProxyServer.getInstance().getVersion());
         pasteBinBuilder.addLine(
-                MessageManager.getMessage("dump.info.online-players") + ProxyServer.getInstance().getOnlineCount());
+                MessageManager.getMessage("dump.info.online-players-count")
+                        + ProxyServer.getInstance().getOnlineCount());
         pasteBinBuilder.addLine(MessageManager.getMessage("dump.info.plugins-list"));
         for (Plugin plugin : ProxyServer.getInstance().getPluginManager().getPlugins()) {
             pasteBinBuilder.addLine(plugin.getDescription().getName() + " - " + plugin.getDescription().getVersion());

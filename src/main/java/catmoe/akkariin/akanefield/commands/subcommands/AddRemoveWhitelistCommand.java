@@ -8,6 +8,7 @@ import catmoe.akkariin.akanefield.utils.Utils;
 import net.md_5.bungee.api.CommandSender;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AddRemoveWhitelistCommand implements SubCommand {
     private final IAntiBotManager iAntiBotManager;
@@ -27,15 +28,20 @@ public class AddRemoveWhitelistCommand implements SubCommand {
         if (args[1].equalsIgnoreCase("add")) {
             iAntiBotManager.getWhitelistService().whitelist("/" + args[2]);
             iAntiBotManager.getBlackListService().unBlacklist("/" + args[2]);
-            sender.sendMessage(
-                    Utils.colora(MessageManager.prefix + MessageManager.getCommandAdded(args[2], "whitelist")));
-            sender.sendMessage(Utils.colora(MessageManager.prefix
-                    + "&7PS: The IP has been removed from the blacklist as it has been whitelisted however remember that if a check blacklists it when you try to log in it will still be blacklisted!"));
+            sender.sendMessage(Utils.colora(MessageManager.getMessage("white-black-list.add").replace("%type%",
+                    MessageManager.getMessage("white-black-list.type.whitelist")).replace("%address%", args[2])));
+            if (MessageManager.WhiteBlacklistConflectTipsEnabled == true) {
+                List<String> messages = MessageManager.getMessageList("white-black-list.conflect-tips.messages")
+                        .stream().map(Utils::colora).collect(Collectors.toList());
+                messages.forEach(sender::sendMessage);
+            }
         } else {
             if (args[1].equalsIgnoreCase("remove")) {
                 iAntiBotManager.getWhitelistService().unWhitelist("/" + args[2]);
                 sender.sendMessage(
-                        Utils.colora(MessageManager.prefix + MessageManager.getCommandRemove(args[2], "whitelist")));
+                        Utils.colora(MessageManager.prefix + MessageManager.getMessage("white-black-list.remove")
+                                .replace("%type%", MessageManager.getMessage("white-black-list.type.whitelist"))
+                                .replace("%address%", args[2])));
             } else {
                 sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.commandWrongArgument));
             }

@@ -78,7 +78,6 @@ catmoe\akkariin\akanefield\common\objects\profile\BlackListReason.class
 catmoe\akkariin\akanefield\common\service\UserDataService.class
 catmoe\akkariin\akanefield\common\server\packet\VerificationPacket.class
 catmoe\akkariin\akanefield\common\objects\attack\AttackLog.class
-catmoe\akkariin\akanefield\common\utils\CPUMonitor.class
 catmoe\akkariin\akanefield\common\utils\FilesUpdater.class
 catmoe\akkariin\akanefield\utils\Metrics$CustomChart.class
 catmoe\akkariin\akanefield\utils\Metrics$SimplePie.class

@@ -1,4 +1,4 @@
-version: 0.2.3
+version: 0.2.4
 # 调试信息开关
 debug: false
 webhook:

@@ -1,19 +1,42 @@
-version: 0.2.3
+version: 0.2.4
 prefix: "&bAkane&fField &7» "
 onping:
   normal: "&b请继续刷新服务器列表 &f$1&b/&f$2"
   ready: "&b已通过反机器人认证!"
 commands:
   perms: "&fUnknown command. Type \"/help\" for help."
-  cleared: "&b已成功清理 &f$1!"
-  added: "&f$1&b 已被添加到 &f$2"
-  removed: "&f$1&b 已从 &f$2 &b中删除."
   wrong-args: "&b未知命令 请使用 &f/af help &b查看可用命令"
-  no-blacklist: "&c未找到有关此玩家的黑名单"
   reload: "&bAkane&fField &b已成功重载配置文件. 部分内容可能需要重启服务器才能生效"
   player-only: "&b此命令仅限玩家可用"
 notifications:
   action: "&a已切换机器人显示状态"
+
+# 有关白名单和黑名单的消息提示
+white-black-list:
+  # %type% 中的占位符输出
+  type:
+    whitelist: "白名单"
+    blacklist: "黑名单"
+    # IPTables & IPSet 防火墙 将在未来区分黑名单和防火墙.
+    firewall: "防火墙"
+  # 当清理黑名单或白名单时 应该提示什么消息
+  cleared: "&b已成功清理 &f%type%!"
+  # 当某个ip被添加到黑名单或白名单时 应该提示什么消息
+  add: "&f%address% &b已被添加到 %type% &f中!"
+  # 反之亦然
+  remove: "&f%address% &b已被从 &f%type% &b中删除."
+  # /akanefield check 命令t当未能从黑名单中查找出此玩家 应该提示什么
+  non-blacklist: "&b此玩家没有被列入黑名单."
+  conflect-tips:
+    enabled: true
+    messages:
+      - "&b&m                                        &r"
+      - "&f请注意 我们会自动尝试解决已知的冲突问题"
+      - "&f例如 当您尝试将黑名单的ip列入白名单中 那么我们会自动从黑名单中删除此ip."
+      - "&f反之亦然 如果当您将ip加入黑名单中 也会被从白名单中删除."
+      - "&7如果您不想收到此消息 请在message.yml中. "
+      - "&7将white-black-list.conflect-tips.enabled设为false即可."
+      - "&b&m                                        &r"
 
 # 当服务器被攻击时 应该发送什么消息 (计划 暂未实现)
 underattack:
@@ -49,7 +72,7 @@ dump:
     # 插件列表
     # e.x
     # 插件列表:
-    # AkaneField - 0.2.3
+    # AkaneField - 0.2.4
     plugins-list: "插件列表:"
     # 当前插件信息以及状态列表
     plugin-info: "插件信息: "
@@ -146,8 +169,8 @@ help:
   - "&bclear &bblacklist/whitelist &f- &b清理黑名单/白名单"
   - "&bwhitelist &badd/remove &b<ip> &f- &b向白名单添加或删除地址"
   - "&bblacklist &badd/remove &b<ip> &f- &b向黑名单添加或删除地址"
-  - "&blogs list <数量> &f- &b返回日志列表"
-  - "&blogs last <id> &f- &b查看指定日志的统计信息"
+  - "&blogs list &f<数量> &f- &b返回日志列表"
+  - "&blogs last &f<id> &f- &b查看指定日志的统计信息"
   - "&bfirewall &f- &b查看Linux Centeral防火墙统计信息"
   - "&bcheck &f<id> &f- &b检查玩家是否被黑名单禁止"
   - "&breload &f- &b重载部分配置文件和消息文件."

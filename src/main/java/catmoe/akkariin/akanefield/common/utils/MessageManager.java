@@ -14,9 +14,7 @@ public class MessageManager {
     public static String normalPingInterface;
     public static String verifiedPingInterface;
     public static String commandNoPerms;
-    public static String commandCleared;
-    public static String commandAdded;
-    public static String commandRemove;
+    public static String blackwhiteListCleared;
     public static String commandPlayerOnly;
     public static String actionbarOffline;
     public static String actionbarAntiBotMode;
@@ -63,6 +61,9 @@ public class MessageManager {
     public static String kickCustom9;
     public static String kickCustom10;
 
+    public static List<String> WhiteBlacklistConflectTipsMessages;
+    public static boolean WhiteBlacklistConflectTipsEnabled;
+
     public static boolean attackNotificationTitleEnabled;
     public static String attackNotificationTitleTitle;
     public static String attackNotificationTitlesubTitle;
@@ -80,9 +81,6 @@ public class MessageManager {
         normalPingInterface = messages.getString("onping.normal");
         verifiedPingInterface = messages.getString("onping.ready");
         commandNoPerms = messages.getString("commands.perms");
-        commandCleared = messages.getString("commands.cleared");
-        commandAdded = messages.getString("commands.added");
-        commandRemove = messages.getString("commands.removed");
         commandPlayerOnly = messages.getString("commands.player-only");
         actionbarOffline = messages.getString("actionbar.offline");
         actionbarAntiBotMode = messages.getString("actionbar.antibot");
@@ -113,6 +111,8 @@ public class MessageManager {
         fastJoinQueueMessage = convertToString(messages.getStringList("fastjoin-queue"));
         satelliteStatus = messages.getStringList("satellitestats");
 
+        blackwhiteListCleared = messages.getString("white-black-list.cleared");
+
         LogInvalidValue = messages.getString("log.invalid-value");
         LogisEmpty = messages.getString("log.empty");
 
@@ -130,6 +130,9 @@ public class MessageManager {
         kickCustom9 = messages.getString("kick.custom9");
         kickCustom10 = messages.getString("kickcustom10");
 
+        WhiteBlacklistConflectTipsMessages = messages.getStringList("white-black-list.conflect-tips.messages");
+        WhiteBlacklistConflectTipsEnabled = messages.getBoolean("white-black-list.conflect-tips.enabled");
+
         attackNotificationTitleEnabled = messages.getBoolean("underattack.title.title");
         attackNotificationTitleTitle = messages.getString("underattack.title.title");
         attackNotificationTitlesubTitle = messages.getString("underattack.title.subtitle");
@@ -144,16 +147,8 @@ public class MessageManager {
         return commandNoPerms;
     }
 
-    public static String getCommandCleared(String what) {
-        return commandCleared.replace("$1", what);
-    }
-
-    public static String getCommandAdded(String ip, String were) {
-        return commandAdded.replace("$2", were).replace("$1", ip);
-    }
-
-    public static String getCommandRemove(String ip, String were) {
-        return commandRemove.replace("$2", were).replace("$1", ip);
+    public static String getBlackWhiteListCleared(String what) {
+        return blackwhiteListCleared.replace("%type%", what);
     }
 
     // 为了可自定义性的占位符做有必要的牺牲! (?)
