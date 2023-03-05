@@ -215,10 +215,10 @@ kick:
   # 虽然下方配置没有大小写区分 但是占位符是有大小写区分的 务必注意..
   # 消息内的部分特定 [$占位符] 仅只是更好的解释它们会被替换成什么 实际上跟$1 $2这样子的东西无异..
   url: "&7mc.miaomoe.net" # [$URL]
-  servername: "&bSakuraStarOcean" # [$ServerName]
-  line: "" # [$Line]
+  servername: "&b-&d❃ &6&lSakuraStarOcean &d❃&b-" # [$ServerName]
+  line: "&7❤ Miaomoe Network ❤" # [$Line]
   # [$Custom?] ?为1-10
-  custom1: "&bAkane&fField"
+  custom1: "&7« ❁ &c&lSecurity FireWall &7❁ »"
   custom2: "By"
   custom3: "CatMoe Team"
   custom4: "w'"
@@ -229,86 +229,79 @@ kick:
   custom9: "但是 它确实很方便"
   custom10: "对吧?"
 
-# 玩家第一次(当前BungeeCord会话)时踢出的消息
-first_join:
-  - "[$ServerName]"
-  - ""
-  - "[$Line]"
-  - "&b看起来您在服务器启动后从未加入过服务器!"
-  - "&b麻烦请重新加入服务器来完成认证 =w="
-  - "[$Line]"
-  - ""
-  - "[$URL]"
+  # 玩家第一次(当前BungeeCord会话)时踢出的消息
+  first-join:
+    - "[$ServerName]"
+    - "[$Custom1]"
+    - ""
+    - "&b看起来您在服务器启动后从未加入过服务器!"
+    - "&b麻烦请重新加入服务器来完成认证 =w="
+    - ""
+    - "[$Line]"
 
-# 当玩家刚好在反机器人模式激活后不久加入服务器踢出的消息
-# [$queue] = 待处理的IP数量
-# [$blacklist] = 当前会话中已被列入黑名单的IP数量
-antibotmode:
-  - "[$ServerName]"
-  - ""
-  - "[$Line]"
-  - "&c防机器人已启用! 我们暂时无法接纳您的连接w.. 抱歉!"
-  - "&b黑名单数量: &f[$queue]&f/&b[$blacklist]"
-  - "&7当我们收集完被用来攻击的IP代理后 您就可以进入认证环节啦w!"
-  - "[$Line]"
-  - ""
-  - "[$URL]"
+  # 当玩家刚好在反机器人模式激活后不久加入服务器踢出的消息
+  # [$queue] = 待处理的IP数量
+  # [$blacklist] = 当前会话中已被列入黑名单的IP数量
+  antibotmode:
+    - "[$ServerName]"
+    - "[$Custom1]"
+    - ""
+    - "&c防机器人已启用! 我们暂时无法接纳您的连接w.. 抱歉!"
+    - "&b黑名单数量: &f[$queue]&f/&b[$blacklist]"
+    - "&7当我们收集完被用来攻击的IP代理后 您就可以进入认证环节啦w!"
+    - ""
+    - "[$Line]"
 
 # 当玩家同时登录了太多的账户时踢出的消息
-account-online:
-  - "[$ServerName]"
-  - ""
-  - "[$Line]"
-  - "&c看起来好像到达登录上限惹!"
-  - "&e究竟是什么让你一个游戏都不够用呢"
-  - "[$Line]"
-  - ""
-  - "[$URL]"
+  account-online:
+    - "[$ServerName]"
+    - "[$Custom1]"
+    - ""
+    - "&c看起来好像到达登录上限惹!"
+    - "&e究竟是什么让你一个游戏都不够用呢"
+    - ""
+    - "[$Line]"
 
 # 当反机器人需要玩家通过Ping服务器(即刷新服务器列表) 时踢出的消息
 # [$pingcount] = 需要ping的数量
-ping:
-  - "[$ServerName]"
-  - ""
-  - "[$Line]"
-  - "&b请刷新服务器列表 &f[$pingcount] &b来完成认证! 麻烦了w.."
-  - "&7注: 如果您未将服务器加入刷新列表 则需要先添加 再尝试刷新"
-  - "[$Line]"
-  - ""
-  - "[$URL]"
+  ping:
+    - "[$ServerName]"
+    - "[$Custom1]"
+    - ""
+    - "&b请刷新服务器列表 &f[$pingcount] &b来完成认证! 麻烦了w.."
+    - "&7注: 如果您未将服务器加入刷新列表 则需要先添加 再尝试刷新"
+    - ""
+    - "[$Line]"
 
-# 当通过Ping认证后 玩家尝试加入踢出玩家时的消息 并指出要在多少秒内重新连接
-# [$delay] = 限时 单位为秒
-timer:
-  - "[$ServerName]"
-  - ""
-  - "[$Line]"
-  - "&b请在 &f[$delay] &b秒内加入服务器w!"
-  - "[$Line]"
-  - ""
-  - "[$URL]"
+  # 当通过Ping认证后 玩家尝试加入踢出玩家时的消息 并指出要在多少秒后重新连接
+  # [$delay] = 限时 单位为秒
+  timer:
+    - "[$ServerName]"
+    - "[$Custom1]"
+    - ""
+    - "&b请在 &f[$delay] &b秒后加入服务器w!"
+    - ""
+    - "[$Line]"
 
-# 当玩家被列入黑名单尝试加入时被踢出的消息
-# [$reason] = 列入黑名单的理由 请看上方的"reason"
-# [$id] = 惩罚标识号 虽然没什么用就是 被黑名单了就是被黑名单了 w-
-blacklisted:
-  - "[$ServerName]"
-  - ""
-  - "[$Line]"
-  - "&cw! 您被列入黑名单惹! ;w;"
-  - "&c如果您认为您没有做错什么 请联系管理员!"
-  - ""
-  - "&b黑名单ID  &f[$id]"
-  - "&b理由  &f[$reason]"
-  - "[$Line]"
-  - ""
-  - "[$URL]"
+  # 当玩家被列入黑名单尝试加入时被踢出的消息
+  # [$reason] = 列入黑名单的理由 请看上方的"reason"
+  # [$id] = 惩罚标识号 虽然没什么用就是 被黑名单了就是被黑名单了 w-
+  blacklisted:
+    - "[$ServerName]"
+    - "[$Custom1]"
+    - ""
+    - "&cw! 您被列入黑名单惹! ;w;"
+    - "&c如果您认为您没有做错什么 请联系管理员!"
+    - ""
+    - "&b黑名单ID  &f[$id]"
+    - "&b理由  &f[$reason]"
+    - ""
+    - "[$Line]"
 
-fastjoin-queue:
-  - "[$ServerName]"
-  - ""
-  - "[$Line]"
-  - "&b您已加入排队队列 请过会再尝试重新加入! w'"
-  - "[$Line]"
-  - ""
-  - "[$URL]"
+  fastjoin-queue:
+    - "[$ServerName]"
+    - "[$Custom1]"
+    - ""
+    - "&b您已加入排队队列 请过会再尝试重新加入! w'"
+    - ""
+    - "[$Line]"

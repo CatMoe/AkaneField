@@ -87,12 +87,12 @@ public class MessageManager {
         actionbarPackets = messages.getString("actionbar.packets");
         helpMessage = messages.getStringList("help");
         statsMessage = messages.getStringList("stats");
-        antiBotModeMessage = convertToString(messages.getStringList("antibotmode"));
-        firstJoinMessage = convertToString(messages.getStringList("first_join"));
-        accountOnlineMessage = convertToString(messages.getStringList("account-online"));
-        pingMessage = convertToString(messages.getStringList("ping"));
-        timerMessage = convertToString(messages.getStringList("timer"));
-        blacklistedMessage = convertToString(messages.getStringList("blacklisted"));
+        antiBotModeMessage = convertToString(messages.getStringList("kick.antibotmode"));
+        firstJoinMessage = convertToString(messages.getStringList("kick.first-join"));
+        accountOnlineMessage = convertToString(messages.getStringList("kick.account-online"));
+        pingMessage = convertToString(messages.getStringList("kick.ping"));
+        timerMessage = convertToString(messages.getStringList("kick.timer"));
+        blacklistedMessage = convertToString(messages.getStringList("kick.blacklisted"));
 
         reasonTooManyNicks = messages.getString("reason.names");
         reasonTooManyJoins = messages.getString("reason.joins");
@@ -105,7 +105,7 @@ public class MessageManager {
         toggledActionbar = messages.getString("notifications.action");
         commandWrongArgument = messages.getString("commands.wrong-args");
         reasonBlacklistAdmin = messages.getString("reason.admin");
-        commandNoBlacklist = messages.getString("commands.no-blacklist");
+        commandNoBlacklist = messages.getString("white-black-list.cleared");
         blacklistProfileString = messages.getStringList("blacklist_info");
         firewallMessage = messages.getStringList("firewall");
         fastJoinQueueMessage = convertToString(messages.getStringList("fastjoin-queue"));
