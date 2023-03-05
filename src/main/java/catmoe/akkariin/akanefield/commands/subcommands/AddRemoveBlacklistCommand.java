@@ -30,8 +30,10 @@ public class AddRemoveBlacklistCommand implements SubCommand {
         if (args[1].equalsIgnoreCase("add")) {
             iAntiBotManager.getBlackListService().blacklist("/" + args[2], BlackListReason.ADMIN);
             iAntiBotManager.getWhitelistService().unWhitelist("/" + args[2]);
-            sender.sendMessage(Utils.colora(MessageManager.getMessage("white-black-list.add").replace("%type%",
-                    MessageManager.getMessage("white-black-list.type.blacklist")).replace("%address%", args[2])));
+            sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("white-black-list.add")
+                    .replace("%type%",
+                            MessageManager.getMessage("white-black-list.type.blacklist"))
+                    .replace("%address%", args[2])));
             if (MessageManager.WhiteBlacklistConflectTipsEnabled == true) {
                 List<String> messages = MessageManager.getMessageList("white-black-list.conflect-tips.messages")
                         .stream().map(Utils::colora).collect(Collectors.toList());

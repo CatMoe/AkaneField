@@ -22,7 +22,7 @@ white-black-list:
   # 当清理黑名单或白名单时 应该提示什么消息
   cleared: "&b已成功清理 &f%type%!"
   # 当某个ip被添加到黑名单或白名单时 应该提示什么消息
-  add: "&f%address% &b已被添加到 %type% &f中!"
+  add: "&f%address% &b已被添加到 &f%type% &b中!"
   # 反之亦然
   remove: "&f%address% &b已被从 &f%type% &b中删除."
   # /akanefield check 命令t当未能从黑名单中查找出此玩家 应该提示什么
