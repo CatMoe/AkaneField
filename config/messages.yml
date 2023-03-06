@@ -25,7 +25,7 @@ white-black-list:
   add: "&f%address% &b已被添加到 &f%type% &b中!"
   # 反之亦然
   remove: "&f%address% &b已被从 &f%type% &b中删除."
-  # /akanefield check 命令t当未能从黑名单中查找出此玩家 应该提示什么
+  # /akanefield check 命令当未能从黑名单中查找出此玩家 应该提示什么
   non-blacklist: "&b此玩家没有被列入黑名单."
   conflect-tips:
     enabled: true
