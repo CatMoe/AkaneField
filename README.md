@@ -28,7 +28,7 @@ Jar不带默认配置 因此您需要自己创建一个文件夹 用于存放配
 **安装**  
   
 **Releases**  
-请注意: 为防止任何人伸手就来 之后可能会删除Release包 请自行学会如何使用maven构建项目.  
+请注意: ~~为防止任何人伸手就来 之后可能会删除Release包~~`已删除` 请自行学会如何使用maven构建项目.  
 正确的Releases包应该有一下两个文件:  
 
 - `AkaneField`文件夹 包含`blacklist` `whitelist` `config` `messages`  
