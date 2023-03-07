@@ -31,6 +31,8 @@ auto-purger:
     enabled: true
 
 # 当玩家已经在线时 是否踢出服务器(Beta)
+# 因WaterFall会自动踢出尝试连接的同名玩家
+# 所以此项暂时可能没什么用
 already-online-kick:
   # 开启
   enabled: true
@@ -163,6 +165,9 @@ checks:
 # 仅在Linux上可用
 # 必须以管理员身份运行服务器
 # 需要重启服务器以生效这些
+
+# 注: 此块仍然未做性能优化 因此如果攻击在可以承受的范围 那么则不需要开启
+# 只有当您在面对IP多次复用的大型攻击时 此项才有效.
 firewall:
   enabled: false
   # IPSet组名
@@ -200,6 +205,6 @@ proxycheck:
 attack-filter:
   - "InitialHandler"
   - "The UUID the player is connecting with now is NOT Mojang-assigned"
-# 将被永久过滤的消息
+# 将被永久过滤的消息 (目前疑似无法工作)
 persistent-filter: 
   - "=w=3"
