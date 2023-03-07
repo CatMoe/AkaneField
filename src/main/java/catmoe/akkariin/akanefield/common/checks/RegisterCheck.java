@@ -5,7 +5,7 @@ import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.objects.FancyInteger;
 import catmoe.akkariin.akanefield.common.objects.LimitedList;
 import catmoe.akkariin.akanefield.common.objects.profile.BlackListReason;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 
 import java.util.*;
 
@@ -28,7 +28,7 @@ public class RegisterCheck implements ChatCheck {
         this.ipPasswordMap = new HashMap<>();
         this.nicknamePasswordMap = new HashMap<>();
 
-        this.trackedCommands = ConfigManger.registerCheckCommandListeners;
+        this.trackedCommands = ConfigManager.registerCheckCommandListeners;
     }
 
     @Override
@@ -54,11 +54,11 @@ public class RegisterCheck implements ChatCheck {
         if (isLimitReached()) {
             for (String passwd : getOverLimitPasswords()) {
                 for (String ipToBlock : getSamePasswordIPS(passwd)) {
-                    if (ConfigManger.isRegisterCheckBlacklist) {
+                    if (ConfigManager.isRegisterCheckBlacklist) {
                         antiBotManager.getBlackListService().blacklist(ipToBlock, BlackListReason.STRANGE_PLAYER,
                                 nickname);
                     }
-                    if (ConfigManger.isRegisterCheckAntiBotMode) {
+                    if (ConfigManager.isRegisterCheckAntiBotMode) {
                         antiBotManager.enableSlowAntiBotMode();
                     }
                 }
@@ -80,7 +80,7 @@ public class RegisterCheck implements ChatCheck {
 
     @Override
     public boolean isEnabled() {
-        return ConfigManger.isRegisterCheckEnabled;
+        return ConfigManager.isRegisterCheckEnabled;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class RegisterCheck implements ChatCheck {
             ipPasswordMap.clear();
             passwordScore.clear();
             nicknamePasswordMap.clear();
-        }, false, 1000L * ConfigManger.taskManagerClearRegister);
+        }, false, 1000L * ConfigManager.taskManagerClearRegister);
     }
 
     private boolean isTrackedRegisterCommand(String message) {
@@ -137,12 +137,12 @@ public class RegisterCheck implements ChatCheck {
     private List<String> getOverLimitPasswords() {
         return passwordScore.entrySet()
                 .stream()
-                .filter(s -> s.getValue().get() >= ConfigManger.registerCheckLimit)
+                .filter(s -> s.getValue().get() >= ConfigManager.registerCheckLimit)
                 .collect(ArrayList::new, (list, entry) -> list.add(entry.getKey()), (a, b) -> {
                 });
     }
 
     private boolean isLimitReached() {
-        return passwordScore.entrySet().stream().anyMatch(s -> s.getValue().get() >= ConfigManger.registerCheckLimit);
+        return passwordScore.entrySet().stream().anyMatch(s -> s.getValue().get() >= ConfigManager.registerCheckLimit);
     }
 }

@@ -3,7 +3,7 @@ package catmoe.akkariin.akanefield.listener;
 import catmoe.akkariin.akanefield.common.objects.profile.BlackListReason;
 import catmoe.akkariin.akanefield.common.IAntiBotManager;
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 import catmoe.akkariin.akanefield.utils.Utils;
 import net.md_5.bungee.api.event.PlayerHandshakeEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -25,7 +25,7 @@ public class HandShakeListener implements Listener {
 
         if (handshake.getRequestedProtocol() > 2 && antiBotManager.isSomeModeOnline()) {
             handshake.setRequestedProtocol(2); // converting to join
-            if (ConfigManger.blacklistInvalidProtocol) {
+            if (ConfigManager.blacklistInvalidProtocol) {
                 antiBotManager.getBlackListService().blacklist(ip, BlackListReason.STRANGE_PLAYER);
             }
         }

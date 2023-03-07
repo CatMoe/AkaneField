@@ -2,7 +2,7 @@ package catmoe.akkariin.akanefield.common.objects.filter;
 
 import catmoe.akkariin.akanefield.common.IAntiBotManager;
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,7 +58,7 @@ public class ProxyAttackFilter implements Filter {
 
         if (isDenied(record.getMessage())) {
             antiBotManager.increasePacketPerSecond();
-            if (antiBotManager.getPacketPerSecond() > ConfigManger.packetModeTrigger)
+            if (antiBotManager.getPacketPerSecond() > ConfigManager.packetModeTrigger)
                 antiBotManager.enablePacketMode();
         }
 

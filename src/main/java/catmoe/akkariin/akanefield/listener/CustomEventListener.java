@@ -5,7 +5,7 @@ import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.ModeType;
 import catmoe.akkariin.akanefield.common.detectors.FastJoinBypassDetector;
 import catmoe.akkariin.akanefield.common.service.AttackTrackerService;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 import catmoe.akkariin.akanefield.common.utils.ServerUtil;
 import catmoe.akkariin.akanefield.event.AttackStateEvent;
 import catmoe.akkariin.akanefield.event.DuringAttackIPJoinEvent;
@@ -38,7 +38,7 @@ public class CustomEventListener implements Listener {
         }
 
         if (e.getEnabledMode().equals(ModeType.FastJoin) || e.getEnabledMode().equals(ModeType.SlowJoin)) {
-            if (ConfigManger.antibotDisconnect) {
+            if (ConfigManager.antibotDisconnect) {
                 e.disconnectBots();
             }
         }
@@ -53,7 +53,7 @@ public class CustomEventListener implements Listener {
         plugin.scheduleDelayedTask(() -> {
             if (plugin.getAntiBotManager().isSomeModeOnline())
                 return;
-            if (ConfigManger.disableNotificationAfterAttack) {
+            if (ConfigManager.disableNotificationAfterAttack) {
                 Notificator.disableAllNotifications();
             }
 

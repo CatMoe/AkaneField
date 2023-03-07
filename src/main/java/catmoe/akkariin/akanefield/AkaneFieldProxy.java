@@ -22,7 +22,7 @@ import catmoe.akkariin.akanefield.common.service.UserDataService;
 import catmoe.akkariin.akanefield.common.service.VPNService;
 import catmoe.akkariin.akanefield.common.thread.AnimationThread;
 import catmoe.akkariin.akanefield.common.thread.LatencyThread;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 import catmoe.akkariin.akanefield.common.utils.MessageManager;
 import catmoe.akkariin.akanefield.common.utils.RuntimeUtil;
 import catmoe.akkariin.akanefield.common.utils.ServerUtil;
@@ -88,7 +88,7 @@ public final class AkaneFieldProxy extends Plugin implements IAntiBotPlugin, ISe
         this.blacklist = new Config(this, "%datafolder%/blacklist.yml");
         this.logHelper = new LogHelper(this);
         try {
-            ConfigManger.init(this.config);
+            ConfigManager.init(this.config);
             MessageManager.init(this.messages);
         } catch (Exception e) {
             this.logHelper.error("&c加载配置文件时发生了错误..");
@@ -159,7 +159,7 @@ public final class AkaneFieldProxy extends Plugin implements IAntiBotPlugin, ISe
         this.config = new Config(this, "%datafolder%/config.yml");
         this.messages = new Config(this, "%datafolder%/messages.yml");
 
-        ConfigManger.init(config);
+        ConfigManager.init(config);
         MessageManager.init(messages);
     }
 

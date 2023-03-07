@@ -1,10 +1,15 @@
 version: 0.2.4
 prefix: "&bAkane&fField &7» "
+# 当玩家需要通过ping检查时 motd显示的server brand
 onping:
-  normal: "&b请继续刷新服务器列表 &f$1&b/&f$2"
+  # [$Current] 当前刷新次数 [$Required] 需要刷新的次数
+  normal: "&b请继续刷新服务器列表 &f[$Current]&b/&f[$Required]"
   ready: "&b已通过反机器人认证!"
 commands:
+  # 已弃用 使用BungeeCord内置权限. 当没有权限时自动阻止(说白了就是不听这个的)
+  # 要想更改没有权限的消息 您需要手动修改BungeeCord的消息.
   perms: "&fUnknown command. Type \"/help\" for help."
+  # 错误或未知的命令 将来可能会弃用
   wrong-args: "&b未知命令 请使用 &f/af help &b查看可用命令"
   reload: "&bAkane&fField &b已成功重载配置文件. 部分内容可能需要重启服务器才能生效"
   player-only: "&b此命令仅限玩家可用"

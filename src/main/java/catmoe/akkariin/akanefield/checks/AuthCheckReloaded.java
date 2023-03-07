@@ -7,7 +7,7 @@ import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.objects.FancyInteger;
 import catmoe.akkariin.akanefield.common.objects.profile.BlackListReason;
 import catmoe.akkariin.akanefield.common.service.VPNService;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 import catmoe.akkariin.akanefield.common.utils.MessageManager;
 import catmoe.akkariin.akanefield.common.utils.ServerUtil;
 import catmoe.akkariin.akanefield.utils.ComponentBuilder;
@@ -66,8 +66,8 @@ public class AuthCheckReloaded {
                     ping.getVersion().setName(ServerUtil.colorize(MessageManager.verifiedPingInterface));
                 } else {
                     ping.getVersion().setName(ServerUtil.colorize(MessageManager.normalPingInterface
-                            .replace("$1", String.valueOf(currentIPPings))
-                            .replace("$2", String.valueOf(pingRequired))));
+                            .replace("[$Current]", String.valueOf(currentIPPings))
+                            .replace("[$Required]", String.valueOf(pingRequired))));
                 }
                 // Imposto la risposta al ping
                 e.setResponse(ping);
@@ -89,7 +89,7 @@ public class AuthCheckReloaded {
                 String initiator = checkInitiator.getOrDefault(ip, null);
                 if (initiator.equals(e.getConnection().getName())) {
                     // checking connection
-                    if (ConfigManger.getProxyCheckConfig().isCheckFastJoin() && !hasFailedThisCheck(ip, 2)) {
+                    if (ConfigManager.getProxyCheckConfig().isCheckFastJoin() && !hasFailedThisCheck(ip, 2)) {
                         VPNService.submitIP(ip, e.getConnection().getName());
                     }
                     addToPingCheckCompleted(ip);
@@ -110,8 +110,8 @@ public class AuthCheckReloaded {
             return;
         }
 
-        int checkTimer = ThreadLocalRandom.current().nextInt(ConfigManger.authMinMaxTimer[0],
-                ConfigManger.authMinMaxTimer[1]);
+        int checkTimer = ThreadLocalRandom.current().nextInt(ConfigManager.authMinMaxTimer[0],
+                ConfigManager.authMinMaxTimer[1]);
         if (hasCompletedPingCheck(ip)) {
             submitTimerTask(ip, checkTimer);
             e.setCancelReason(
@@ -119,12 +119,9 @@ public class AuthCheckReloaded {
             e.setCancelled(true);
             return;
         }
-        int pingTimer = ThreadLocalRandom.current().nextInt(ConfigManger.authMinMaxPing[0],
-                ConfigManger.authMinMaxPing[1]);
-        // aggiungiamo l'ip nella verifica del ping timer
+        int pingTimer = ThreadLocalRandom.current().nextInt(ConfigManager.authMinMaxPing[0],
+                ConfigManager.authMinMaxPing[1]);
         addToCompletingPingCheck(ip, pingTimer);
-        // registriamo ip e nome di chi inizia per controllare che siano gli stessi alla
-        // fine
         checkInitiator.put(ip, e.getConnection().getName());
         increaseFails(ip, e.getConnection().getName());
         e.setCancelReason(ComponentBuilder.buildColorized(
@@ -154,12 +151,6 @@ public class AuthCheckReloaded {
         runningTasks.put(ip, task);
     }
 
-    /**
-     * Ritorna se l'ip ha superato i ping richiesti dal check
-     * 
-     * @param ip IP da controllare
-     * @return Se ha superato il numero di ping
-     */
     private boolean hasExceededPingLimit(String ip) {
         if (pingData.get(ip) == null || pingMap.get(ip) == null) {
             return true;
@@ -167,9 +158,6 @@ public class AuthCheckReloaded {
         return pingMap.get(ip).get() > pingData.get(ip);
     }
 
-    /**
-     * @param ip IP da resettare tranne i fail
-     */
     private void resetData(String ip) {
         pingMap.remove(ip);
         checking.remove(ip);
@@ -263,7 +251,7 @@ public class AuthCheckReloaded {
         plugin.scheduleDelayedTask(() -> {
             completedCheck.remove(ip);
             resetData(ip);
-        }, false, ConfigManger.authBetween);
+        }, false, ConfigManager.authBetween);
     }
 
     /**
@@ -291,7 +279,7 @@ public class AuthCheckReloaded {
         current.increase();
         failure.put(ip, current);
 
-        if (current.get() >= ConfigManger.authMaxFails) {
+        if (current.get() >= ConfigManager.authMaxFails) {
             antibotManager.getBlackListService().blacklist(ip, BlackListReason.CHECK_FAILS, name);
             resetTotal(ip);
         }

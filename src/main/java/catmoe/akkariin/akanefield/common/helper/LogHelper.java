@@ -1,7 +1,7 @@
 package catmoe.akkariin.akanefield.common.helper;
 
 import catmoe.akkariin.akanefield.common.IServerPlatform;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 import catmoe.akkariin.akanefield.common.utils.MessageManager;
 import catmoe.akkariin.akanefield.common.utils.ServerUtil;
 
@@ -15,7 +15,7 @@ public class LogHelper {
     }
 
     public void debug(String msg) {
-        if (!ConfigManger.isDebugModeOnline)
+        if (!ConfigManager.isDebugModeOnline)
             return;
         platform.log(INFO, ServerUtil.colorize("&bDebug &7» " + msg));
     }

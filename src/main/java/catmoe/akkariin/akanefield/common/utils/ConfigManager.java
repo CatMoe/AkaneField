@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.SplittableRandom;
 
-public class ConfigManger {
+public class ConfigManager {
     private static IConfiguration CONFIG;
 
     public static double version;
@@ -20,6 +20,8 @@ public class ConfigManger {
     public static boolean enableBossBarAutomaticNotification;
     public static boolean disableNotificationAfterAttack;
     public static boolean isConsoleAttackMessageDisabled;
+    public static boolean AlreadyOnlineKickEnabled;
+    public static boolean AlreadyOnlineKickAntiBotMode;
     public static int antiBotModeKeep;
     public static int antiBotModeTrigger;
     public static boolean antibotDisconnect;
@@ -79,6 +81,10 @@ public class ConfigManger {
         isIPApiVerificationEnabled = cfg.getBoolean("ip-api.enabled");
         isConsoleAttackMessageDisabled = cfg.getBoolean("disable-console-attack-message");
         detectServerPerformance = cfg.getBoolean("detect-server-performance");
+
+        AlreadyOnlineKickAntiBotMode = cfg.getBoolean("already-online-kick.antibotmode");
+        AlreadyOnlineKickEnabled = cfg.getBoolean("already-online-kick.enabled");
+
         antiBotModeKeep = cfg.getInt("antibotmode.keep");
         antiBotModeTrigger = cfg.getInt("antibotmode.trigger");
         antibotDisconnect = cfg.getBoolean("antibotmode.disconnect");
@@ -123,6 +129,14 @@ public class ConfigManger {
         packetSlowCheckConfig = new SlowCheckConfig(cfg, "checks.slowjoin.packet");
         accountCheckConfig = new SlowCheckConfig(cfg, "checks.slowjoin.account");
         proxyCheckConfig = new ProxyCheckConfig(cfg);
+    }
+
+    public static boolean getAlreadyOnlineKickEnabled() {
+        return AlreadyOnlineKickEnabled;
+    }
+
+    public static boolean getAlreadyOnlineKickAntiBotMode() {
+        return AlreadyOnlineKickAntiBotMode;
     }
 
     public static String getDiscordWebHookUrl() {

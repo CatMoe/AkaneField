@@ -3,7 +3,7 @@ package catmoe.akkariin.akanefield.common.service;
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.IService;
 import catmoe.akkariin.akanefield.common.objects.attack.AttackLog;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 import catmoe.akkariin.akanefield.common.utils.DateUtil;
 import catmoe.akkariin.akanefield.common.utils.FileUtil;
 import catmoe.akkariin.akanefield.common.utils.SerializeUtil;
@@ -61,11 +61,11 @@ public class AttackTrackerService implements IService {
             }
 
             // remove logs older than 30 days
-            if (!ConfigManger.getAutoPurgerBoolean("logs.enabled"))
+            if (!ConfigManager.getAutoPurgerBoolean("logs.enabled"))
                 return;
             attackLogList.removeIf(log -> {
                 long pastedDays = TimeUnit.MICROSECONDS.toDays(log.getStopMillis());
-                return pastedDays > ConfigManger.getAutoPurgerValue("logs.value");
+                return pastedDays > ConfigManager.getAutoPurgerValue("logs.value");
             });
         } catch (Exception e) {
             if (attackLogList == null)

@@ -21,12 +21,15 @@ public class MessageManager {
     public static String actionbarPackets;
     public static List<String> helpMessage;
     public static List<String> statsMessage;
+
     private static String antiBotModeMessage;
     public static String firstJoinMessage;
     private static String accountOnlineMessage;
     private static String pingMessage;
     private static String timerMessage;
     private static String blacklistedMessage;
+    private static String alreadyOnlineMessage;
+
     public static String reasonTooManyNicks;
     public static String reasonTooManyJoins;
     public static String reasonTooManyPings;
@@ -87,12 +90,14 @@ public class MessageManager {
         actionbarPackets = messages.getString("actionbar.packets");
         helpMessage = messages.getStringList("help");
         statsMessage = messages.getStringList("stats");
+
         antiBotModeMessage = convertToString(messages.getStringList("kick.antibotmode"));
         firstJoinMessage = convertToString(messages.getStringList("kick.first-join"));
         accountOnlineMessage = convertToString(messages.getStringList("kick.account-online"));
         pingMessage = convertToString(messages.getStringList("kick.ping"));
         timerMessage = convertToString(messages.getStringList("kick.timer"));
         blacklistedMessage = convertToString(messages.getStringList("kick.blacklisted"));
+        alreadyOnlineMessage = convertToString(messages.getStringList("kick.already-online"));
 
         reasonTooManyNicks = messages.getString("reason.names");
         reasonTooManyJoins = messages.getString("reason.joins");
@@ -219,6 +224,15 @@ public class MessageManager {
     public static String getFastJoinQueueMessage(String nothing) {
         return fastJoinQueueMessage
                 .replace("[$URL]", kickURL).replace("[$ServerName]", kickServerName)
+                .replace("[$Line]", kickLine).replace("[$Custom1]", kickCustom1).replace("[$Custom2]", kickCustom2)
+                .replace("[$Custom3]", kickCustom3).replace("[$Custom4]", kickCustom4)
+                .replace("[$Custom5]", kickCustom5).replace("[$Custom6]", kickCustom6)
+                .replace("[$Custom7]", kickCustom7).replace("[$Custom8]", kickCustom8)
+                .replace("[$Custom9]", kickCustom9).replace("[$Custom10]", kickCustom10);
+    }
+
+    public static String getAlreadyOnlineMessage() {
+        return alreadyOnlineMessage.replace("[$URL]", kickURL).replace("[$ServerName]", kickServerName)
                 .replace("[$Line]", kickLine).replace("[$Custom1]", kickCustom1).replace("[$Custom2]", kickCustom2)
                 .replace("[$Custom3]", kickCustom3).replace("[$Custom4]", kickCustom4)
                 .replace("[$Custom5]", kickCustom5).replace("[$Custom6]", kickCustom6)

@@ -2,7 +2,7 @@ package catmoe.akkariin.akanefield.common.checks;
 
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.service.UserDataService;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 
 public class FirstJoinCheck implements JoinCheck {
     private final UserDataService userDataService;
@@ -32,7 +32,7 @@ public class FirstJoinCheck implements JoinCheck {
     }
 
     public boolean isEnabled() {
-        return ConfigManger.isFirstJoinEnabled;
+        return ConfigManager.isFirstJoinEnabled;
     }
 
     @Override

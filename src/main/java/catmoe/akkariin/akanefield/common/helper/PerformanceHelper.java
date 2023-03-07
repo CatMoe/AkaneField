@@ -1,6 +1,6 @@
 package catmoe.akkariin.akanefield.common.helper;
 
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 import catmoe.akkariin.akanefield.common.utils.Version;
 
 public class PerformanceHelper {
@@ -10,7 +10,7 @@ public class PerformanceHelper {
     public static void init(ServerType serverType) {
         int cores = Version.getCores();
         PerformanceHelper.serverType = serverType;
-        if (!ConfigManger.detectServerPerformance) {
+        if (!ConfigManager.detectServerPerformance) {
             performanceMode = PerformanceMode.CUSTOM;
             return;
         }

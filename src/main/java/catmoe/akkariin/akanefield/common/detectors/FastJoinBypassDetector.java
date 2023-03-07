@@ -2,7 +2,7 @@ package catmoe.akkariin.akanefield.common.detectors;
 
 import catmoe.akkariin.akanefield.common.IAntiBotManager;
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 
 public class FastJoinBypassDetector extends AbstractDetector {
     private final IAntiBotPlugin plugin;
@@ -20,7 +20,7 @@ public class FastJoinBypassDetector extends AbstractDetector {
         }
 
         if (count > 2) {
-            ConfigManger.incrementAuthCheckDifficulty();
+            ConfigManager.incrementAuthCheckDifficulty();
             plugin.getLogHelper().debug("[BYPASS DETECTED] Incrementing auth check difficulty...");
         }
     }

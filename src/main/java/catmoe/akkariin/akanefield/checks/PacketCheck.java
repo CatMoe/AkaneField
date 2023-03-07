@@ -5,7 +5,7 @@ import catmoe.akkariin.akanefield.common.IAntiBotManager;
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.service.BlackListService;
 import catmoe.akkariin.akanefield.common.service.WhitelistService;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 import net.md_5.bungee.api.ProxyServer;
 
 import java.util.*;
@@ -36,7 +36,7 @@ public class PacketCheck {
                 iAntiBotPlugin.getLogHelper().warn(
                         "我们无法确认AkaneField对 "
                                 + invalidPlugin + " 插件的兼容性 如果您遇到任何问题 请报告给CatMoe");
-                ConfigManger.getPacketCheckConfig().setEnabled(false);
+                ConfigManager.getPacketCheckConfig().setEnabled(false);
             }
         }
 
@@ -75,14 +75,14 @@ public class PacketCheck {
 
             suspected.removeIf(packetReceived::contains);
 
-            if (suspected.size() >= ConfigManger.getPacketCheckConfig().getTrigger()) {
+            if (suspected.size() >= ConfigManager.getPacketCheckConfig().getTrigger()) {
                 iAntiBotPlugin.getLogHelper().debug("Packet Check Executed!");
                 for (String ip : new ArrayList<>(suspected)) {
-                    if (ConfigManger.getPacketCheckConfig().isBlacklist()) {
+                    if (ConfigManager.getPacketCheckConfig().isBlacklist()) {
                         blacklist.blacklist(ip, BlackListReason.STRANGE_PLAYER);
                     }
                 }
-                if (ConfigManger.getPacketCheckConfig().isEnableAntiBotMode()) {
+                if (ConfigManager.getPacketCheckConfig().isEnableAntiBotMode()) {
                     antibotManager.enableSlowAntiBotMode();
                 }
                 suspected.clear();
@@ -92,7 +92,7 @@ public class PacketCheck {
     }
 
     private boolean isEnabled() {
-        return ConfigManger.getPacketCheckConfig().isEnabled();
+        return ConfigManager.getPacketCheckConfig().isEnabled();
     }
 
     private void loadTask() {
@@ -103,6 +103,6 @@ public class PacketCheck {
             joined.clear();
             packetReceived.clear();
             suspected.clear();
-        }, false, 1000L * ConfigManger.taskManagerClearPacket);
+        }, false, 1000L * ConfigManager.taskManagerClearPacket);
     }
 }

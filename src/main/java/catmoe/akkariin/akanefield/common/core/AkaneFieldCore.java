@@ -4,7 +4,7 @@ import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.service.BlackListService;
 import catmoe.akkariin.akanefield.common.service.DetectorService;
 import catmoe.akkariin.akanefield.common.service.WhitelistService;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 import catmoe.akkariin.akanefield.common.utils.ServerUtil;
 
 import java.util.concurrent.TimeUnit;
@@ -28,7 +28,7 @@ public class AkaneFieldCore {
         }, false, 1000L);
 
         plugin.scheduleRepeatingTask(plugin.getAntiBotManager().getQueueService()::clear, false,
-                ConfigManger.taskManagerClearCache * 1000L);
+                ConfigManager.taskManagerClearCache * 1000L);
         plugin.scheduleDelayedTask(this::checkAutoPurger, true, 300000L); // 5 min
         plugin.scheduleRepeatingTask(() -> {
             if (plugin.getAntiBotManager().isAntiBotModeEnabled()) {
@@ -37,11 +37,11 @@ public class AkaneFieldCore {
             for (String blacklisted : blackListService.getBlackListedIPS()) {
                 whitelistService.unWhitelist(blacklisted);
             }
-        }, false, 1000L * ConfigManger.taskManagerClearCache);
+        }, false, 1000L * ConfigManager.taskManagerClearCache);
     }
 
     public void refresh() {
-        if (ConfigManger.isConsoleAttackMessageDisabled) {
+        if (ConfigManager.isConsoleAttackMessageDisabled) {
             return;
         }
         plugin.getAntiBotManager().dispatchConsoleAttackMessage();
@@ -57,13 +57,13 @@ public class AkaneFieldCore {
             return;
 
         // check for blacklist autopurge
-        String blacklistType = ConfigManger.getAutoPurgerParam("blacklist.type");
-        boolean blacklistEnabled = ConfigManger.getAutoPurgerBoolean("blacklist.enabled");
+        String blacklistType = ConfigManager.getAutoPurgerParam("blacklist.type");
+        boolean blacklistEnabled = ConfigManager.getAutoPurgerBoolean("blacklist.enabled");
 
         if (blacklistType != null && blacklistEnabled) {
             switch (blacklistType) {
                 case "LIMIT":
-                    int required = ConfigManger.getAutoPurgerValue("blacklist.value");
+                    int required = ConfigManager.getAutoPurgerValue("blacklist.value");
                     if (plugin.getAntiBotManager().getBlackListService().size() >= required) {
                         plugin.getAntiBotManager().getBlackListService().clear();
                     }
@@ -75,13 +75,13 @@ public class AkaneFieldCore {
         }
 
         // check for whitelist autopurge
-        String whitelistType = ConfigManger.getAutoPurgerParam("whitelist.type");
-        boolean whitelistEnabled = ConfigManger.getAutoPurgerBoolean("whitelist.enabled");
+        String whitelistType = ConfigManager.getAutoPurgerParam("whitelist.type");
+        boolean whitelistEnabled = ConfigManager.getAutoPurgerBoolean("whitelist.enabled");
 
         if (whitelistType != null && whitelistEnabled) {
             switch (whitelistType) {
                 case "LIMIT":
-                    int required = ConfigManger.getAutoPurgerValue("whitelist.value");
+                    int required = ConfigManager.getAutoPurgerValue("whitelist.value");
                     if (plugin.getAntiBotManager().getWhitelistService().size() >= required) {
                         plugin.getAntiBotManager().getWhitelistService().clear();
                     }

@@ -15,7 +15,7 @@ import catmoe.akkariin.akanefield.common.service.VPNService;
 import catmoe.akkariin.akanefield.common.service.QueueService;
 import catmoe.akkariin.akanefield.common.service.WhitelistService;
 import catmoe.akkariin.akanefield.common.thread.DynamicCounterThread;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 import catmoe.akkariin.akanefield.common.utils.MessageManager;
 import catmoe.akkariin.akanefield.common.utils.ServerUtil;
 import catmoe.akkariin.akanefield.common.utils.TimeUtil;
@@ -227,7 +227,7 @@ public class AntiBotManager implements IAntiBotManager {
         isPacketModeEnabled = false;
         iAntiBotPlugin.scheduleDelayedTask(
                 new ModeDisableTask(iAntiBotPlugin, ModeType.FastJoin),
-                false, 1000L * ConfigManger.antiBotModeKeep);
+                false, 1000L * ConfigManager.antiBotModeKeep);
         EventCaller.call(new ModeEnableEvent(iAntiBotPlugin, ModeType.FastJoin));
     }
 
@@ -240,7 +240,7 @@ public class AntiBotManager implements IAntiBotManager {
         isPacketModeEnabled = false;
         iAntiBotPlugin.scheduleDelayedTask(
                 new ModeDisableTask(iAntiBotPlugin, ModeType.SlowJoin),
-                false, 1000L * ConfigManger.slowAntibotModeKeep);
+                false, 1000L * ConfigManager.slowAntibotModeKeep);
         EventCaller.call(new ModeEnableEvent(iAntiBotPlugin, ModeType.SlowJoin));
     }
 
@@ -253,7 +253,7 @@ public class AntiBotManager implements IAntiBotManager {
         isPacketModeEnabled = true;
         iAntiBotPlugin.scheduleDelayedTask(
                 new ModeDisableTask(iAntiBotPlugin, ModeType.Firewall),
-                false, 1000L * ConfigManger.packetModeKeep);
+                false, 1000L * ConfigManager.packetModeKeep);
         EventCaller.call(new ModeEnableEvent(iAntiBotPlugin, ModeType.Firewall));
     }
 
@@ -266,7 +266,7 @@ public class AntiBotManager implements IAntiBotManager {
         isPacketModeEnabled = false;
         iAntiBotPlugin.scheduleDelayedTask(
                 new ModeDisableTask(iAntiBotPlugin, ModeType.Motd),
-                false, 1000L * ConfigManger.pingModeKeep);
+                false, 1000L * ConfigManager.pingModeKeep);
         EventCaller.call(new ModeEnableEvent(iAntiBotPlugin, ModeType.Motd));
     }
 
@@ -284,13 +284,13 @@ public class AntiBotManager implements IAntiBotManager {
     @Override
     public boolean canDisable(ModeType modeType) {
         if (modeType.equals(ModeType.FastJoin) || modeType.equals(ModeType.SlowJoin)) {
-            return joinPerSecond.getSlowCount() <= ConfigManger.antiBotModeTrigger;
+            return joinPerSecond.getSlowCount() <= ConfigManager.antiBotModeTrigger;
         }
         if (modeType.equals(ModeType.Motd)) {
-            return pingPerSecond.getSlowCount() <= ConfigManger.pingModeTrigger;
+            return pingPerSecond.getSlowCount() <= ConfigManager.pingModeTrigger;
         }
         if (modeType.equals(ModeType.Firewall)) {
-            return packetPerSecond.getSlowCount() < ConfigManger.packetModeTrigger;
+            return packetPerSecond.getSlowCount() < ConfigManager.packetModeTrigger;
         }
         return false;
     }

@@ -3,7 +3,7 @@ package catmoe.akkariin.akanefield.common.checks;
 import catmoe.akkariin.akanefield.common.IAntiBotManager;
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.objects.profile.BlackListReason;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 
 public class LegalNameCheck implements JoinCheck {
     private static String VALID_NAME_REGEX = "[a-zA-Z0-9_.]*";
@@ -15,8 +15,8 @@ public class LegalNameCheck implements JoinCheck {
         this.plugin = plugin;
         this.antiBotManager = plugin.getAntiBotManager();
 
-        if (ConfigManger.legalNameCheckRegex != null) {
-            VALID_NAME_REGEX = ConfigManger.legalNameCheckRegex;
+        if (ConfigManager.legalNameCheckRegex != null) {
+            VALID_NAME_REGEX = ConfigManager.legalNameCheckRegex;
         }
     }
 
@@ -40,7 +40,7 @@ public class LegalNameCheck implements JoinCheck {
 
     @Override
     public boolean isEnabled() {
-        return ConfigManger.isLegalNameCheckEnabled;
+        return ConfigManager.isLegalNameCheckEnabled;
     }
 
     @Override

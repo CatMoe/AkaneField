@@ -4,12 +4,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import catmoe.akkariin.akanefield.common.antivpn.proxycheck.result.ProxyResults;
 import catmoe.akkariin.akanefield.common.antivpn.proxycheck.query.HTTPQuery;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 
 import java.io.IOException;
 
 public class ConnectionCheck {
-    private final ProxyCheckSettings settings = new ProxyCheckSettings(ConfigManger.getProxyCheckConfig().getKey());
+    private final ProxyCheckSettings settings = new ProxyCheckSettings(ConfigManager.getProxyCheckConfig().getKey());
     private final HTTPQuery httpQuery = new HTTPQuery();
 
     /**

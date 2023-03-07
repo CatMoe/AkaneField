@@ -3,7 +3,7 @@ package catmoe.akkariin.akanefield.common.thread;
 import catmoe.akkariin.akanefield.common.helper.PerformanceHelper;
 import catmoe.akkariin.akanefield.common.helper.ServerType;
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 
 public class LatencyThread {
     private String result;
@@ -24,7 +24,7 @@ public class LatencyThread {
             this.result = "§c(disabled (detect-server-performance: true))";
             return;
         }
-        if (ConfigManger.enableLatencyThread) {
+        if (ConfigManager.enableLatencyThread) {
             new Thread(() -> {
                 while (iAntiBotPlugin.isRunning()) {
                     long first = System.nanoTime();

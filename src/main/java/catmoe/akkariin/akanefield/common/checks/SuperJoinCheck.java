@@ -2,7 +2,7 @@ package catmoe.akkariin.akanefield.common.checks;
 
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.objects.FancyInteger;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -31,7 +31,7 @@ public class SuperJoinCheck implements JoinCheck {
         i.increase();
         data.put(ip, i);
 
-        if (i.get() > ConfigManger.superJoinLimit) {
+        if (i.get() > ConfigManager.superJoinLimit) {
             data.remove(ip);
             plugin.getLogHelper().debug("[UAB DEBUG] Detected attack on SuperJoinCheck!");
             return true;
@@ -47,11 +47,11 @@ public class SuperJoinCheck implements JoinCheck {
 
     @Override
     public boolean isEnabled() {
-        return ConfigManger.isSuperJoinEnabled;
+        return ConfigManager.isSuperJoinEnabled;
     }
 
     @Override
     public void loadTask() {
-        plugin.scheduleRepeatingTask(data::clear, false, 1000L * ConfigManger.superJoinTime);
+        plugin.scheduleRepeatingTask(data::clear, false, 1000L * ConfigManager.superJoinTime);
     }
 }

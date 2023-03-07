@@ -4,7 +4,7 @@ import catmoe.akkariin.akanefield.common.IAntiBotManager;
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.service.QueueService;
 import catmoe.akkariin.akanefield.common.service.WhitelistService;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 import catmoe.akkariin.akanefield.utils.Utils;
 import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.event.ProxyPingEvent;
@@ -31,14 +31,14 @@ public class PingListener implements Listener {
 
         // PingMode checks
         if (antiBotManager.isSomeModeOnline()) {
-            if (!ConfigManger.pingModeSendInfo) {
+            if (!ConfigManager.pingModeSendInfo) {
                 ServerPing ping = e.getResponse();
                 ping.setFavicon("");
                 e.setResponse(ping);
             }
         }
         // Enable ping mode
-        if (antiBotManager.getPingPerSecond() > ConfigManger.pingModeTrigger
+        if (antiBotManager.getPingPerSecond() > ConfigManager.pingModeTrigger
                 && !antiBotManager.isAntiBotModeEnabled()) {
             if (!antiBotManager.isPingModeEnabled()) {
                 antiBotManager.enablePingMode();

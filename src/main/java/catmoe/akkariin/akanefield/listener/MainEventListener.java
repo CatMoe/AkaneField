@@ -10,7 +10,7 @@ import catmoe.akkariin.akanefield.common.checks.AccountCheck;
 import catmoe.akkariin.akanefield.common.objects.profile.BlackListReason;
 import catmoe.akkariin.akanefield.common.service.*;
 import catmoe.akkariin.akanefield.common.tasks.AutoWhitelistTask;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 import catmoe.akkariin.akanefield.common.utils.MessageManager;
 import catmoe.akkariin.akanefield.common.utils.ServerUtil;
 import catmoe.akkariin.akanefield.utils.ComponentBuilder;
@@ -86,11 +86,11 @@ public class MainEventListener implements Listener {
         //
         // AntiBotMode Enable
         //
-        if (antiBotManager.getSpeedJoinPerSecond() >= ConfigManger.antiBotModeTrigger) {
+        if (antiBotManager.getSpeedJoinPerSecond() >= ConfigManager.antiBotModeTrigger) {
             if (!antiBotManager.isAntiBotModeEnabled()) {
                 antiBotManager.enableAntiBotMode();
                 e.setCancelReason(ComponentBuilder.buildColorized(
-                        MessageManager.getAntiBotModeMessage(String.valueOf(ConfigManger.authPercent),
+                        MessageManager.getAntiBotModeMessage(String.valueOf(ConfigManager.authPercent),
                                 String.valueOf(ServerUtil.blacklistPercentage))));
                 e.setCancelled(true);
                 return;
@@ -148,7 +148,7 @@ public class MainEventListener implements Listener {
         //
         // Auth Check
         //
-        if (ServerUtil.blacklistPercentage >= ConfigManger.authPercent && antiBotManager.isAntiBotModeEnabled()) {
+        if (ServerUtil.blacklistPercentage >= ConfigManager.authPercent && antiBotManager.isAntiBotModeEnabled()) {
             authCheck.onJoin(e, ip);
             return;
         }
@@ -157,7 +157,7 @@ public class MainEventListener implements Listener {
         //
         if (antiBotManager.isAntiBotModeEnabled() || antiBotManager.isSlowAntiBotModeEnabled()) {
             e.setCancelReason(ComponentBuilder.buildColorized(
-                    MessageManager.getAntiBotModeMessage(String.valueOf(ConfigManger.authPercent),
+                    MessageManager.getAntiBotModeMessage(String.valueOf(ConfigManager.authPercent),
                             String.valueOf(ServerUtil.blacklistPercentage))));
             e.setCancelled(true);
         }
@@ -196,7 +196,7 @@ public class MainEventListener implements Listener {
             antiBotManager.getJoinCache().addJoined(ip);
             // Auto Whitelist Task
             plugin.scheduleDelayedTask(new AutoWhitelistTask(plugin, ip), false,
-                    1000L * ConfigManger.playtimeForWhitelist * 60L);
+                    1000L * ConfigManager.playtimeForWhitelist * 60L);
             // Remove from JoinCache after 30 Seconds
             plugin.scheduleDelayedTask(() -> antiBotManager.getJoinCache().removeJoined(ip), false, 1000L * 30);
             //
@@ -229,7 +229,7 @@ public class MainEventListener implements Listener {
         //
         // Auth Check Ping Action
         //
-        if (ServerUtil.blacklistPercentage >= ConfigManger.authPercent && antiBotManager.isAntiBotModeEnabled()) {
+        if (ServerUtil.blacklistPercentage >= ConfigManager.authPercent && antiBotManager.isAntiBotModeEnabled()) {
             authCheck.onPing(e, ip);
         }
     }

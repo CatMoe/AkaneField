@@ -1,7 +1,7 @@
 package catmoe.akkariin.akanefield.common.checks;
 
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -34,7 +34,7 @@ public class NameChangerCheck implements JoinCheck {
 
         Set<String> nicks = data.computeIfAbsent(ip, k -> new CopyOnWriteArraySet<>());
         nicks.add(name);
-        boolean res = nicks.size() >= ConfigManger.nameChangerLimit;
+        boolean res = nicks.size() >= ConfigManager.nameChangerLimit;
 
         if (res) {
             data.remove(ip);
@@ -49,12 +49,12 @@ public class NameChangerCheck implements JoinCheck {
 
     @Override
     public boolean isEnabled() {
-        return ConfigManger.isNameChangerEnabled;
+        return ConfigManager.isNameChangerEnabled;
     }
 
     @Override
     public void loadTask() {
-        plugin.scheduleRepeatingTask(data::clear, false, 1000L * ConfigManger.nameChangerTime);
+        plugin.scheduleRepeatingTask(data::clear, false, 1000L * ConfigManager.nameChangerTime);
     }
 
 }

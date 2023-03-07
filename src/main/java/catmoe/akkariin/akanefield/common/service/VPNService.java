@@ -6,7 +6,7 @@ import catmoe.akkariin.akanefield.common.antivpn.proxycheck.ProxyCheckProvider;
 import catmoe.akkariin.akanefield.common.IAntiBotManager;
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.IService;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -56,13 +56,13 @@ public class VPNService implements IService {
             if (antiBotManager.getBlackListService().isBlackListed(ip)) {
                 return;
             }
-            if (ConfigManger.isIPApiVerificationEnabled && currentChecks < 45) {
+            if (ConfigManager.isIPApiVerificationEnabled && currentChecks < 45) {
                 new IPAPIProvider(plugin).process(ip, name);
                 underVerification.remove(ip);
                 currentChecks++;
             }
 
-            if (!ConfigManger.getProxyCheckConfig().isEnabled()) {
+            if (!ConfigManager.getProxyCheckConfig().isEnabled()) {
                 underVerification.remove(ip);
                 logHelper.debug("API key not set! - ProxyCheck is offline!");
                 return;

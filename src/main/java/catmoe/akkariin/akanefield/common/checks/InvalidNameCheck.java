@@ -3,7 +3,7 @@ package catmoe.akkariin.akanefield.common.checks;
 import catmoe.akkariin.akanefield.common.IAntiBotManager;
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.objects.profile.BlackListReason;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class InvalidNameCheck implements JoinCheck {
     public InvalidNameCheck(IAntiBotPlugin plugin) {
         this.plugin = plugin;
         this.antiBotManager = plugin.getAntiBotManager();
-        this.invalidNames = ConfigManger.invalidNamesBlockedEntries;
+        this.invalidNames = ConfigManager.invalidNamesBlockedEntries;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class InvalidNameCheck implements JoinCheck {
 
     @Override
     public boolean isEnabled() {
-        return ConfigManger.isInvalidNameCheckEnabled;
+        return ConfigManager.isInvalidNameCheckEnabled;
     }
 
     @Override

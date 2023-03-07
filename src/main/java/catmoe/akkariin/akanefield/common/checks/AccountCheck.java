@@ -3,7 +3,7 @@ package catmoe.akkariin.akanefield.common.checks;
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.objects.config.SlowCheckConfig;
 import catmoe.akkariin.akanefield.common.objects.profile.BlackListReason;
-import catmoe.akkariin.akanefield.common.utils.ConfigManger;
+import catmoe.akkariin.akanefield.common.utils.ConfigManager;
 import catmoe.akkariin.akanefield.common.utils.MessageManager;
 
 import java.util.HashMap;
@@ -20,7 +20,7 @@ public class AccountCheck implements JoinCheck {
     public AccountCheck(IAntiBotPlugin plugin) {
         this.plugin = plugin;
         this.map = new HashMap<>();
-        this.config = ConfigManger.getAccountCheckConfig();
+        this.config = ConfigManager.getAccountCheckConfig();
         loadTask();
         if (isEnabled()) {
             plugin.getLogHelper().debug("Loaded " + this.getClass().getSimpleName() + "!");
@@ -34,7 +34,7 @@ public class AccountCheck implements JoinCheck {
         Set<String> a = map.getOrDefault(ip, new HashSet<>());
         a.add(name);
         map.put(ip, a);
-        if (map.get(ip).size() >= ConfigManger.getAccountCheckConfig().getTrigger()) {
+        if (map.get(ip).size() >= ConfigManager.getAccountCheckConfig().getTrigger()) {
             Set<String> subs = map.get(ip);
             if (config.isKick()) {
                 subs.forEach(b -> {
@@ -60,7 +60,7 @@ public class AccountCheck implements JoinCheck {
 
     @Override
     public void loadTask() {
-        plugin.scheduleRepeatingTask(map::clear, false, 1000L * ConfigManger.taskManagerClearCache);
+        plugin.scheduleRepeatingTask(map::clear, false, 1000L * ConfigManager.taskManagerClearCache);
     }
 
     public void onDisconnect(String ip, String name) {
