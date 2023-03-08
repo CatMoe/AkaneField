@@ -205,6 +205,6 @@ proxycheck:
 attack-filter:
   - "InitialHandler"
   - "The UUID the player is connecting with now is NOT Mojang-assigned"
-# 将被永久过滤的消息 (目前疑似无法工作)
+# 将被永久过滤的消息
 persistent-filter: 
   - "=w=3"
