@@ -12,8 +12,9 @@
 > 我只是给其它人可以使用这个东西的权利 我没有必要接受全部功能请求  
 > 话虽如此 我们欢迎您通过分叉来添加功能. 但是您必须遵守GPL3许可证.  
   
-此项目本是为 `SakuraStarOcean` 制作. 但是我想让其他人也避免自己的服务器遭到攻击而造成影响.  
+此项目本是为 [SakuraStarOcean](https://www.miaomoe.net/) 制作. 但是我想让其他人也避免自己的服务器遭到攻击而造成影响.  
 如果您觉得此项目帮助到您 请考虑在 [爱发电](https://afdian.net/a/catmoe-studios) 上支持我们!  
+> SakuraStarOcean 服务器IP: mc.miaomoe.net [NameMC](https://namemc.com/server/mc.miaomoe.net)
   
 随时接受任何fork和推送请求 只要不故意破坏其性能或功能.  
 **从源代码编译**  
