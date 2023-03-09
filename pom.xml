@@ -105,6 +105,10 @@
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
+        <repository>
+            <id>sonatype-oss-snapshots1</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -126,6 +130,12 @@
             <scope>system</scope>
             <systemPath>${basedir}/lib/BungeeCord.jar</systemPath>
             <version>1.19-R0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>net.kyori</groupId>
+            <artifactId>adventure-text-minimessage</artifactId>
+            <scope>provided</scope>
+            <version>4.12.0</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

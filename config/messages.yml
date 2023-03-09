@@ -16,6 +16,51 @@ commands:
 notifications:
   action: "&a已切换机器人显示状态"
 
+# 有关所有功能的调试信息.
+# 如需使用 请先在 config.yml内打开debug消息! (debug: true)
+debug:
+  # 如果您的日志记录出现了错误符号
+  # 请删掉颜色符号 然后再试
+  # 可为空
+  prefix: "&bAkane&fField &7» "
+  # 日志记录器
+  log-record:
+    # 开始记录 即被攻击时
+    start: "检测到攻击 已开始记录.."
+    stop: "未检测到攻击 已停止记录."
+    # %id% 占位符为日志ID
+    saved: "已成功记录此次攻击. ID %id%"
+    # 此次记录总结信息
+    list:
+      # 随便写的 消息+数值
+      # 之后再搞个好排版吧
+      avg: "平均: "
+      duration: "持续时间: "
+      # 未换算格式
+      durationsec: "持续时间(秒): "
+      total: "共计阻止: "
+      totalpackets: "共计阻止数据包: "
+      totalpings: "共计阻止的Ping: "
+      totaljoin: "共计阻止的加入: "
+      # 如果中途清理了也不会计算的 甚至可能是负数 :|
+      blacklist: "黑名单数量: "
+      date: "开始日期: "
+
+  checks:
+  # 打印给控制台的消息.
+  # %type% 占位符在下面可自定义.
+    message: "已开启攻击模式. 检查: %type%"
+    type:
+      # 影分身攻击是指多个ip用一个用户名不断顶掉玩家.
+      superjoin: "影分身攻击"
+      # 非法名字检查. 在config中可配置.
+      legalname: "非法名称"
+      # 无效名称检查 即用户名包含什么内容 则不通过
+      # 在config中配置.
+      invalidname: "无效名称"
+      # 轻量数据包检查.
+      packet: "数据包"
+
 # 有关白名单和黑名单的消息提示
 white-black-list:
   # %type% 中的占位符输出

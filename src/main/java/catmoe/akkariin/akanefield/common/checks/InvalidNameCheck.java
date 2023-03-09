@@ -4,6 +4,7 @@ import catmoe.akkariin.akanefield.common.IAntiBotManager;
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.objects.profile.BlackListReason;
 import catmoe.akkariin.akanefield.common.utils.ConfigManager;
+import catmoe.akkariin.akanefield.common.utils.MessageManager;
 
 import java.util.List;
 
@@ -25,7 +26,10 @@ public class InvalidNameCheck implements JoinCheck {
 
             if (name.toLowerCase().contains(blacklisted)) {
                 antiBotManager.getBlackListService().blacklist(ip, BlackListReason.STRANGE_PLAYER, name);
-                plugin.getLogHelper().debug("[UAB DEBUG] Detected attack on InvalidNameCheck!");
+                plugin.getLogHelper()
+                        .debug(MessageManager
+                                .getMessage("debug.prefix" + MessageManager.getMessage("debug.checks.message"))
+                                .replace("%type%", MessageManager.getMessage("debug.checks.type.invalidname")));
                 return true;
             }
         }

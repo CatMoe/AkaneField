@@ -36,7 +36,7 @@ public class LatencyThread {
                     this.count = System.nanoTime() - first - nsv;
                     this.result = String.valueOf(count);
                 }
-            }, "UAB#LatencyService").start();
+            }, "AkaneField#LatencyService").start();
         }
     }
 

@@ -4,6 +4,7 @@ import catmoe.akkariin.akanefield.common.IAntiBotManager;
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.objects.profile.BlackListReason;
 import catmoe.akkariin.akanefield.common.utils.ConfigManager;
+import catmoe.akkariin.akanefield.common.utils.MessageManager;
 
 public class LegalNameCheck implements JoinCheck {
     private static String VALID_NAME_REGEX = "[a-zA-Z0-9_.]*";
@@ -29,7 +30,9 @@ public class LegalNameCheck implements JoinCheck {
         }
 
         antiBotManager.getBlackListService().blacklist(ip, BlackListReason.STRANGE_PLAYER, "_INVALID_");
-        plugin.getLogHelper().debug("[UAB DEBUG] Detected bot on LegalNameCheck!");
+        plugin.getLogHelper()
+                .debug(MessageManager.getMessage("debug.prefix" + MessageManager.getMessage("debug.checks.message"))
+                        .replace("%type%", MessageManager.getMessage("debug.checks.type.legalname")));
         return true;
     }
 
