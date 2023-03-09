@@ -121,6 +121,13 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>net.md-5</groupId>
+            <artifactId>bungeecord</artifactId>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/BungeeCord.jar</systemPath>
+            <version>1.19-R0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.14.2</version>
