@@ -4,6 +4,7 @@ import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.INotificator;
 import catmoe.akkariin.akanefield.common.utils.MessageManager;
 import catmoe.akkariin.akanefield.common.utils.ServerUtil;
+import catmoe.akkariin.akanefield.utils.Utils;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -38,7 +39,7 @@ public class Notificator implements INotificator {
 
     public void sendActionbar(String str) {
         actionbars
-                .forEach(ac -> ac.sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ServerUtil.colorize(str))));
+                .forEach(ac -> ac.sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(Utils.colora(str))));
     }
 
     /*
