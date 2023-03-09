@@ -2,7 +2,7 @@ package catmoe.akkariin.akanefield.listener;
 
 import catmoe.akkariin.akanefield.Notificator;
 import catmoe.akkariin.akanefield.checks.AuthCheckReloaded;
-import catmoe.akkariin.akanefield.checks.PacketCheck;
+import catmoe.akkariin.akanefield.checks.packet.PacketCheck;
 import catmoe.akkariin.akanefield.common.IAntiBotManager;
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.checks.*;

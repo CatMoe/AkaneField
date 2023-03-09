@@ -1,4 +1,4 @@
-package catmoe.akkariin.akanefield.checks;
+package catmoe.akkariin.akanefield.checks.packet;
 
 import catmoe.akkariin.akanefield.common.objects.profile.BlackListReason;
 import catmoe.akkariin.akanefield.common.IAntiBotManager;
