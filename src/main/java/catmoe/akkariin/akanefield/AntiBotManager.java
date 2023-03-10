@@ -331,7 +331,6 @@ public class AntiBotManager implements IAntiBotManager {
                 .replace("%firewall-blacklist%", String.valueOf(iAntiBotPlugin.getFirewallService().getBlacklistedIP()))
                 .replace("%firewall-queue%", String.valueOf(iAntiBotPlugin.getFirewallService().getIPQueue()))
                 .replace("%target%", String.valueOf(iAntiBotPlugin.getFirewallService().getFirewallStatus()))
-                .replace("%type%", String.valueOf(modeType.toString()))
                 .replace("%packets%", String.valueOf(packetPerSecond.getSlowCount()))
                 .replace("%totalbots%", String.valueOf(joinPerSecond.getTotal()))
                 .replace("%totalpings%", String.valueOf(pingPerSecond.getTotal()))

@@ -11,6 +11,9 @@ import net.md_5.bungee.BungeeCord;
 
 public class AlreadyOnlineCheck implements Listener {
 
+    public void loadTask() {
+    }
+
     @EventHandler
     public void onPreLogin(PreLoginEvent event) {
         if (ConfigManager.getAlreadyOnlineKickEnabled() == true) {
