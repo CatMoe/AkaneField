@@ -16,9 +16,15 @@ public class MessageManager {
     public static String commandNoPerms;
     public static String blackwhiteListCleared;
     public static String commandPlayerOnly;
-    public static String actionbarOffline;
-    public static String actionbarAntiBotMode;
-    public static String actionbarPackets;
+
+    public static String actionbarIdle;
+    public static String actionbarBlock;
+    public static String actionbarFirewall;
+    public static String actionbarVerify;
+    public static String actionbarMotd;
+    public static String actionbarCombined;
+    public static String toggledActionbar;
+
     public static List<String> helpMessage;
     public static List<String> statsMessage;
 
@@ -37,8 +43,6 @@ public class MessageManager {
     public static String reasonCheck;
     public static String reasonVPN;
     public static String reasonAdmin;
-    public static String toggledActionbar;
-    public static String toggledBossBar;
     public static String commandWrongArgument;
     public static String reasonBlacklistAdmin;
     public static String commandNoBlacklist;
@@ -85,9 +89,15 @@ public class MessageManager {
         verifiedPingInterface = messages.getString("onping.ready");
         commandNoPerms = messages.getString("commands.perms");
         commandPlayerOnly = messages.getString("commands.player-only");
-        actionbarOffline = messages.getString("actionbar.offline");
-        actionbarAntiBotMode = messages.getString("actionbar.antibot");
-        actionbarPackets = messages.getString("actionbar.packets");
+
+        actionbarIdle = messages.getString("notifications.actionbar.messages.idle");
+        actionbarBlock = messages.getString("notifications.actionbar.messages.block");
+        actionbarFirewall = messages.getString("notifications.actionbar.messages.firewall");
+        actionbarVerify = messages.getString("notifications.actionbar.messages.verify");
+        actionbarMotd = messages.getString("notifications.actionbar.messages.idle");
+        actionbarCombined = messages.getString("notifications.actionbar.messages.combined");
+        toggledActionbar = messages.getString("notifications.actionbar.toggle");
+
         helpMessage = messages.getStringList("help");
         statsMessage = messages.getStringList("stats");
 
@@ -107,7 +117,6 @@ public class MessageManager {
         reasonVPN = messages.getString("reason.vpn");
         reasonAdmin = messages.getString("reason.admin");
 
-        toggledActionbar = messages.getString("notifications.action");
         commandWrongArgument = messages.getString("commands.wrong-args");
         reasonBlacklistAdmin = messages.getString("reason.admin");
         commandNoBlacklist = messages.getString("white-black-list.cleared");
@@ -138,14 +147,14 @@ public class MessageManager {
         WhiteBlacklistConflectTipsMessages = messages.getStringList("white-black-list.conflect-tips.messages");
         WhiteBlacklistConflectTipsEnabled = messages.getBoolean("white-black-list.conflect-tips.enabled");
 
-        attackNotificationTitleEnabled = messages.getBoolean("underattack.title.title");
-        attackNotificationTitleTitle = messages.getString("underattack.title.title");
-        attackNotificationTitlesubTitle = messages.getString("underattack.title.subtitle");
-        attackNotificationTitleFadeIn = messages.getInt("underattack.title.fade-in");
-        attackNotificationTitleStay = messages.getInt("underattack.title.stay");
-        attackNotificationTitleFadeOut = messages.getInt("underattack.title.fade-out");
-        attackNotificationChatEnabled = messages.getBoolean("underattack.chat.enabled");
-        attackNotificationChatMessages = messages.getStringList("underattack.chat.messages");
+        attackNotificationTitleEnabled = messages.getBoolean("notifications.underattack.title.title");
+        attackNotificationTitleTitle = messages.getString("notifications.underattack.title.title");
+        attackNotificationTitlesubTitle = messages.getString("notifications.underattack.title.subtitle");
+        attackNotificationTitleFadeIn = messages.getInt("notifications.underattack.title.fade-in");
+        attackNotificationTitleStay = messages.getInt("notifications.underattack.title.stay");
+        attackNotificationTitleFadeOut = messages.getInt("notifications.underattack.title.fade-out");
+        attackNotificationChatEnabled = messages.getBoolean("notifications.underattack.chat.enabled");
+        attackNotificationChatMessages = messages.getStringList("notifications.underattack.chat.messages");
     }
 
     public static String getCommandNoPerms() {

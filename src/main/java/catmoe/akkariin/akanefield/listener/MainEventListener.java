@@ -6,7 +6,6 @@ import catmoe.akkariin.akanefield.checks.packet.PacketCheck;
 import catmoe.akkariin.akanefield.common.IAntiBotManager;
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.checks.*;
-import catmoe.akkariin.akanefield.common.checks.AccountCheck;
 import catmoe.akkariin.akanefield.common.objects.profile.BlackListReason;
 import catmoe.akkariin.akanefield.common.service.*;
 import catmoe.akkariin.akanefield.common.tasks.AutoWhitelistTask;
@@ -15,10 +14,14 @@ import catmoe.akkariin.akanefield.common.utils.MessageManager;
 import catmoe.akkariin.akanefield.common.utils.ServerUtil;
 import catmoe.akkariin.akanefield.utils.ComponentBuilder;
 import catmoe.akkariin.akanefield.utils.Utils;
-import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.event.*;
+import net.md_5.bungee.api.event.ChatEvent;
+import net.md_5.bungee.api.event.PlayerDisconnectEvent;
+import net.md_5.bungee.api.event.PostLoginEvent;
+import net.md_5.bungee.api.event.PreLoginEvent;
+import net.md_5.bungee.api.event.ProxyPingEvent;
+import net.md_5.bungee.api.event.SettingsChangedEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
@@ -145,17 +148,6 @@ public class MainEventListener implements Listener {
             e.setCancelReason(blacklistMSG(ip));
             e.setCancelled(true);
             return;
-        }
-
-        if (ConfigManager.getAlreadyOnlineKickEnabled() == true) {
-            if (e.isCancelled()) {
-                return;
-            }
-            for (ProxiedPlayer player : BungeeCord.getInstance().getPlayers()) {
-                if (!player.getName().equals(e.getConnection().getName()))
-                    continue;
-                e.setCancelReason(ComponentBuilder.buildColorized(MessageManager.getAlreadyOnlineMessage()));
-            }
         }
         //
         // Auth Check

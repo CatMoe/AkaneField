@@ -61,14 +61,39 @@ public class Notificator implements INotificator {
     public void init(IAntiBotPlugin plugin) {
         plugin.scheduleRepeatingTask(() -> {
             if (plugin.getAntiBotManager().isPacketModeEnabled()) {
-                sendActionbar(plugin.getAntiBotManager().replaceInfo(MessageManager.actionbarPackets));
+                sendActionbar(plugin.getAntiBotManager().replaceInfo(MessageManager.actionbarFirewall));
                 return;
             }
-            if (plugin.getAntiBotManager().isSomeModeOnline()) {
-                sendActionbar(plugin.getAntiBotManager().replaceInfo(MessageManager.actionbarAntiBotMode));
-            } else {
-                sendActionbar(plugin.getAntiBotManager().replaceInfo(MessageManager.actionbarOffline));
+            if (plugin.getAntiBotManager().isAntiBotModeEnabled()) {
+                if (plugin.getAntiBotManager().isPingModeEnabled()) {
+                    sendActionbar(plugin.getAntiBotManager().replaceInfo(MessageManager.actionbarCombined));
+                } else {
+                    if (plugin.getAntiBotManager().isAntiBotModeEnabled()) {
+                        sendActionbar(plugin.getAntiBotManager().replaceInfo(MessageManager.actionbarBlock));
+                    }
+                }
             }
-        }, false, 125L);
+            if (plugin.getAntiBotManager().isSlowAntiBotModeEnabled()) {
+                if (plugin.getAntiBotManager().isPingModeEnabled()) {
+                    sendActionbar(plugin.getAntiBotManager().replaceInfo(MessageManager.actionbarCombined));
+                } else {
+                    sendActionbar(plugin.getAntiBotManager().replaceInfo(MessageManager.actionbarVerify));
+                }
+            }
+            if (plugin.getAntiBotManager().isPingModeEnabled()) {
+                if (plugin.getAntiBotManager().isSlowAntiBotModeEnabled()) {
+                }
+                if (plugin.getAntiBotManager().isAntiBotModeEnabled()) {
+                } else {
+                    sendActionbar(plugin.getAntiBotManager().replaceInfo(MessageManager.actionbarMotd));
+                }
+            }
+            if (plugin.getAntiBotManager().isSomeModeOnline()) {
+                if (MessageManager.attackNotificationTitleEnabled == true) {
+                }
+            } else {
+                sendActionbar(plugin.getAntiBotManager().replaceInfo(MessageManager.actionbarIdle));
+            }
+        }, false, 50L);
     }
 }

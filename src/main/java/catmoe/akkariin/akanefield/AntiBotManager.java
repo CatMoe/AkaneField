@@ -270,13 +270,14 @@ public class AntiBotManager implements IAntiBotManager {
         EventCaller.call(new ModeEnableEvent(iAntiBotPlugin, ModeType.Motd));
     }
 
+    // || isPingModeEnabled || isSlowAntiBotModeOnline
     @Override
     public void dispatchConsoleAttackMessage() {
-        if (isAntiBotModeOnline || isPingModeEnabled || isSlowAntiBotModeOnline) {
-            logHelper.info(replaceInfo(MessageManager.actionbarAntiBotMode.replace("%prefix%", "")));
+        if (isAntiBotModeOnline) {
+            logHelper.info(replaceInfo(MessageManager.actionbarBlock.replace("%prefix%", "")));
         } else {
             if (isPacketModeEnabled) {
-                logHelper.info(replaceInfo(MessageManager.actionbarPackets.replace("%prefix%", "")));
+                logHelper.info(replaceInfo(MessageManager.actionbarFirewall.replace("%prefix%", "")));
             }
         }
     }
@@ -339,7 +340,6 @@ public class AntiBotManager implements IAntiBotManager {
                 .replace("%prefix%", MessageManager.prefix)
                 .replace("%underverification%", String.valueOf(VPNService.getUnderVerificationSize()))
                 .replace("%duration%", TimeUtil.formatSeconds(attackDurationDetector.getAttackDuration()))
-                .replace("%durationsec%", String.valueOf(getAttackDuration()))
                 .replace("%totalblocks%", String.valueOf(connectionPerSecond.getTotal()))
                 .replace("%cps%", String.valueOf(connectionPerSecond.getSlowCount()))
                 // 添加了缓存办法 原有的属性将被弃用

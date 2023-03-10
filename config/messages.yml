@@ -13,8 +13,64 @@ commands:
   wrong-args: "&b未知命令 请使用 &f/af help &b查看可用命令"
   reload: "已成功重载语言文件. 生效配置需要重新启动代理."
   player-only: "&b此命令仅限玩家可用"
+
 notifications:
-  action: "&a已切换机器人显示状态"
+# 当服务器被攻击时 应该发送什么消息 (计划 暂未实现)
+  underattack:
+    # 发送标题
+    title:
+      enabled: true
+      title: "test"
+      subtitle: "test"
+      fade-in: 1
+      stay: 18
+      fade-out: 1
+    # 发送聊天
+    chat:
+      enabled: true
+      messages: ""
+  actionbar:
+    toggle: "&a已切换机器人显示状态"
+    # 设置不同模式的消息显示actionbar的地方. 不再有%type%占位符. 请自行输入.
+    # 占位符都在此处了.
+    # 所有每秒连接数计数器都需要改善 这取决于我什么时候想..
+    # 如果你想改善 请随时分叉并拉取请求.
+    # 每秒连接数不应该是每秒归零然后重新计算 而应该是实时计算的.
+    # %cps% - 每秒连接数
+    # %bots% - 每秒阻止的加入数量
+    # %pings% - 每秒阻止的MOTD请求数量
+    # %packets% - 每秒取消的异常数据包检查数量
+    #
+    # %totalblocks% - 共计阻止传入的连接
+    # %totalbots% - 共计阻止的加入数量
+    # %totalpings% - 共计阻止的请求MOTD数量
+    # %totalpackets% - 共计阻止的异常数据包
+    #
+    # %whitelist% - 白名单数量
+    # %blacklist% - 黑名单数量
+    # %firewall-status% - IPTables & IPSet状态. 返回的值请看下面的firewall.enabled/disabled
+    # %firewall-queue% - 待列入IPSet黑名单的数量
+    # %firewall-blacklist% - 已列入防火墙的IP数量
+    #
+    # %underverification% - 每秒经过认证的数量
+    # %queue% - 待处理的IP队列数量
+    # 
+    # %prefix% - 前缀
+    # %duration% - 时长(H:M:S)
+    messages:
+      # 没有任何攻击模式处于活动状态 (开摆! 睡觉去惹(?) )
+      idle: "%prefix%&bZzz... &7- &bVerify &f%underverification% &7- &bCPS &f%cps% &7- &bWhitelist &f%whitelist% &7- &bBlacklist &f%blacklist%"
+      # 也可以被称为JOIN. 将会阻止机器人加入
+      block: "%prefix%&bType &fBlock &7- &bCPS &f%cps% &7- &bBlocked &f%totalblocks% &7- &bBlacklist &f%blacklist% &7- &bVerify &f%underverification% &7- &bDuration &f%duration%"
+      # 别名Packets. 专门用于防止无效数据包的戒备模式
+      firewall: "%prefix%&bType &fFirewall &7- &bCPS &f%cps% &7- &bBlocked &f%totalblocks% &7- &bBlacklist &f%blacklist% &7- &bVerify &f%underverification% &7- &bDuration &f%duration%"
+      # 属于Block的慢速模式. 用于防止渗透机器人加入.
+      verify: "%prefix%&bType &fVerify &7- &bCPS &f%cps% &7- &bBlocked &f%totalblocks% &7- &bBlacklist &f%blacklist% &7- &bVerify &f%underverification% &7- &bDuration &f%duration%"
+      # MOTDFlood戒备模式.
+      motd: "%prefix%&bType &fMotd &7- &bCPS &f%cps% &7- &bBlocked &f%totalblocks% &7- &bBlacklist &f%blacklist% &7- &bVerify &f%underverification% &7- &bDuration &f%duration%"
+      # JOIN+MOTD 的组合
+      # 在这里 可以是Block+Motd. 也可以是Verify+Motd.
+      combined: "%prefix%&bType &fCombined &7- &bCPS &f%cps% &7- &bBlocked &f%totalblocks% &7- &bBlacklist &f%blacklist% &7- &bVerify &f%underverification% &7- &bDuration &f%duration%"
 
 # 有关白名单和黑名单的消息提示
 white-black-list:
@@ -42,21 +98,6 @@ white-black-list:
       - "&7如果您不想收到此消息 请在message.yml中. "
       - "&7将white-black-list.conflect-tips.enabled设为false即可."
       - "&b&m                                        &r"
-
-# 当服务器被攻击时 应该发送什么消息 (计划 暂未实现)
-underattack:
-  # 发送标题
-  title:
-    enabled: true
-    title: "test"
-    subtitle: "test"
-    fade-in: 1
-    stay: 18
-    fade-out: 1
-  # 发送聊天
-  chat:
-    enabled: true
-    messages: ""
 
 dump:
   # 正在上传
@@ -128,17 +169,6 @@ log:
     - "&b持续时间 &f%duration%"
     - ""
 
-#连接数占位符: %cps%(每秒连接数) - %bots%(又称JPS. 每秒加入服务器的数量) - %pings%(每秒ping服务器的数量) - %packets%(每秒拦截的数据包数量)
-# 至于CPS占位符 仍需要很大的改善 怎么说呢 现在的cps计数器就是过了一秒清零 算不上真正意义上的connection per/sec了 :|
-#连接数总计: %totalpackets% - %totalbots% - %totalpings% - %totalblocks%(前三位前辈的加起来)
-#基本状态: %whitelist%(白名单统计) - %blacklist%(黑名单统计) - %type%(攻击状态 SlowJoin,FastJoin,Firewall,Motd.Block) - %duration%(时长)
-# IPTables & IPSet 防火墙状态: %firewall-status%(详见下面的firewall.enabled/disabled) - %firewall-queue%(待列入防火墙的ip数量队列) - %firewall-blacklist%(已列入系统防火墙的ip数量)
-#杂项: %underverification%(未处理的代理检察数量) - %queue%(队列检查缓存数量) - %animation%(▛▜▟▙轮转动画) - %prefix%(前缀) - %durationsec%(持续时长 但是返回秒)
-#CPU(已弃用 因侦听降低性能): %syscpu%(系统CPU用量) - %proccpu%(线程CPU用量)  百分比计量 当然 自个加个%就好了
-actionbar:
-  offline: "%prefix%&bZzz... &7- &bVerify &f%underverification% &7- &bCPS &f%cps% &7- &bWhitelist &f%whitelist% &7- &bBlacklist &f%blacklist%"
-  antibot: "%prefix%&bType &f%type% &7- &bCPS &f%cps% &7- &bBlocked &f%totalblocks% &7- &bBlacklist &f%blacklist% &7- &bVerify &f%underverification% &7- &bDuration &f%duration%"
-  packets: "%prefix%&bType &fFirewall &7- &bCPS &f%cps% &7- &bPrevent &f%totalblocks% &7- &bVerify &f%underverification% &7- &bDuration &f%duration%"
 # 当前会话中的统计信息
 stats:
   - ""
