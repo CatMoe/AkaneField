@@ -109,6 +109,10 @@
             <id>sonatype-oss-snapshots1</id>
             <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
+        <repository>
+            <id>exceptionflug</id>
+            <url>https://mvn.exceptionflug.de/repository/exceptionflug-public/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -136,6 +140,12 @@
             <artifactId>adventure-text-minimessage</artifactId>
             <scope>provided</scope>
             <version>4.12.0</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.simplix</groupId>
+            <artifactId>protocolize-api</artifactId>
+            <scope>provided</scope>
+            <version>2.2.5</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
