@@ -1,9 +1,9 @@
 package catmoe.fallencrystal.akanefield.common.detectors;
 
-//import catmoe.akkariin.akanefield.common.AttackType;
-//import catmoe.akkariin.akanefield.common.IAntiBotManager;
-//import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
-//import catmoe.akkariin.akanefield.common.ModeType;
+//import catmoe.fallencrystal.akanefield.common.AttackType;
+//import catmoe.fallencrystal.akanefield.common.IAntiBotManager;
+//import catmoe.fallencrystal.akanefield.common.IAntiBotPlugin;
+//import catmoe.fallencrystal.akanefield.common.ModeType;
 
 /**
  * Tagged as to be removed in the future

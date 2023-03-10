@@ -35,7 +35,7 @@ public class CommandManager extends Command implements TabExecutor {
         if (args.length == 0) {
             sender.sendMessage(
                     Utils.colora(MessageManager.prefix + "&aRunning &bAkane&fField &b%version% &7- &b%commit%")
-                            .replace("%version%", "0.2.4").replace("%commit%", "88ca4ab"));
+                            .replace("%version%", "0.2.4").replace("%commit%", "87be839"));
             return;
         }
         SubCommand cmd = getSubCommandFromArgs(args[0]);

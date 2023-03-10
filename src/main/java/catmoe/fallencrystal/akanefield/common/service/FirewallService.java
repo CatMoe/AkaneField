@@ -38,17 +38,17 @@ public class FirewallService {
         this.IPQueue = new ArrayDeque<>();
         this.blacklisted = 0;
 
-        plugin.scheduleRepeatingTask(() -> {
-            String ip = IPQueue.poll();
-
-            if (ip == null || IPQueue.size() == 0) {
-                return;
-            }
-
-            plugin.getLogHelper().debug("[FIREWALL] &c" + ip + " &fhas been firewalled!");
-            blacklisted++;
-            RuntimeUtil.execute(getBlackListCommand(ip));
-        }, true, 20L);
+        String ip = IPQueue.poll();
+        if (ip == null || IPQueue.size() == 0) {
+        } else {
+            plugin.scheduleRepeatingTask(() -> {
+                if (ip == null || IPQueue.size() == 0) {
+                    return;
+                }
+                blacklisted++;
+                RuntimeUtil.execute(getBlackListCommand(ip));
+            }, true, 10L);
+        }
     }
 
     public void enable() {

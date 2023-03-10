@@ -8,7 +8,7 @@ onping:
 commands:
   # 已弃用 使用BungeeCord内置权限. 当没有权限时自动阻止(说白了就是不听这个的)
   # 要想更改没有权限的消息 您需要手动修改BungeeCord的消息.
-  perms: "&fUnknown command. Type \"/help\" for help."
+  perms: "&c您没有权限这么做."
   # 错误或未知的命令 将来可能会弃用
   wrong-args: "&b未知命令 请使用 &f/af help &b查看可用命令"
   reload: "已成功重载语言文件. 生效配置需要重新启动代理."
@@ -202,8 +202,8 @@ help:
   - "&b可用子命令列表:"
   - "&bstats &f- &b查看当前代理会话中的统计信息"
   - "&bclear &bblacklist/whitelist &f- &b清理黑名单/白名单"
-  - "&bwhitelist &badd/remove &b<ip> &f- &b向白名单添加或删除地址"
-  - "&bblacklist &badd/remove &b<ip> &f- &b向黑名单添加或删除地址"
+  - "&bwhitelist &badd/remove &f<ip> &f- &b向白名单添加或删除地址"
+  - "&bblacklist &badd/remove &f<ip> &f- &b向黑名单添加或删除地址"
   - "&blogs list &f<数量> &f- &b返回日志列表"
   - "&blogs last &f<id> &f- &b查看指定日志的统计信息"
   - "&bfirewall &f- &b查看Linux Centeral防火墙统计信息"

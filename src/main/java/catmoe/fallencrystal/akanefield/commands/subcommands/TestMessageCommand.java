@@ -39,7 +39,7 @@ public class TestMessageCommand implements SubCommand {
     @Override
     public Map<Integer, List<String>> getTabCompleter() {
         Map<Integer, List<String>> map = new HashMap<>();
-        map.put(1, Arrays.asList("legacy", "minimsg"));
+        map.put(1, Arrays.asList("chat", "actionbar"));
         return map;
     }
 
