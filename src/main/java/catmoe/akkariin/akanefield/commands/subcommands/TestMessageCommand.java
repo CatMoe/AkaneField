@@ -1,5 +1,6 @@
 package catmoe.akkariin.akanefield.commands.subcommands;
 
+import catmoe.akkariin.akanefield.AkaneFieldProxy;
 import catmoe.akkariin.akanefield.commands.SubCommand;
 import catmoe.akkariin.akanefield.utils.Utils;
 import net.md_5.bungee.api.CommandSender;
@@ -10,6 +11,9 @@ import java.util.List;
 import java.util.Map;
 
 public class TestMessageCommand implements SubCommand {
+    public TestMessageCommand(AkaneFieldProxy akaneFieldProxy) {
+    }
+
     @Override
     public String getSubCommandId() {
         return "text";

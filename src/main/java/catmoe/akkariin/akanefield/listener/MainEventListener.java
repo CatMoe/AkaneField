@@ -15,6 +15,7 @@ import catmoe.akkariin.akanefield.common.utils.MessageManager;
 import catmoe.akkariin.akanefield.common.utils.ServerUtil;
 import catmoe.akkariin.akanefield.utils.ComponentBuilder;
 import catmoe.akkariin.akanefield.utils.Utils;
+import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.*;
@@ -144,6 +145,17 @@ public class MainEventListener implements Listener {
             e.setCancelReason(blacklistMSG(ip));
             e.setCancelled(true);
             return;
+        }
+
+        if (ConfigManager.getAlreadyOnlineKickEnabled() == true) {
+            if (e.isCancelled()) {
+                return;
+            }
+            for (ProxiedPlayer player : BungeeCord.getInstance().getPlayers()) {
+                if (!player.getName().equals(e.getConnection().getName()))
+                    continue;
+                e.setCancelReason(ComponentBuilder.buildColorized(MessageManager.getAlreadyOnlineMessage()));
+            }
         }
         //
         // Auth Check

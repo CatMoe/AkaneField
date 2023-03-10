@@ -11,6 +11,7 @@ import catmoe.akkariin.akanefield.commands.subcommands.FirewallCommand;
 import catmoe.akkariin.akanefield.commands.subcommands.HelpCommand;
 import catmoe.akkariin.akanefield.commands.subcommands.ReloadCommand;
 import catmoe.akkariin.akanefield.commands.subcommands.StatsCommand;
+import catmoe.akkariin.akanefield.commands.subcommands.TestMessageCommand;
 import catmoe.akkariin.akanefield.commands.subcommands.ToggleNotificationCommand;
 import catmoe.akkariin.akanefield.common.helper.LogHelper;
 import catmoe.akkariin.akanefield.common.helper.PerformanceHelper;
@@ -131,6 +132,7 @@ public final class AkaneFieldProxy extends Plugin implements IAntiBotPlugin, ISe
         commandManager.register(new ReloadCommand(this));
         commandManager.register(new FirewallCommand(this));
         commandManager.register(new AttackLogCommand(this));
+        commandManager.register(new TestMessageCommand(this));
         ProxyServer.getInstance().getPluginManager().registerCommand(this, commandManager);
         ProxyServer.getInstance().getPluginManager().registerListener(this, new PingListener(this));
         ProxyServer.getInstance().getPluginManager().registerListener(this, new MainEventListener(this));

@@ -21,7 +21,6 @@ public class ConfigManager {
     public static boolean disableNotificationAfterAttack;
     public static boolean isConsoleAttackMessageDisabled;
     public static boolean AlreadyOnlineKickEnabled;
-    public static boolean AlreadyOnlineKickAntiBotMode;
     public static int antiBotModeKeep;
     public static int antiBotModeTrigger;
     public static boolean antibotDisconnect;
@@ -81,7 +80,6 @@ public class ConfigManager {
         isConsoleAttackMessageDisabled = cfg.getBoolean("disable-console-attack-message");
         detectServerPerformance = cfg.getBoolean("detect-server-performance");
 
-        AlreadyOnlineKickAntiBotMode = cfg.getBoolean("already-online-kick.antibotmode");
         AlreadyOnlineKickEnabled = cfg.getBoolean("already-online-kick.enabled");
 
         antiBotModeKeep = cfg.getInt("antibotmode.keep");
@@ -132,10 +130,6 @@ public class ConfigManager {
 
     public static boolean getAlreadyOnlineKickEnabled() {
         return AlreadyOnlineKickEnabled;
-    }
-
-    public static boolean getAlreadyOnlineKickAntiBotMode() {
-        return AlreadyOnlineKickAntiBotMode;
     }
 
     public static String getDiscordWebHookUrl() {
