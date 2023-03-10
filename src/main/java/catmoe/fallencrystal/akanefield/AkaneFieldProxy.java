@@ -121,7 +121,7 @@ public final class AkaneFieldProxy extends Plugin implements IAntiBotPlugin, ISe
         this.logHelper.sendLogo();
         this.logHelper.info("&b调度器线程数: &f$1"
                 .replace("$1", String.valueOf(Version.getCores())));
-        CommandManager commandManager = new CommandManager(this, "akanefield", "akanefield", "af", "akanefield");
+        CommandManager commandManager = new CommandManager(this, "akanefield", "", "af", "akanefield");
         commandManager.register(new AddRemoveBlacklistCommand(this));
         commandManager.register(new AddRemoveWhitelistCommand(this));
         commandManager.register(new ClearCommand(this));
@@ -141,6 +141,10 @@ public final class AkaneFieldProxy extends Plugin implements IAntiBotPlugin, ISe
         ProxyServer.getInstance().getPluginManager().registerListener(this, new HandShakeListener(this));
         long b = System.currentTimeMillis() - a;
         this.logHelper.info("&bAkane&fField &b已成功加载! &b耗时 &f" + b + "&bms");
+
+        // bStats
+        int serviceId = 17909;
+        new Metrics(this, serviceId);
     }
 
     public void onDisable() {
