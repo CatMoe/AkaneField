@@ -5,7 +5,7 @@
 
 **パフォーマンス · 次世代 · 最も攻撃解決する**  
 **不支持除BungeeCord之外的所有平台!**  
-> 花了一点时间添加了bStats支持w= 在提交[@88ca4ab](https://github.com/CatMoe/AkaneField/commit/88ca4abdaad3c0fa2cbb7f7b0adf323544b25119)之后的版本支持.  
+> 花了一点时间添加了[bStats](https://bstats.org/plugin/bungeecord/AkaneField/17909/)支持w= 在提交[@88ca4ab](https://github.com/CatMoe/AkaneField/commit/88ca4abdaad3c0fa2cbb7f7b0adf323544b25119)之后的版本支持.  
 > 请大家允许bStats! 我只是想看看有多少人在使用这个小破插件w; !  
 ![bStats](https://bstats.org/signatures/bungeecord/AkaneField.svg)  
 > 我们正在考虑重做readme并添加wiki和多语言配置文件w!  
