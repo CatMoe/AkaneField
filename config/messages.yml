@@ -11,7 +11,6 @@ commands:
   perms: "&c您没有权限这么做."
   # 错误或未知的命令 将来可能会弃用
   wrong-args: "&b未知命令 请使用 &f/af help &b查看可用命令"
-  reload: "已成功重载语言文件. 生效配置需要重新启动代理."
   player-only: "&b此命令仅限玩家可用"
 
 notifications:
