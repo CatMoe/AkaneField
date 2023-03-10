@@ -74,7 +74,6 @@ public class ConfigManager {
         version = cfg.getDouble("version");
         DiscordWebHookUrl = cfg.getString("webhook.url");
         DiscordWebHookEnabled = cfg.getBoolean("webhook.enabled");
-        isDebugModeOnline = cfg.getBoolean("debug");
         enableLatencyThread = cfg.getBoolean("enable-latency-thread");
         enableBossBarAutomaticNotification = cfg.getBoolean("enable-bossbar-automatic-notification");
         disableNotificationAfterAttack = cfg.getBoolean("disable-notifications-after-attack");

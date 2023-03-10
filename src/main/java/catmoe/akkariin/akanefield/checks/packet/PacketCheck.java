@@ -6,7 +6,6 @@ import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.service.BlackListService;
 import catmoe.akkariin.akanefield.common.service.WhitelistService;
 import catmoe.akkariin.akanefield.common.utils.ConfigManager;
-import catmoe.akkariin.akanefield.common.utils.MessageManager;
 import net.md_5.bungee.api.ProxyServer;
 
 import java.util.*;
@@ -87,10 +86,6 @@ public class PacketCheck {
                     antibotManager.enableSlowAntiBotMode();
                 }
                 suspected.clear();
-                iAntiBotPlugin.getLogHelper()
-                        .debug(MessageManager
-                                .getMessage("debug.prefix" + MessageManager.getMessage("debug.checks.message"))
-                                .replace("%type%", MessageManager.getMessage("debug.checks.type.packet")));
             }
         }, false, 2500L);
     }

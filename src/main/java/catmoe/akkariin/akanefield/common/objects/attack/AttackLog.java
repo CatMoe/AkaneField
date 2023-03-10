@@ -1,8 +1,6 @@
 package catmoe.akkariin.akanefield.common.objects.attack;
 
 import catmoe.akkariin.akanefield.common.IAntiBotManager;
-import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
-import catmoe.akkariin.akanefield.common.utils.MessageManager;
 import catmoe.akkariin.akanefield.common.utils.TimeUtil;
 
 import java.io.Serializable;
@@ -19,7 +17,6 @@ public class AttackLog implements Serializable {
     private long startMillis;
     private long stopMillis = 0;
     private long attackDuration = 0;
-    private IAntiBotPlugin plugin;
 
     public AttackLog(int ID, String attackDate) {
         this.ID = ID;
@@ -32,8 +29,6 @@ public class AttackLog implements Serializable {
         previousPings = manager.getDynamicPings().getTotal();
         previousPackets = manager.getDynamicPackets().getTotal();
         this.startMillis = System.currentTimeMillis();
-        plugin.getLogHelper()
-                .debug(MessageManager.getMessage("debug.prefix") + MessageManager.getMessage("debug.log-record.start"));
     }
 
     public void recordStop(long newBlacklist, IAntiBotManager manager) {
@@ -43,32 +38,6 @@ public class AttackLog implements Serializable {
         blockedPackets = manager.getDynamicPackets().getTotal() - previousPackets;
         this.stopMillis = System.currentTimeMillis();
         this.attackDuration = stopMillis - startMillis;
-        plugin.getLogHelper()
-                .debug(MessageManager.getMessage("debug.prefix") + MessageManager.getMessage("debug.log-record.stop"));
-        plugin.getLogHelper().debug(MessageManager.getMessage("debug.prefix")
-                + MessageManager.getMessage("debug.log-record.list.avg") + String.valueOf(getAverageConnections()));
-        plugin.getLogHelper()
-                .debug(MessageManager.getMessage("debug.prefix")
-                        + MessageManager.getMessage("debug.log-record.list.duration")
-                        + TimeUtil.formatMilliseconds(attackDuration));
-        plugin.getLogHelper().debug(MessageManager.getMessage("debug.prefix")
-                + MessageManager.getMessage("debug.log-record.list.durationsec") + String.valueOf(attackDuration));
-        plugin.getLogHelper().debug(MessageManager.getMessage("debug.prefix")
-                + MessageManager.getMessage("debug.log-record.list.total") + String.valueOf(getTotalBlocked()));
-        plugin.getLogHelper().debug(MessageManager.getMessage("debug.prefix")
-                + MessageManager.getMessage("debug.log-record.list.totalpackets") + String.valueOf(blockedPackets));
-        plugin.getLogHelper().debug(MessageManager.getMessage("debug.prefix")
-                + MessageManager.getMessage("debug.log-record.list.totalpings") + String.valueOf(getBlockedPings()));
-        plugin.getLogHelper().debug(MessageManager.getMessage("debug.prefix")
-                + MessageManager.getMessage("debug.log-record.list.totaljoin") + String.valueOf(getBlockedBots()));
-        plugin.getLogHelper()
-                .debug(MessageManager.getMessage("debug.prefix")
-                        + MessageManager.getMessage("debug.log-record.list.blacklist")
-                        + String.valueOf(newBlacklist - previousBlacklist));
-        plugin.getLogHelper().debug(MessageManager.getMessage("debug.prefix")
-                + MessageManager.getMessage("debug.log-record.list.date") + attackDate);
-        plugin.getLogHelper().debug(MessageManager.getMessage("debug.prefix")
-                + MessageManager.getMessage("debug.log-record.saved").replace("%id%", String.valueOf(getID())));
     }
 
     public int getID() {

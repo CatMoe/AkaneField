@@ -3,7 +3,6 @@ package catmoe.akkariin.akanefield.common.checks;
 import catmoe.akkariin.akanefield.common.IAntiBotPlugin;
 import catmoe.akkariin.akanefield.common.objects.FancyInteger;
 import catmoe.akkariin.akanefield.common.utils.ConfigManager;
-import catmoe.akkariin.akanefield.common.utils.MessageManager;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -34,9 +33,6 @@ public class SuperJoinCheck implements JoinCheck {
 
         if (i.get() > ConfigManager.superJoinLimit) {
             data.remove(ip);
-            plugin.getLogHelper()
-                    .debug(MessageManager.getMessage("debug.prefix" + MessageManager.getMessage("debug.checks.message"))
-                            .replace("%type%", MessageManager.getMessage("debug.checks.type.superjoin")));
             return true;
         }
 
