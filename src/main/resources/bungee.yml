@@ -1,5 +1,5 @@
 name: AkaneField
 version: '0.2.4'
 author: CatMoe
-main: catmoe.akkariin.akanefield.AkaneFieldProxy
+main: catmoe.fallencrystal.akanefield.AkaneFieldProxy
 description: ❤ by CatMoe
