@@ -40,7 +40,6 @@ import catmoe.fallencrystal.akanefield.common.service.AttackTrackerService;
 import catmoe.fallencrystal.akanefield.common.service.FirewallService;
 import catmoe.fallencrystal.akanefield.common.service.UserDataService;
 import catmoe.fallencrystal.akanefield.common.service.VPNService;
-import catmoe.fallencrystal.akanefield.common.thread.AnimationThread;
 import catmoe.fallencrystal.akanefield.common.thread.LatencyThread;
 import catmoe.fallencrystal.akanefield.common.utils.ConfigManager;
 import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
@@ -65,7 +64,6 @@ public final class AkaneFieldProxy extends Plugin implements IAntiBotPlugin, ISe
     private IConfiguration blacklist;
     private IAntiBotManager antiBotManager;
     private LatencyThread latencyThread;
-    private AnimationThread animationThread;
     private LogHelper logHelper;
     private FirewallService firewallService;
     private UserDataService userDataService;
@@ -108,7 +106,6 @@ public final class AkaneFieldProxy extends Plugin implements IAntiBotPlugin, ISe
         attackTrackerService.load();
         this.firewallService.enable();
         this.latencyThread = new LatencyThread(this);
-        this.animationThread = new AnimationThread(this);
         this.core = new AkaneFieldCore(this);
         this.core.load();
         this.userDataService = new UserDataService(this);
@@ -266,11 +263,6 @@ public final class AkaneFieldProxy extends Plugin implements IAntiBotPlugin, ISe
     @Override
     public LatencyThread getLatencyThread() {
         return this.latencyThread;
-    }
-
-    @Override
-    public AnimationThread getAnimationThread() {
-        return this.animationThread;
     }
 
     @Override

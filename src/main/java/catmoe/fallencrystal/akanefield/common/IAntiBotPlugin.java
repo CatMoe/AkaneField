@@ -3,7 +3,6 @@ package catmoe.fallencrystal.akanefield.common;
 import catmoe.fallencrystal.akanefield.common.core.AkaneFieldCore;
 import catmoe.fallencrystal.akanefield.common.helper.LogHelper;
 import catmoe.fallencrystal.akanefield.common.service.*;
-import catmoe.fallencrystal.akanefield.common.thread.AnimationThread;
 import catmoe.fallencrystal.akanefield.common.thread.LatencyThread;
 
 public interface IAntiBotPlugin {
@@ -32,8 +31,6 @@ public interface IAntiBotPlugin {
     IAntiBotManager getAntiBotManager();
 
     LatencyThread getLatencyThread();
-
-    AnimationThread getAnimationThread();
 
     LogHelper getLogHelper();
 

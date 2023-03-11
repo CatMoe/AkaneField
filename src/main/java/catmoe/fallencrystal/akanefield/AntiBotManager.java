@@ -334,7 +334,6 @@ public class AntiBotManager implements IAntiBotManager {
                 .replace("%totalbots%", String.valueOf(joinPerSecond.getTotal()))
                 .replace("%totalpings%", String.valueOf(pingPerSecond.getTotal()))
                 .replace("%totalpackets%", String.valueOf(packetPerSecond.getTotal()))
-                .replace("%animation%", iAntiBotPlugin.getAnimationThread().getEmote())
                 .replace("%prefix%", MessageManager.prefix)
                 .replace("%underverification%", String.valueOf(VPNService.getUnderVerificationSize()))
                 .replace("%duration%", TimeUtil.formatSeconds(attackDurationDetector.getAttackDuration()))
