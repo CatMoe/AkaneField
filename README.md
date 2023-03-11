@@ -1,12 +1,14 @@
 # AkaneField  
-
-> **[!] 警告: 有关支持 `IPTables & IPSet` 的部分代码还有很多的地方未做改善!**  
-> **[!] 警告: 您可能在被多IP攻击时察觉到卡顿 如果攻击属于可以承受的范围 建议不使用防火墙!**  
-> **[?] 提示: `/af reload` 命令已被删除. 请您重启服务器来生效配置文件.**  
+  
+> **[✔] AkaneField 3.0.0 已发布!**  
+> **此次更新包含了大量更改 您应该备份旧的配置文件 然后重新配置它.**  
+> **Made by CatMoe@FallenCrystal with ❤**  
+> **[!] 请随时报告使用`IPTables & IPSet` 时遇到的问题 谢谢!**  
+> **[?] `/af reload` 命令在3.0.0已被删除. 请您重启服务器来生效配置文件.**  
 
 **Performance · Customize · Compatible**  
 **不支持除BungeeCord之外的所有平台!**  
-> 花了一点时间添加了[bStats](https://bstats.org/plugin/bungeecord/AkaneField/17909/)支持w= 在提交[@88ca4ab](https://github.com/CatMoe/AkaneField/commit/88ca4abdaad3c0fa2cbb7f7b0adf323544b25119)之后的版本支持.  
+> 花了一点时间添加了[bStats](https://bstats.org/plugin/bungeecord/AkaneField/17909/)支持w= 在提交[@88ca4ab](https://github.com/CatMoe/AkaneField/commit/88ca4abdaad3c0fa2cbb7f7b0adf323544b25119)或3.0.0之后的版本支持.  
 > 请大家允许bStats! 我只是想看看有多少人在使用这个小破插件w; !  
 ![bStats](https://bstats.org/signatures/bungeecord/AkaneField.svg)  
 > 我们正在考虑重做readme并添加wiki和多语言配置文件w!  

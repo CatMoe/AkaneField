@@ -1,4 +1,4 @@
-version: 0.2.4
+version: 3.0.0
 prefix: "&bAkane&fField &7» "
 # 当玩家需要通过ping检查时 motd显示的server brand
 onping:
@@ -117,7 +117,7 @@ dump:
     # 插件列表
     # e.x
     # 插件列表:
-    # AkaneField - 0.2.4
+    # AkaneField - 3.0.0
     plugins-list: "插件列表:"
     # 当前插件信息以及状态列表
     plugin-info: "插件信息: "
@@ -207,7 +207,8 @@ help:
   - "&blogs last &f<id> &f- &b查看指定日志的统计信息"
   - "&bfirewall &f- &b查看Linux Centeral防火墙统计信息"
   - "&bcheck &f<id> &f- &b检查玩家是否被黑名单禁止"
-  - "&breload &f- &b重载部分配置文件和消息文件."
+  - "&btoggle &f- &b手动切换actionbar."
+  - "&btext &fchat/actionbar <文本> - 发送消息(用于调试)"
   - "&bdump &f- &b将插件和代理信息上传到pastebin"
   - ""
 

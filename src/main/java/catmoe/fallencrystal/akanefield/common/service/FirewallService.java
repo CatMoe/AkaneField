@@ -43,13 +43,20 @@ public class FirewallService {
         String ip = IPQueue.poll();
         if (ip == null || IPQueue.size() == 0) {
         } else {
-            plugin.scheduleRepeatingTask(() -> {
-                if (ip == null || IPQueue.size() == 0) {
-                    return;
-                }
-                blacklisted++;
-                RuntimeUtil.execute(getBlackListCommand(ip));
-            }, getAsyncTaskEnabled(), 30L);
+            try {
+                plugin.scheduleRepeatingTask(() -> {
+                    if (ip == null || IPQueue.size() == 0) {
+                        return;
+                    }
+                    blacklisted++;
+                    RuntimeUtil.execute(getBlackListCommand(ip));
+                }, getAsyncTaskEnabled(), 30L);
+            } catch (Exception e) {
+                plugin.getLogHelper().error("设置命令执行器时出现了错误.");
+                plugin.getLogHelper().error("请确保配置文件内已经设置异步参数");
+                plugin.getLogHelper().error("firewall.async: true");
+                plugin.getLogHelper().error("如果仍然无法启动 请联系CatMoe.");
+            }
         }
     }
 

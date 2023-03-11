@@ -39,7 +39,9 @@ public class AddRemoveBlacklistCommand implements SubCommand {
                 List<String> messages = MessageManager.getMessageList("white-black-list.conflect-tips.messages")
                         .stream().map(Utils::colora).collect(Collectors.toList());
                 messages.forEach(sender::sendMessage);
+                return;
             }
+            return;
         } else {
             if (args[1].equalsIgnoreCase("remove")) {
                 iAntiBotManager.getBlackListService().unBlacklist("/" + args[2]);
@@ -67,7 +69,7 @@ public class AddRemoveBlacklistCommand implements SubCommand {
     public Map<Integer, List<String>> getTabCompleter() {
         Map<Integer, List<String>> map = new HashMap<>();
         map.put(1, Arrays.asList("add", "remove"));
-        map.put(2, Collections.singletonList("<Ip address to blacklist>"));
+        map.put(2, Collections.singletonList("<IP>"));
         return map;
     }
 

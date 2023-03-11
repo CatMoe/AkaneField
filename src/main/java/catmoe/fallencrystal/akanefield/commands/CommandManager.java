@@ -33,9 +33,17 @@ public class CommandManager extends Command implements TabExecutor {
     @SuppressWarnings("deprecation")
     public void execute(CommandSender sender, String[] args) {
         if (args.length == 0) {
+            // 由于特殊原因 我们已不允许用户修改他们使用AkaneField的事实 故无法更改此消息
+            // 永远不准修改此消息中的任何内容(除非由我变动) 否则视为非法变更
+            // 将违反许可证中的 "您不能将此副本声明为您自己的".
             sender.sendMessage(
-                    Utils.colora(MessageManager.prefix + "&aRunning &bAkane&fField &b%version% &7- &b%commit%")
-                            .replace("%version%", "0.2.4").replace("%commit%", "87be839"));
+                    Utils.colora(MessageManager.prefix + "&aRunning &bAkane&fField &b%version%")
+                            .replace("%version%", "3.0.0"));
+            if (sender.hasPermission("akanefield")) {
+                sender.sendMessage(Utils.colora(MessageManager.prefix + "&b使用 &f/af help &b来查看帮助命令"));
+            } else {
+                sender.sendMessage(Utils.colora(MessageManager.prefix + "&c您没有权限使用此命令."));
+            }
             return;
         }
         SubCommand cmd = getSubCommandFromArgs(args[0]);

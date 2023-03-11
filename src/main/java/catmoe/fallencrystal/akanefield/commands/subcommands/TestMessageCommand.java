@@ -13,6 +13,7 @@ import java.util.Map;
 
 import catmoe.fallencrystal.akanefield.AkaneFieldProxy;
 import catmoe.fallencrystal.akanefield.commands.SubCommand;
+import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
 import catmoe.fallencrystal.akanefield.utils.Utils;
 
 public class TestMessageCommand implements SubCommand {
@@ -60,11 +61,17 @@ public class TestMessageCommand implements SubCommand {
                 return;
             }
             if (args[1].equalsIgnoreCase("actionbar")) {
-                sendActionbar(args[2]);
+                actionbars.add((ProxiedPlayer) sender);
+                sendActionbar(Utils.colora(args[2]));
+                actionbars.remove(sender);
+                return;
+            } else {
+                sender.sendMessage(Utils.colora(MessageManager.prefix + "&b/af text &f[chat|actionbar] &b<text>"));
                 return;
             }
         } catch (Exception e) {
-            sender.sendMessage(Utils.colora("Cannot Parse."));
+            sender.sendMessage(Utils.colora(MessageManager.prefix + "&cCannot Parse."));
+            return;
         }
     }
 }
