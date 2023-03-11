@@ -37,7 +37,6 @@ public class PacketCheck {
                 iAntiBotPlugin.getLogHelper().warn(
                         "我们无法确认AkaneField对 "
                                 + invalidPlugin + " 插件的兼容性 如果您遇到任何问题 请报告给CatMoe");
-                ConfigManager.getPacketCheckConfig().setEnabled(false);
             }
         }
 

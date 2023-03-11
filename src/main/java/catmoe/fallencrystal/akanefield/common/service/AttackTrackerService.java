@@ -56,7 +56,7 @@ public class AttackTrackerService implements IService {
                     attackLogList.add(log);
                 } catch (Exception e) {
                     file.delete();
-                    plugin.getLogHelper().error("Unable to deserialize " + file.getName() + ", skipping...");
+                    plugin.getLogHelper().error("无法加载日志 " + file.getName() + ". 已忽略.");
                 }
             }
 
@@ -70,7 +70,7 @@ public class AttackTrackerService implements IService {
         } catch (Exception e) {
             if (attackLogList == null)
                 attackLogList = new ArrayList<>();
-            plugin.getLogHelper().error("Unable to load attacklogs files! If error persists contact support!");
+            plugin.getLogHelper().error("加载日志文件时出现错误! 如果此错误持续发生 请报告给CatMoe!");
         }
     }
 
@@ -80,8 +80,8 @@ public class AttackTrackerService implements IService {
             try {
                 FileUtil.writeBase64("attack-" + log.getID() + ".log", FileUtil.AkaneFieldFolder.LOGS, log);
             } catch (Exception e) {
-                plugin.getLogHelper().warn("Unable to serialize attack-" + log.getID() + ".log (reason: "
-                        + e.getMessage() + "), skipping...");
+                plugin.getLogHelper().warn("无法载入日志 " + log.getID() + " 原因:"
+                        + e.getMessage());
             }
         }
         FileUtil.writeLine("attack.id", FileUtil.AkaneFieldFolder.LOGS, String.valueOf(nextAttackID));
