@@ -2,7 +2,10 @@ package catmoe.fallencrystal.akanefield.common;
 
 import catmoe.fallencrystal.akanefield.common.core.AkaneFieldCore;
 import catmoe.fallencrystal.akanefield.common.helper.LogHelper;
-import catmoe.fallencrystal.akanefield.common.service.*;
+import catmoe.fallencrystal.akanefield.common.service.AttackTrackerService;
+import catmoe.fallencrystal.akanefield.common.service.FirewallService;
+import catmoe.fallencrystal.akanefield.common.service.UserDataService;
+import catmoe.fallencrystal.akanefield.common.service.VPNService;
 import catmoe.fallencrystal.akanefield.common.thread.LatencyThread;
 
 public interface IAntiBotPlugin {

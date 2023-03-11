@@ -23,6 +23,7 @@ public class FirewallService {
 
     private final Queue<String> IPQueue;
     private long blacklisted;
+    private boolean Async;
 
     public FirewallService(IAntiBotPlugin plugin) {
         this.plugin = plugin;
@@ -34,6 +35,7 @@ public class FirewallService {
         this.blacklistCommand = configuration.getString("firewall.blacklist-command");
         this.unBlacklistCommand = configuration.getStringList("firewall.un-blacklist-command");
         this.isEnabled = configuration.getBoolean("firewall.enabled");
+        this.Async = configuration.getBoolean("firewall.async");
 
         this.IPQueue = new ArrayDeque<>();
         this.blacklisted = 0;
@@ -47,8 +49,12 @@ public class FirewallService {
                 }
                 blacklisted++;
                 RuntimeUtil.execute(getBlackListCommand(ip));
-            }, true, 10L);
+            }, getAsyncTaskEnabled(), 30L);
         }
+    }
+
+    public boolean getAsyncTaskEnabled() {
+        return this.Async;
     }
 
     public void enable() {

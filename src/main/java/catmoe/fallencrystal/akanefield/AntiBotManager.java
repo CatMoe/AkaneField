@@ -339,11 +339,6 @@ public class AntiBotManager implements IAntiBotManager {
                 .replace("%duration%", TimeUtil.formatSeconds(attackDurationDetector.getAttackDuration()))
                 .replace("%totalblocks%", String.valueOf(connectionPerSecond.getTotal()))
                 .replace("%cps%", String.valueOf(connectionPerSecond.getSlowCount()))
-                // 添加了缓存办法 原有的属性将被弃用
-                // .replace("%proccpu%",
-                // String.valueOf(CPUMonitor.getRoundCurrentProcessCpuLoad()))
-                // .replace("%syscpu%",
-                // String.valueOf(CPUMonitor.getRoundCurrentSystemCpuLoad()))
                 .replace("%connection%", String.valueOf(connectionPerSecond.getSpeedCount()));
     }
 }
