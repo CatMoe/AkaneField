@@ -80,7 +80,7 @@ public class AttackLogCommand implements SubCommand {
                 TextComponent component = new TextComponent(
                         Utils.colora("&b" + attack.getAttackDate() + MessageManager.getMessage("log.clicktips")));
                 component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-                        new ComponentBuilder(MessageManager.getMessage("log.clickhover")).create()));
+                        new ComponentBuilder(Utils.colora(MessageManager.getMessage("log.clickhover"))).create()));
                 component.setClickEvent(
                         new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/akanefield logs info " + attack.getID()));
                 sender.sendMessage(component);
