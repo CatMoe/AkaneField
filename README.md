@@ -1,10 +1,10 @@
 # AkaneField  
 
-> **[!] 警告: 有关支持 `IPTables & IPSet` 的技术尚未完全成熟. 还有很多的地方未做改善!**  
+> **[!] 警告: 有关支持 `IPTables & IPSet` 的部分代码还有很多的地方未做改善!**  
 > **[!] 警告: 您可能在被多IP攻击时察觉到卡顿 如果攻击属于可以承受的范围 建议不使用防火墙!**  
 > **[?] 提示: `/af reload` 命令已被删除. 请您重启服务器来生效配置文件.**  
 
-**パフォーマンス · 次世代 · 最も攻撃解決する**  
+**Performance · Customize · Compatible**  
 **不支持除BungeeCord之外的所有平台!**  
 > 花了一点时间添加了[bStats](https://bstats.org/plugin/bungeecord/AkaneField/17909/)支持w= 在提交[@88ca4ab](https://github.com/CatMoe/AkaneField/commit/88ca4abdaad3c0fa2cbb7f7b0adf323544b25119)之后的版本支持.  
 > 请大家允许bStats! 我只是想看看有多少人在使用这个小破插件w; !  
@@ -51,4 +51,8 @@ Jar不带默认配置 因此您需要自己创建一个文件夹 用于存放配
 将构建成功的软件包和 `config` 文件夹拖入 `BungeeCord\plugins\` 里  
 将 `config` 文件夹重命名为 `AkaneField`  
 根据情况调整配置  
-启动服务器
+启动服务器  
+  
+**学分**  
+[UltimateAntiBot-Recoded](https://github.com/Kr1S-D/UltimateAntibotRecoded) - ProxyCheck  
+[FlameCord](https://github.com/2lstudios-mc/FlameCord) - Repeat Register & Login Check.  
