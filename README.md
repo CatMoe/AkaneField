@@ -3,7 +3,7 @@
 > **[✔] AkaneField 3.0.0 已发布!**  
 > **此次更新包含了大量更改 您应该备份旧的配置文件 然后重新配置它.**  
 > **Made by CatMoe@FallenCrystal with ❤**  
-> **[!] 3.0.1 之后的版本需要最新的[Protocolize2](https://github.com/Exceptionflug/protocolize)以及其Legacy附加插件. 在此处下载[插件本体](https://ci.exceptionflug.de/job/Protocolize2/)以及[Legacy附加插件](https://ci.exceptionflug.de/job/Protocolize-Legacy-Data/)**  
+> **[!] 3.x 之后的版本需要最新的[Protocolize2](https://github.com/Exceptionflug/protocolize)以及其Legacy附加插件. 在此处下载[插件本体](https://ci.exceptionflug.de/job/Protocolize2/)以及[Legacy附加插件](https://ci.exceptionflug.de/job/Protocolize-Legacy-Data/)**  
 > **[!] 请随时报告使用`IPTables & IPSet` 时遇到的问题 谢谢!**  
 > **[?] `/af reload` 命令在3.0.1已被删除. 请您重启服务器来生效配置文件.**  
 
