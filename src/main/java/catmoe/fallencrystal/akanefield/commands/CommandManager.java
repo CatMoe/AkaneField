@@ -38,7 +38,7 @@ public class CommandManager extends Command implements TabExecutor {
             // 将违反许可证中的 "您不能将此副本声明为您自己的".
             sender.sendMessage(
                     Utils.colora(MessageManager.prefix + "&aRunning &bAkane&fField &b%version%")
-                            .replace("%version%", "3.0.0"));
+                            .replace("%version%", "3.0.1"));
             if (sender.hasPermission("akanefield")) {
                 sender.sendMessage(Utils.colora(MessageManager.prefix + "&b使用 &f/af help &b来查看帮助命令"));
             } else {

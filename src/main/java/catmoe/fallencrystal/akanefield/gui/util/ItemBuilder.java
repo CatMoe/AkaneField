@@ -8,8 +8,7 @@ import java.util.stream.Collectors;
 import dev.simplix.protocolize.api.item.BaseItemStack;
 import dev.simplix.protocolize.api.item.ItemStack;
 import dev.simplix.protocolize.data.ItemType;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextDecoration;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.querz.nbt.tag.CompoundTag;
 import net.querz.nbt.tag.IntTag;
 import net.querz.nbt.tag.ListTag;
@@ -35,22 +34,22 @@ public class ItemBuilder {
         return this;
     }
 
-    public ItemBuilder name(Component name) {
-        item.displayName(name.style(name.style().decoration(TextDecoration.ITALIC, false)));
+    public ItemBuilder name(TextComponent textComponent) {
+        item.displayName(textComponent);
         return this;
     }
 
-    public ItemBuilder lore(Component lore) {
-        item.addToLore(lore.style(lore.style().decoration(TextDecoration.ITALIC, false)));
+    public ItemBuilder lore(TextComponent lore) {
+        item.addToLore(lore);
         return this;
     }
 
-    public ItemBuilder lore(List<Component> lores) {
+    public ItemBuilder lore(List<TextComponent> lores) {
         lores.forEach(this::lore);
         return this;
     }
 
-    public ItemBuilder lores(Component[] lores) {
+    public ItemBuilder lores(TextComponent[] lores) {
         Arrays.stream(lores).collect(Collectors.toList()).forEach(this::lore);
         return this;
     }
@@ -96,7 +95,7 @@ public class ItemBuilder {
         return this;
     }
 
-    public ItemBuilder clearLore(Component c) {
+    public ItemBuilder clearLore(TextComponent c) {
         if (item.lore().contains(c)) {
             item.lore().remove(c);
         }
@@ -109,14 +108,14 @@ public class ItemBuilder {
     }
 
     public ItemBuilder clearLores(int i) {
-        List<Component> newList = item.lore();
+        List<TextComponent> newList = item.lore();
         newList.subList(i, newList.size()).clear();
         item.lore(newList, true);
         return this;
     }
 
     public ItemBuilder clearLores(int i1, int i2) {
-        List<Component> newList = item.lore();
+        List<TextComponent> newList = item.lore();
         newList.subList(i1, i2).clear();
         item.lore(newList, true);
         return this;
@@ -162,7 +161,7 @@ public class ItemBuilder {
     public static ItemBuilder of(ItemBuilder builder) {
         BaseItemStack item = builder.item;
         return new ItemBuilder(item.itemType())
-                .lore(item.lore().stream().map(e -> (Component) e).collect(Collectors.toList()))
+                .lore(item.lore().stream().map(e -> (TextComponent) e).collect(Collectors.toList()))
                 .enchantments(builder.enchantments.toArray(new GUIEnchantUtil[0]))
                 .name(item.displayName())
                 .amount(item.amount());

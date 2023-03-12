@@ -13,7 +13,6 @@ public final class CPUMonitor {
     private int index = 0;
     private volatile double recentProcessCpuLoadSnapshot = 0;
     private volatile double recentSystemCpuLoadSnapshot = 0;
-    private final double[] recentSystemUsage = new double[20];
     private final double[] recentProcessUsage = new double[20];
 
     private final ScheduledExecutorService executor;
@@ -40,9 +39,7 @@ public final class CPUMonitor {
 
     private void recordUsage() {
         this.recentProcessUsage[this.index] = currentProcessCpuLoad();
-        this.recentSystemUsage[this.index] = currentSystemCpuLoad();
         this.recentProcessCpuLoadSnapshot = this.recentProcessCpuLoad();
-        this.recentSystemCpuLoadSnapshot = this.recentSystemCpuLoad();
         this.nextIndex();
     }
 
@@ -56,10 +53,6 @@ public final class CPUMonitor {
 
     private double recentProcessCpuLoad() {
         return round(average(this.recentProcessUsage));
-    }
-
-    private double recentSystemCpuLoad() {
-        return round(average(this.recentSystemUsage));
     }
 
     private static double average(final double[] values) {
@@ -78,10 +71,5 @@ public final class CPUMonitor {
 
     private static double currentProcessCpuLoad() {
         return ((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getProcessCpuLoad() * 100;
-    }
-
-    @Deprecated
-    private static double currentSystemCpuLoad() {
-        return ((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getSystemCpuLoad() * 100;
     }
 }

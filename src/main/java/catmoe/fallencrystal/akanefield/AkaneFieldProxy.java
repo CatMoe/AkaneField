@@ -23,6 +23,7 @@ import catmoe.fallencrystal.akanefield.commands.subcommands.DumpCommand;
 import catmoe.fallencrystal.akanefield.commands.subcommands.FirewallCommand;
 import catmoe.fallencrystal.akanefield.commands.subcommands.HelpCommand;
 import catmoe.fallencrystal.akanefield.commands.subcommands.StatsCommand;
+import catmoe.fallencrystal.akanefield.commands.subcommands.TestMenuCommand;
 import catmoe.fallencrystal.akanefield.commands.subcommands.TestMessageCommand;
 import catmoe.fallencrystal.akanefield.commands.subcommands.ToggleNotificationCommand;
 import catmoe.fallencrystal.akanefield.common.FieldRunnable;
@@ -129,6 +130,7 @@ public final class AkaneFieldProxy extends Plugin implements IAntiBotPlugin, ISe
         commandManager.register(new FirewallCommand(this));
         commandManager.register(new AttackLogCommand(this));
         commandManager.register(new TestMessageCommand(this));
+        commandManager.register(new TestMenuCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, commandManager);
         ProxyServer.getInstance().getPluginManager().registerListener(this, new PingListener(this));
         ProxyServer.getInstance().getPluginManager().registerListener(this, new MainEventListener(this));

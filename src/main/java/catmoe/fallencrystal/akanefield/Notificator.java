@@ -1,6 +1,8 @@
 package catmoe.fallencrystal.akanefield;
 
 import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.Title;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
@@ -16,12 +18,43 @@ import catmoe.fallencrystal.akanefield.utils.Utils;
 public class Notificator implements INotificator {
 
     private static final List<ProxiedPlayer> actionbars = new ArrayList<>();
+    private static final List<ProxiedPlayer> titles = new ArrayList<>();
+    private static final List<ProxiedPlayer> broadcast = new ArrayList<>();
 
     public static void automaticNotification(ProxiedPlayer player) {
-        if (actionbars.contains(player))
-            return;
+        if (MessageManager.attackNotificationTitleEnabled == true) {
+            if (titles.contains(player)) {
+                titles.remove(player);
+            } else {
+                sendTitle(player, MessageManager.attackNotificationTitleTitle,
+                        MessageManager.attackNotificationTitlesubTitle,
+                        MessageManager.attackNotificationTitleStay, MessageManager.attackNotificationTitleFadeIn,
+                        MessageManager.attackNotificationTitleFadeOut);
+            }
+        }
+        if (MessageManager.attackNotificationChatEnabled == true) {
+            if (broadcast.contains(player)) {
+                broadcast.remove(player);
+            } else {
+                broadcast.add(player);
+                broadcast.forEach(ac -> ac.sendMessage(ChatMessageType.CHAT, new TextComponent(
+                        Utils.colora(MessageManager.prefix + MessageManager.attackNotificationChatMessages))));
+            }
+        }
         actionbars.remove(player);
         actionbars.add(player);
+    }
+
+    public static void sendTitle(ProxiedPlayer player, String title, String subTitle, int stay, int fadeIn,
+            int fadeOut) {
+        titles.add(player);
+        Title t = ProxyServer.getInstance().createTitle();
+        t.title(new TextComponent(ServerUtil.colorize(title)));
+        t.subTitle(new TextComponent(ServerUtil.colorize(subTitle)));
+        t.stay(stay);
+        t.fadeIn(fadeIn);
+        t.fadeOut(fadeOut);
+        titles.forEach(t::send);
     }
 
     public static void toggleActionBar(ProxiedPlayer player) {
@@ -43,23 +76,8 @@ public class Notificator implements INotificator {
                 .forEach(ac -> ac.sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(Utils.colora(str))));
     }
 
-    /*
-     * public void sendUnderAttackTitle(String title, String subtitle) {
-     * Title t = ProxyServer.getInstance().createTitle();
-     * t.title(new TextComponent(
-     * ServerUtil.colorize(AkaneFieldProxy.getInstance().getAntiBotManager().
-     * replaceInfo(title))));
-     * t.subTitle(new TextComponent(
-     * ServerUtil.colorize(AkaneFieldProxy.getInstance().getAntiBotManager().
-     * replaceInfo(subtitle))));
-     * t.stay(20);
-     * t.fadeIn(0);
-     * t.fadeOut(0);
-     * titles.forEach(t::send);
-     * }
-     */
-
     public void init(IAntiBotPlugin plugin) {
+        // actionbar
         plugin.scheduleRepeatingTask(() -> {
             if (plugin.getAntiBotManager().isPacketModeEnabled()) {
                 sendActionbar(plugin.getAntiBotManager().replaceInfo(MessageManager.actionbarFirewall));

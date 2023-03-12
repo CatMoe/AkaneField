@@ -2,6 +2,8 @@ package catmoe.fallencrystal.akanefield.commands.subcommands;
 
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.Title;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
@@ -14,10 +16,12 @@ import java.util.Map;
 import catmoe.fallencrystal.akanefield.AkaneFieldProxy;
 import catmoe.fallencrystal.akanefield.commands.SubCommand;
 import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
+import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
 import catmoe.fallencrystal.akanefield.utils.Utils;
 
 public class TestMessageCommand implements SubCommand {
     private static final List<ProxiedPlayer> actionbars = new ArrayList<>();
+    private static final List<ProxiedPlayer> titles = new ArrayList<>();
 
     public TestMessageCommand(AkaneFieldProxy akaneFieldProxy) {
     }
@@ -37,6 +41,10 @@ public class TestMessageCommand implements SubCommand {
         return 3;
     }
 
+    public String getEmptyMessage() {
+        return "";
+    }
+
     @Override
     public Map<Integer, List<String>> getTabCompleter() {
         Map<Integer, List<String>> map = new HashMap<>();
@@ -53,11 +61,33 @@ public class TestMessageCommand implements SubCommand {
         actionbars.forEach(ac -> ac.sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(Utils.colora(str))));
     }
 
+    public void sendTestTitle(String title, String subTitle) {
+        Title t = ProxyServer.getInstance().createTitle();
+        t.title(new TextComponent(ServerUtil.colorize(title)));
+        t.subTitle(new TextComponent(ServerUtil.colorize(subTitle)));
+        t.stay(20);
+        t.fadeIn(0);
+        t.fadeOut(0);
+        titles.forEach(t::send);
+    }
+
     @SuppressWarnings("deprecation")
     public void execute(CommandSender sender, String[] args) {
         try {
             if (args[1].equalsIgnoreCase("chat")) {
                 sender.sendMessage(Utils.colora(args[2]));
+                return;
+            }
+            if (args[1].equalsIgnoreCase("title")) {
+                titles.add((ProxiedPlayer) sender);
+                sendTestTitle(args[2], getEmptyMessage());
+                titles.remove(sender);
+                return;
+            }
+            if (args[1].equalsIgnoreCase("subtitle")) {
+                titles.add((ProxiedPlayer) sender);
+                sendTestTitle(getEmptyMessage(), args[2]);
+                titles.remove(sender);
                 return;
             }
             if (args[1].equalsIgnoreCase("actionbar")) {
@@ -66,7 +96,8 @@ public class TestMessageCommand implements SubCommand {
                 actionbars.remove(sender);
                 return;
             } else {
-                sender.sendMessage(Utils.colora(MessageManager.prefix + "&b/af text &f[chat|actionbar] &b<text>"));
+                sender.sendMessage(
+                        Utils.colora(MessageManager.prefix + "&b/af text &f[chat|actionbar|title|subtitle] &b<text>"));
                 return;
             }
         } catch (Exception e) {

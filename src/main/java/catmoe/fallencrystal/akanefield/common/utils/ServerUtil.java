@@ -37,4 +37,8 @@ public class ServerUtil {
     public static String colorize(String text) {
         return platform.colorize(text);
     }
+
+    public static String colorizeComponent(String text) {
+        return platform.colorize(text);
+    }
 }
