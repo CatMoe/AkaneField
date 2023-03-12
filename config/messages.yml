@@ -15,6 +15,8 @@ commands:
 
 notifications:
 # 当服务器被攻击时 应该发送什么消息
+# 由于部分原因此模块目前不是很稳定 
+# 如果您输入了错误的值 则可能导致整个Notification崩盘或工作不正常..
   underattack:
     # 发送标题(暂未实现)
     title:
@@ -27,7 +29,13 @@ notifications:
     # 发送聊天 (已实现)
     chat:
       enabled: true
-      messages: "&c服务器正在遭受攻击!"
+      message: "&c服务器正在遭受攻击!"
+    # 发送声音
+    # 在https://www.digminecraft.com/lists/sound_list_pc.php找到更多声音
+    sound:
+      enabled: true
+      # coming soon.
+      # type: ENTITY_WITHER_SPAWN
   actionbar:
     toggle: "&a已切换机器人显示状态"
     # 设置不同模式的消息显示actionbar的地方. 不再有%type%占位符. 请自行输入.
@@ -209,7 +217,7 @@ help:
   - "&bcheck &f<id> &f- &b检查玩家是否被黑名单禁止"
   - "&btoggle &f- &b手动切换actionbar."
   - "&btext &fchat/actionbar/title/subtitle <文本> - &b发送消息(用于调试)"
-  - "&bgui &f- &b打开一个什么都没有的菜单(没错 在BungeeCord上)"
+  - "&btestgui &f- &b打开一个什么都没有的菜单(没错 在BungeeCord上)"
   - "&bdump &f- &b将插件和代理信息上传到pastebin"
   - ""
 

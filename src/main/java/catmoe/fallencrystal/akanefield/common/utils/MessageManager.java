@@ -79,6 +79,8 @@ public class MessageManager {
     public static int attackNotificationTitleFadeOut;
     public static boolean attackNotificationChatEnabled;
     public static String attackNotificationChatMessages;
+    public static boolean attackNotificationSoundEnabled;
+    public static String attackNotificationSoundType;
 
     public static void init(IConfiguration messages) {
         configManger = messages;
@@ -155,6 +157,8 @@ public class MessageManager {
         attackNotificationTitleFadeOut = messages.getInt("notifications.underattack.title.fade-out");
         attackNotificationChatEnabled = messages.getBoolean("notifications.underattack.chat.enabled");
         attackNotificationChatMessages = messages.getString("notifications.underattack.chat.message");
+        attackNotificationSoundEnabled = messages.getBoolean("notifications.underattack.sound.enabled");
+        attackNotificationSoundType = messages.getString("notifications.underattack.sound.type");
     }
 
     public static String getCommandNoPerms() {

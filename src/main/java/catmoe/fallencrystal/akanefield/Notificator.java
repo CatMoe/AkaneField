@@ -14,12 +14,17 @@ import catmoe.fallencrystal.akanefield.common.INotificator;
 import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
 import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
 import catmoe.fallencrystal.akanefield.utils.Utils;
+import dev.simplix.protocolize.api.Protocolize;
+import dev.simplix.protocolize.api.SoundCategory;
+import dev.simplix.protocolize.api.player.ProtocolizePlayer;
+import dev.simplix.protocolize.data.Sound;
 
 public class Notificator implements INotificator {
 
     private static final List<ProxiedPlayer> actionbars = new ArrayList<>();
     private static final List<ProxiedPlayer> titles = new ArrayList<>();
     private static final List<ProxiedPlayer> broadcast = new ArrayList<>();
+    private static final List<ProxiedPlayer> sounds = new ArrayList<>();
 
     public static void automaticNotification(ProxiedPlayer player) {
         if (MessageManager.attackNotificationTitleEnabled == true) {
@@ -39,6 +44,15 @@ public class Notificator implements INotificator {
                 broadcast.add(player);
                 broadcast.forEach(ac -> ac.sendMessage(ChatMessageType.CHAT, new TextComponent(
                         Utils.colora(MessageManager.prefix + MessageManager.attackNotificationChatMessages))));
+            }
+        }
+        if (MessageManager.attackNotificationSoundEnabled == true) {
+            if (sounds.contains(player)) {
+                sounds.remove(player);
+            } else {
+                sounds.add(player);
+                ProtocolizePlayer protocolPlayer = Protocolize.playerProvider().player(player.getUniqueId());
+                protocolPlayer.playSound(Sound.ENTITY_WITHER_SPAWN, SoundCategory.MASTER, 1f, 1f);
             }
         }
         actionbars.remove(player);

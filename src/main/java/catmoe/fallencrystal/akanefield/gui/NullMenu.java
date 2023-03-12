@@ -1,8 +1,10 @@
 package catmoe.fallencrystal.akanefield.gui;
 
-import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
 import catmoe.fallencrystal.akanefield.gui.util.GUIBuilder;
+import catmoe.fallencrystal.akanefield.gui.util.ForceFormatCode;
+
 import dev.simplix.protocolize.data.inventory.InventoryType;
+
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 public class NullMenu extends GUIBuilder {
@@ -18,6 +20,6 @@ public class NullMenu extends GUIBuilder {
     public void define(ProxiedPlayer p) {
         super.define(p);
         this.type(InventoryType.GENERIC_9X3);
-        this.setTitle(ServerUtil.colorize("&bAkane&fField"));
+        this.setTitle(ForceFormatCode.replaceFormat("&bAkane&fField"));
     }
 }
