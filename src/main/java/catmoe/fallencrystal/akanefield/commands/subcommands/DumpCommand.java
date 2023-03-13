@@ -2,7 +2,7 @@ package catmoe.fallencrystal.akanefield.commands.subcommands;
 
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Plugin;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import catmoe.fallencrystal.akanefield.commands.SubCommand;
 import catmoe.fallencrystal.akanefield.common.IAntiBotPlugin;
 import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
 import catmoe.fallencrystal.akanefield.common.utils.PasteBinBuilder;
-import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
+import catmoe.fallencrystal.akanefield.utils.MessageSendUtil;
 
 public class DumpCommand implements SubCommand {
 
@@ -28,7 +28,6 @@ public class DumpCommand implements SubCommand {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void execute(CommandSender sender, String[] args) {
         PasteBinBuilder pasteBinBuilder = PasteBinBuilder.builder();
         pasteBinBuilder
@@ -52,13 +51,11 @@ public class DumpCommand implements SubCommand {
                 MessageManager.getMessage("dump.info.database-player-count") + plugin.getUserDataService().size());
         plugin.runTask(pasteBinBuilder::pasteSync, true);
         pasteBinBuilder.pasteSync();
-        sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + MessageManager.getMessage("dump.uploading")));
+        MessageSendUtil.prefixchat((ProxiedPlayer) sender, MessageManager.getMessage("dump.uploading"));
         plugin.scheduleDelayedTask(() -> {
             if (pasteBinBuilder.isReady()) {
-                sender.sendMessage(
-                        ServerUtil.colorize(MessageManager.prefix + MessageManager.getMessage("dump.uploaded")));
-                sender.sendMessage(
-                        new TextComponent(ServerUtil.colorize(MessageManager.prefix + pasteBinBuilder.getUrl())));
+                MessageSendUtil.prefixchat((ProxiedPlayer) sender, MessageManager.getMessage("dump.uploaded"));
+                MessageSendUtil.prefixchat((ProxiedPlayer) sender, pasteBinBuilder.getUrl());
             }
         }, true, 2500L);
     }

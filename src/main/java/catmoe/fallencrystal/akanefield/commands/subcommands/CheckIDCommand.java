@@ -5,6 +5,7 @@ import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,6 +17,7 @@ import catmoe.fallencrystal.akanefield.common.IAntiBotPlugin;
 import catmoe.fallencrystal.akanefield.common.objects.profile.BlackListProfile;
 import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
 import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
+import catmoe.fallencrystal.akanefield.utils.MessageSendUtil;
 
 @SuppressWarnings("deprecation")
 public class CheckIDCommand implements SubCommand {
@@ -35,7 +37,7 @@ public class CheckIDCommand implements SubCommand {
     public void execute(CommandSender sender, String[] args) {
         BlackListProfile profile = plugin.getAntiBotManager().getBlackListService().getBlacklistProfileFromID(args[1]);
         if (profile == null) {
-            sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + MessageManager.commandNoBlacklist));
+            MessageSendUtil.prefixchat((ProxiedPlayer) sender, MessageManager.commandNoBlacklist);
             return;
         }
         for (String str : MessageManager.blacklistProfileString) {

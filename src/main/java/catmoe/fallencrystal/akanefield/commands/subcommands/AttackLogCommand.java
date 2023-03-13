@@ -5,6 +5,7 @@ import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import catmoe.fallencrystal.akanefield.common.IAntiBotPlugin;
 import catmoe.fallencrystal.akanefield.common.objects.attack.AttackLog;
 import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
 import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
+import catmoe.fallencrystal.akanefield.utils.MessageSendUtil;
 import catmoe.fallencrystal.akanefield.utils.Utils;
 
 /**
@@ -44,24 +46,21 @@ public class AttackLogCommand implements SubCommand {
         try {
             value = Integer.parseInt(args[2]);
             if (value < 0) {
-                sender.sendMessage(
-                        ServerUtil.colorize(MessageManager.prefix + MessageManager.getMessage("log.negative-number")));
+                MessageSendUtil.prefixchat((ProxiedPlayer) sender, MessageManager.getMessage("log.negative-number"));
                 return;
             }
         } catch (NumberFormatException e) {
-            sender.sendMessage(
-                    ServerUtil.colorize(MessageManager.prefix + MessageManager.getMessage("log.non-number")));
+            MessageSendUtil.prefixchat((ProxiedPlayer) sender, MessageManager.getMessage("log.non-number"));
             return;
         } catch (Exception e) {
-            sender.sendMessage(
-                    ServerUtil.colorize(MessageManager.prefix + MessageManager.getMessage("logs.invalid-value")));
+            MessageSendUtil.prefixchat((ProxiedPlayer) sender, MessageManager.getMessage("logs.invalid-value"));
             return;
         }
 
         if (args[1].equals("info")) {
             Optional<AttackLog> log = plugin.getAttackTrackerService().getAttackLog(value);
             if (!log.isPresent()) {
-                sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + MessageManager.getMessage("log.empty")));
+                MessageSendUtil.prefixchat((ProxiedPlayer) sender, MessageManager.getMessage("logs.empty"));
                 return;
             }
 
@@ -72,11 +71,10 @@ public class AttackLogCommand implements SubCommand {
         }
 
         if (args[1].equals("list")) {
-            sender.sendMessage(
-                    ServerUtil.colorize(MessageManager.prefix + MessageManager.getMessage("log.founding")));
+            MessageSendUtil.prefixchat((ProxiedPlayer) sender, MessageManager.getMessage("log.founding"));
             List<AttackLog> lastAttacks = plugin.getAttackTrackerService().getLastAttacks(value);
             if (lastAttacks.size() == 0) {
-                sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + MessageManager.getMessage("log.empty")));
+                MessageSendUtil.prefixchat((ProxiedPlayer) sender, MessageManager.getMessage("log.empty"));
                 return;
             }
             for (AttackLog attack : lastAttacks) {

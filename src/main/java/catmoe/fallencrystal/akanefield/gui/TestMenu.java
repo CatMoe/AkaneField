@@ -60,7 +60,7 @@ public class TestMenu extends GUIBuilder {
         }
     }
 
-    public void sendActionbarMessage(ProxiedPlayer p, String string) {
+    public static void sendActionbarMessage(ProxiedPlayer p, String string) {
         List<ProxiedPlayer> actionbars = new ArrayList<>();
         actionbars.add(p);
         p.sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ServerUtil.colorize(string)));
@@ -72,6 +72,5 @@ public class TestMenu extends GUIBuilder {
         clear();
         define(p);
         super.open(p);
-        sendActionbarMessage(p, "&b这是一个用BungeeCord做的菜单w!");
     }
 }

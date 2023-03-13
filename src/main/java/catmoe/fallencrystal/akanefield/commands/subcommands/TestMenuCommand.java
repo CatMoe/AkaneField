@@ -6,6 +6,7 @@ import java.util.Map;
 import catmoe.fallencrystal.akanefield.commands.SubCommand;
 //import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
 import catmoe.fallencrystal.akanefield.gui.TestMenu;
+import catmoe.fallencrystal.akanefield.utils.MessageSendUtil;
 //import catmoe.fallencrystal.akanefield.utils.Utils;
 import dev.simplix.protocolize.api.Protocolize;
 import dev.simplix.protocolize.api.SoundCategory;
@@ -26,6 +27,7 @@ public class TestMenuCommand implements SubCommand {
         sendTestMenuSound((ProxiedPlayer) sender);
         TestMenu menu = new TestMenu();
         menu.open((ProxiedPlayer) sender);
+        MessageSendUtil.actionbar((ProxiedPlayer) sender, "&b这是一个用BungeeCord做的菜单w!");
     }
 
     public static void sendTestMenuSound(ProxiedPlayer player) {
