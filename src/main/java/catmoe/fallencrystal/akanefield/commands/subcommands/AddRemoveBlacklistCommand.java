@@ -11,7 +11,6 @@ import catmoe.fallencrystal.akanefield.common.IAntiBotManager;
 import catmoe.fallencrystal.akanefield.common.IAntiBotPlugin;
 import catmoe.fallencrystal.akanefield.common.objects.profile.BlackListReason;
 import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
-import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
 import catmoe.fallencrystal.akanefield.utils.MessageSendUtil;
 import catmoe.fallencrystal.akanefield.utils.Utils;
 
@@ -53,7 +52,7 @@ public class AddRemoveBlacklistCommand implements SubCommand {
                                 .replace("%type%", MessageManager.getMessage("white-black-list.type.blacklist"))
                                 .replace("%address%", args[2]));
             } else {
-                sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + MessageManager.commandWrongArgument));
+                MessageSendUtil.prefixchat((ProxiedPlayer) sender, MessageManager.commandWrongArgument);
             }
         }
     }

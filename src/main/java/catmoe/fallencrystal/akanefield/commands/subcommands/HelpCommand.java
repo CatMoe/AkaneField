@@ -1,6 +1,7 @@
 package catmoe.fallencrystal.akanefield.commands.subcommands;
 
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.util.List;
 import java.util.Map;
@@ -8,7 +9,7 @@ import java.util.Map;
 import catmoe.fallencrystal.akanefield.commands.SubCommand;
 import catmoe.fallencrystal.akanefield.common.IAntiBotPlugin;
 import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
-import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
+import catmoe.fallencrystal.akanefield.utils.MessageSendUtil;
 
 public class HelpCommand implements SubCommand {
 
@@ -21,9 +22,8 @@ public class HelpCommand implements SubCommand {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void execute(CommandSender sender, String[] args) {
-        MessageManager.helpMessage.forEach(a -> sender.sendMessage(ServerUtil.colorize(a)));
+        MessageManager.helpMessage.forEach(a -> MessageSendUtil.rawchat((ProxiedPlayer) sender, a));
     }
 
     @Override

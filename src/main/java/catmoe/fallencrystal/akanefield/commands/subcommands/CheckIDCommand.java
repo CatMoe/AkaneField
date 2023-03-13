@@ -16,7 +16,6 @@ import catmoe.fallencrystal.akanefield.commands.SubCommand;
 import catmoe.fallencrystal.akanefield.common.IAntiBotPlugin;
 import catmoe.fallencrystal.akanefield.common.objects.profile.BlackListProfile;
 import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
-import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
 import catmoe.fallencrystal.akanefield.utils.MessageSendUtil;
 
 @SuppressWarnings("deprecation")
@@ -41,11 +40,11 @@ public class CheckIDCommand implements SubCommand {
             return;
         }
         for (String str : MessageManager.blacklistProfileString) {
-            sender.sendMessage(ServerUtil.colorize(str
+            MessageSendUtil.rawchat((ProxiedPlayer) sender, str
                     .replace("$reason", profile.getReason())
                     .replace("$id", profile.getId())
                     .replace("$nick", profile.getName())
-                    .replace("$ip", profile.getIp())));
+                    .replace("$ip", profile.getIp()));
 
         }
 
