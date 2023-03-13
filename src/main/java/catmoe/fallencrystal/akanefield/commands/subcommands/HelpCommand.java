@@ -8,7 +8,7 @@ import java.util.Map;
 import catmoe.fallencrystal.akanefield.commands.SubCommand;
 import catmoe.fallencrystal.akanefield.common.IAntiBotPlugin;
 import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
-import catmoe.fallencrystal.akanefield.utils.Utils;
+import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
 
 public class HelpCommand implements SubCommand {
 
@@ -23,7 +23,7 @@ public class HelpCommand implements SubCommand {
     @Override
     @SuppressWarnings("deprecation")
     public void execute(CommandSender sender, String[] args) {
-        MessageManager.helpMessage.forEach(a -> sender.sendMessage(Utils.colora(a)));
+        MessageManager.helpMessage.forEach(a -> sender.sendMessage(ServerUtil.colorize(a)));
     }
 
     @Override

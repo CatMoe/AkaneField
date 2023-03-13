@@ -15,7 +15,7 @@ import catmoe.fallencrystal.akanefield.commands.SubCommand;
 import catmoe.fallencrystal.akanefield.common.IAntiBotPlugin;
 import catmoe.fallencrystal.akanefield.common.objects.profile.BlackListProfile;
 import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
-import catmoe.fallencrystal.akanefield.utils.Utils;
+import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
 
 @SuppressWarnings("deprecation")
 public class CheckIDCommand implements SubCommand {
@@ -35,11 +35,11 @@ public class CheckIDCommand implements SubCommand {
     public void execute(CommandSender sender, String[] args) {
         BlackListProfile profile = plugin.getAntiBotManager().getBlackListService().getBlacklistProfileFromID(args[1]);
         if (profile == null) {
-            sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.commandNoBlacklist));
+            sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + MessageManager.commandNoBlacklist));
             return;
         }
         for (String str : MessageManager.blacklistProfileString) {
-            sender.sendMessage(Utils.colora(str
+            sender.sendMessage(ServerUtil.colorize(str
                     .replace("$reason", profile.getReason())
                     .replace("$id", profile.getId())
                     .replace("$nick", profile.getName())

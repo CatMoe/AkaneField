@@ -318,7 +318,7 @@ public final class AkaneFieldProxy extends Plugin implements IAntiBotPlugin, ISe
     public void disconnect(String ip, String reasonNoColor) {
         for (ProxiedPlayer player : ProxyServer.getInstance().getPlayers()) {
             if (Utils.getIP(player).equals(ip))
-                player.disconnect(new TextComponent(Utils.colora(reasonNoColor)));
+                player.disconnect(new TextComponent(ServerUtil.colorize(reasonNoColor)));
         }
     }
 
@@ -360,7 +360,7 @@ public final class AkaneFieldProxy extends Plugin implements IAntiBotPlugin, ISe
     @Override
     public void broadcast(String message) {
         for (ProxiedPlayer player : ProxyServer.getInstance().getPlayers()) {
-            player.sendMessage(new TextComponent(Utils.colora(message)));
+            player.sendMessage(new TextComponent(ServerUtil.colorize(message)));
         }
     }
 

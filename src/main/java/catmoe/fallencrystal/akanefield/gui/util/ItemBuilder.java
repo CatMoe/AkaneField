@@ -5,10 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
 import dev.simplix.protocolize.api.item.BaseItemStack;
 import dev.simplix.protocolize.api.item.ItemStack;
 import dev.simplix.protocolize.data.ItemType;
-import net.md_5.bungee.api.chat.TextComponent;
 import net.querz.nbt.tag.CompoundTag;
 import net.querz.nbt.tag.IntTag;
 import net.querz.nbt.tag.ListTag;
@@ -34,22 +34,22 @@ public class ItemBuilder {
         return this;
     }
 
-    public ItemBuilder name(TextComponent textComponent) {
-        item.displayName(textComponent);
+    public ItemBuilder name(String string) {
+        item.displayName(ServerUtil.colorize(string)); // TextComponent
         return this;
     }
 
-    public ItemBuilder lore(TextComponent lore) {
-        item.addToLore(lore);
+    public ItemBuilder lore(String string) {
+        item.addToLore(ServerUtil.colorize(string)); // TextComponent
         return this;
     }
 
-    public ItemBuilder lore(List<TextComponent> lores) {
+    public ItemBuilder lore(List<String> lores) {
         lores.forEach(this::lore);
         return this;
     }
 
-    public ItemBuilder lores(TextComponent[] lores) {
+    public ItemBuilder lores(String[] lores) {
         Arrays.stream(lores).collect(Collectors.toList()).forEach(this::lore);
         return this;
     }
@@ -95,9 +95,9 @@ public class ItemBuilder {
         return this;
     }
 
-    public ItemBuilder clearLore(TextComponent c) {
-        if (item.lore().contains(c)) {
-            item.lore().remove(c);
+    public ItemBuilder clearLore(String c) {
+        if (item.lore().contains(ServerUtil.colorize(c))) { // TextComponent
+            item.lore().remove(ServerUtil.colorize(c));
         }
         return this;
     }
@@ -108,27 +108,18 @@ public class ItemBuilder {
     }
 
     public ItemBuilder clearLores(int i) {
-        List<TextComponent> newList = item.lore();
+        List<String> newList = item.lore();
         newList.subList(i, newList.size()).clear();
         item.lore(newList, true);
         return this;
     }
 
     public ItemBuilder clearLores(int i1, int i2) {
-        List<TextComponent> newList = item.lore();
+        List<String> newList = item.lore();
         newList.subList(i1, i2).clear();
         item.lore(newList, true);
         return this;
     }
-
-    // public ItemBuilder color(Color color) {
-    // if (item.itemType() == ItemType.LEATHER_HELMET ||
-    // item.itemType() == ItemType.LEATHER_CHESTPLATE ||
-    // item.itemType() == ItemType.LEATHER_LEGGINGS ||
-    // item.itemType() == ItemType.LEATHER_BOOTS) {
-    //
-    // }
-    // }
 
     public ItemBuilder skullOwner(String name) {
         return this;
@@ -161,7 +152,7 @@ public class ItemBuilder {
     public static ItemBuilder of(ItemBuilder builder) {
         BaseItemStack item = builder.item;
         return new ItemBuilder(item.itemType())
-                .lore(item.lore().stream().map(e -> (TextComponent) e).collect(Collectors.toList()))
+                .lore(item.lore().stream().map(e -> (String) e).collect(Collectors.toList()))
                 .enchantments(builder.enchantments.toArray(new GUIEnchantUtil[0]))
                 .name(item.displayName())
                 .amount(item.amount());

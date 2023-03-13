@@ -17,7 +17,6 @@ import catmoe.fallencrystal.akanefield.AkaneFieldProxy;
 import catmoe.fallencrystal.akanefield.commands.SubCommand;
 import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
 import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
-import catmoe.fallencrystal.akanefield.utils.Utils;
 
 public class TestMessageCommand implements SubCommand {
     private static final List<ProxiedPlayer> actionbars = new ArrayList<>();
@@ -58,7 +57,8 @@ public class TestMessageCommand implements SubCommand {
     }
 
     public void sendActionbar(String str) {
-        actionbars.forEach(ac -> ac.sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(Utils.colora(str))));
+        actionbars
+                .forEach(ac -> ac.sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ServerUtil.colorize(str))));
     }
 
     public void sendTestTitle(String title, String subTitle) {
@@ -75,7 +75,7 @@ public class TestMessageCommand implements SubCommand {
     public void execute(CommandSender sender, String[] args) {
         try {
             if (args[1].equalsIgnoreCase("chat")) {
-                sender.sendMessage(Utils.colora(args[2]));
+                sender.sendMessage(ServerUtil.colorize(args[2]));
                 return;
             }
             if (args[1].equalsIgnoreCase("title")) {
@@ -92,16 +92,17 @@ public class TestMessageCommand implements SubCommand {
             }
             if (args[1].equalsIgnoreCase("actionbar")) {
                 actionbars.add((ProxiedPlayer) sender);
-                sendActionbar(Utils.colora(args[2]));
+                sendActionbar(ServerUtil.colorize(args[2]));
                 actionbars.remove(sender);
                 return;
             } else {
                 sender.sendMessage(
-                        Utils.colora(MessageManager.prefix + "&b/af text &f[chat|actionbar|title|subtitle] &b<text>"));
+                        ServerUtil.colorize(
+                                MessageManager.prefix + "&b/af text &f[chat|actionbar|title|subtitle] &b<text>"));
                 return;
             }
         } catch (Exception e) {
-            sender.sendMessage(Utils.colora(MessageManager.prefix + "&cCannot Parse."));
+            sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + "&cCannot Parse."));
             return;
         }
     }

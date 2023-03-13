@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import catmoe.fallencrystal.akanefield.commands.SubCommand;
-import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
-import catmoe.fallencrystal.akanefield.gui.NullMenu;
+//import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
+import catmoe.fallencrystal.akanefield.gui.TestMenu;
+//import catmoe.fallencrystal.akanefield.utils.Utils;
 import dev.simplix.protocolize.api.Protocolize;
 import dev.simplix.protocolize.api.SoundCategory;
 import dev.simplix.protocolize.api.player.ProtocolizePlayer;
@@ -21,19 +22,10 @@ public class TestMenuCommand implements SubCommand {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void execute(CommandSender sender, String[] args) {
-        try {
-            sendTestMenuSound((ProxiedPlayer) sender);
-            NullMenu menu = new NullMenu();
-            menu.define((ProxiedPlayer) sender);
-            menu.open((ProxiedPlayer) sender);
-            return;
-        } catch (Exception e) {
-            sender.sendMessage(MessageManager.prefix + "&c创建GUI失败. 请确保您安装了Protocolize");
-            sender.sendMessage(MessageManager.prefix + "&c如果仍然发生错误 请报告给CatMoe");
-            return;
-        }
+        sendTestMenuSound((ProxiedPlayer) sender);
+        TestMenu menu = new TestMenu();
+        menu.open((ProxiedPlayer) sender);
     }
 
     public static void sendTestMenuSound(ProxiedPlayer player) {

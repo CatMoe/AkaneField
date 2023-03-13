@@ -12,7 +12,7 @@ import catmoe.fallencrystal.akanefield.commands.SubCommand;
 import catmoe.fallencrystal.akanefield.common.IAntiBotPlugin;
 import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
 import catmoe.fallencrystal.akanefield.common.utils.PasteBinBuilder;
-import catmoe.fallencrystal.akanefield.utils.Utils;
+import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
 
 public class DumpCommand implements SubCommand {
 
@@ -52,11 +52,13 @@ public class DumpCommand implements SubCommand {
                 MessageManager.getMessage("dump.info.database-player-count") + plugin.getUserDataService().size());
         plugin.runTask(pasteBinBuilder::pasteSync, true);
         pasteBinBuilder.pasteSync();
-        sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("dump.uploading")));
+        sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + MessageManager.getMessage("dump.uploading")));
         plugin.scheduleDelayedTask(() -> {
             if (pasteBinBuilder.isReady()) {
-                sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("dump.uploaded")));
-                sender.sendMessage(new TextComponent(Utils.colora(MessageManager.prefix + pasteBinBuilder.getUrl())));
+                sender.sendMessage(
+                        ServerUtil.colorize(MessageManager.prefix + MessageManager.getMessage("dump.uploaded")));
+                sender.sendMessage(
+                        new TextComponent(ServerUtil.colorize(MessageManager.prefix + pasteBinBuilder.getUrl())));
             }
         }, true, 2500L);
     }

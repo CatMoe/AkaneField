@@ -217,7 +217,7 @@ help:
   - "&bcheck &f<id> &f- &b检查玩家是否被黑名单禁止"
   - "&btoggle &f- &b手动切换actionbar."
   - "&btext &fchat/actionbar/title/subtitle <文本> - &b发送消息(用于调试)"
-  - "&btestgui &f- &b打开一个什么都没有的菜单(没错 在BungeeCord上)"
+  - "&btestgui &f- &b打开一个测试的菜单(没错 在BungeeCord上)"
   - "&bdump &f- &b将插件和代理信息上传到pastebin"
   - ""
 

@@ -9,7 +9,7 @@ import catmoe.fallencrystal.akanefield.commands.SubCommand;
 import catmoe.fallencrystal.akanefield.common.IAntiBotManager;
 import catmoe.fallencrystal.akanefield.common.IAntiBotPlugin;
 import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
-import catmoe.fallencrystal.akanefield.utils.Utils;
+import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
 import net.md_5.bungee.api.CommandSender;
 
 @SuppressWarnings("deprecation")
@@ -30,15 +30,15 @@ public class ClearCommand implements SubCommand {
     public void execute(CommandSender sender, String[] args) {
         if (args[1].equals("whitelist")) {
             antiBotManager.getWhitelistService().clear();
-            sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager
+            sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + MessageManager
                     .getBlackWhiteListCleared(MessageManager.getMessage("white-black-list.type.whitelist"))));
         } else {
             if (args[1].equals("blacklist")) {
                 antiBotManager.getBlackListService().clear();
-                sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager
+                sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + MessageManager
                         .getBlackWhiteListCleared(MessageManager.getMessage("white-black-list.type.blacklist"))));
             } else {
-                sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.commandWrongArgument));
+                sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + MessageManager.commandWrongArgument));
             }
         }
     }

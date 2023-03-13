@@ -17,6 +17,7 @@ import catmoe.fallencrystal.akanefield.commands.SubCommand;
 import catmoe.fallencrystal.akanefield.common.IAntiBotPlugin;
 import catmoe.fallencrystal.akanefield.common.objects.attack.AttackLog;
 import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
+import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
 import catmoe.fallencrystal.akanefield.utils.Utils;
 
 /**
@@ -44,21 +45,23 @@ public class AttackLogCommand implements SubCommand {
             value = Integer.parseInt(args[2]);
             if (value < 0) {
                 sender.sendMessage(
-                        Utils.colora(MessageManager.prefix + MessageManager.getMessage("log.negative-number")));
+                        ServerUtil.colorize(MessageManager.prefix + MessageManager.getMessage("log.negative-number")));
                 return;
             }
         } catch (NumberFormatException e) {
-            sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("log.non-number")));
+            sender.sendMessage(
+                    ServerUtil.colorize(MessageManager.prefix + MessageManager.getMessage("log.non-number")));
             return;
         } catch (Exception e) {
-            sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("logs.invalid-value")));
+            sender.sendMessage(
+                    ServerUtil.colorize(MessageManager.prefix + MessageManager.getMessage("logs.invalid-value")));
             return;
         }
 
         if (args[1].equals("info")) {
             Optional<AttackLog> log = plugin.getAttackTrackerService().getAttackLog(value);
             if (!log.isPresent()) {
-                sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("log.empty")));
+                sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + MessageManager.getMessage("log.empty")));
                 return;
             }
 
@@ -70,17 +73,19 @@ public class AttackLogCommand implements SubCommand {
 
         if (args[1].equals("list")) {
             sender.sendMessage(
-                    Utils.colora(MessageManager.prefix + MessageManager.getMessage("log.founding")));
+                    ServerUtil.colorize(MessageManager.prefix + MessageManager.getMessage("log.founding")));
             List<AttackLog> lastAttacks = plugin.getAttackTrackerService().getLastAttacks(value);
             if (lastAttacks.size() == 0) {
-                sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("log.empty")));
+                sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + MessageManager.getMessage("log.empty")));
                 return;
             }
             for (AttackLog attack : lastAttacks) {
                 TextComponent component = new TextComponent(
-                        Utils.colora("&b" + attack.getAttackDate() + MessageManager.getMessage("log.clicktips")));
+                        ServerUtil
+                                .colorize("&b" + attack.getAttackDate() + MessageManager.getMessage("log.clicktips")));
                 component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-                        new ComponentBuilder(Utils.colora(MessageManager.getMessage("log.clickhover"))).create()));
+                        new ComponentBuilder(ServerUtil.colorize(MessageManager.getMessage("log.clickhover")))
+                                .create()));
                 component.setClickEvent(
                         new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/akanefield logs info " + attack.getID()));
                 sender.sendMessage(component);

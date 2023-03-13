@@ -138,7 +138,7 @@
             <groupId>net.md-5</groupId>
             <artifactId>bungeecord</artifactId>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/BungeeCord.jar</systemPath>
+            <systemPath>${basedir}/lib/BungeeCord-1.19-R0.1-SNAPSHOT.jar</systemPath>
             <version>1.19-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>

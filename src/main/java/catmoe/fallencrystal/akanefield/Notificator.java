@@ -13,7 +13,6 @@ import catmoe.fallencrystal.akanefield.common.IAntiBotPlugin;
 import catmoe.fallencrystal.akanefield.common.INotificator;
 import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
 import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
-import catmoe.fallencrystal.akanefield.utils.Utils;
 import dev.simplix.protocolize.api.Protocolize;
 import dev.simplix.protocolize.api.SoundCategory;
 import dev.simplix.protocolize.api.player.ProtocolizePlayer;
@@ -43,7 +42,7 @@ public class Notificator implements INotificator {
             } else {
                 broadcast.add(player);
                 broadcast.forEach(ac -> ac.sendMessage(ChatMessageType.CHAT, new TextComponent(
-                        Utils.colora(MessageManager.prefix + MessageManager.attackNotificationChatMessages))));
+                        ServerUtil.colorize(MessageManager.prefix + MessageManager.attackNotificationChatMessages))));
             }
         }
         if (MessageManager.attackNotificationSoundEnabled == true) {
@@ -87,7 +86,7 @@ public class Notificator implements INotificator {
 
     public void sendActionbar(String str) {
         actionbars
-                .forEach(ac -> ac.sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(Utils.colora(str))));
+                .forEach(ac -> ac.sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ServerUtil.colorize(str))));
     }
 
     public void init(IAntiBotPlugin plugin) {

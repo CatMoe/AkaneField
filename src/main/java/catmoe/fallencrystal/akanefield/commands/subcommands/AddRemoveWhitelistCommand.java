@@ -9,6 +9,7 @@ import catmoe.fallencrystal.akanefield.commands.SubCommand;
 import catmoe.fallencrystal.akanefield.common.IAntiBotManager;
 import catmoe.fallencrystal.akanefield.common.IAntiBotPlugin;
 import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
+import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
 import catmoe.fallencrystal.akanefield.utils.Utils;
 
 public class AddRemoveWhitelistCommand implements SubCommand {
@@ -29,10 +30,11 @@ public class AddRemoveWhitelistCommand implements SubCommand {
         if (args[1].equalsIgnoreCase("add")) {
             iAntiBotManager.getWhitelistService().whitelist("/" + args[2]);
             iAntiBotManager.getBlackListService().unBlacklist("/" + args[2]);
-            sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.getMessage("white-black-list.add")
-                    .replace("%type%",
-                            MessageManager.getMessage("white-black-list.type.whitelist"))
-                    .replace("%address%", args[2])));
+            sender.sendMessage(
+                    ServerUtil.colorize(MessageManager.prefix + MessageManager.getMessage("white-black-list.add")
+                            .replace("%type%",
+                                    MessageManager.getMessage("white-black-list.type.whitelist"))
+                            .replace("%address%", args[2])));
             if (MessageManager.WhiteBlacklistConflectTipsEnabled == true) {
                 List<String> messages = MessageManager.getMessageList("white-black-list.conflect-tips.messages")
                         .stream().map(Utils::colora).collect(Collectors.toList());
@@ -42,11 +44,11 @@ public class AddRemoveWhitelistCommand implements SubCommand {
             if (args[1].equalsIgnoreCase("remove")) {
                 iAntiBotManager.getWhitelistService().unWhitelist("/" + args[2]);
                 sender.sendMessage(
-                        Utils.colora(MessageManager.prefix + MessageManager.getMessage("white-black-list.remove")
+                        ServerUtil.colorize(MessageManager.prefix + MessageManager.getMessage("white-black-list.remove")
                                 .replace("%type%", MessageManager.getMessage("white-black-list.type.whitelist"))
                                 .replace("%address%", args[2])));
             } else {
-                sender.sendMessage(Utils.colora(MessageManager.prefix + MessageManager.commandWrongArgument));
+                sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + MessageManager.commandWrongArgument));
             }
         }
     }

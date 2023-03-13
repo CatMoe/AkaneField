@@ -10,6 +10,7 @@ import java.util.List;
 
 import catmoe.fallencrystal.akanefield.common.IAntiBotPlugin;
 import catmoe.fallencrystal.akanefield.common.utils.MessageManager;
+import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
 import catmoe.fallencrystal.akanefield.utils.Utils;
 
 public class CommandManager extends Command implements TabExecutor {
@@ -37,32 +38,32 @@ public class CommandManager extends Command implements TabExecutor {
             // 永远不准修改此消息中的任何内容(除非由我变动) 否则视为非法变更
             // 将违反许可证中的 "您不能将此副本声明为您自己的".
             sender.sendMessage(
-                    Utils.colora(MessageManager.prefix + "&aRunning &bAkane&fField &b%version%")
+                    ServerUtil.colorize(MessageManager.prefix + "&aRunning &bAkane&fField &b%version%")
                             .replace("%version%", "3.0.1"));
             if (sender.hasPermission("akanefield")) {
-                sender.sendMessage(Utils.colora(MessageManager.prefix + "&b使用 &f/af help &b来查看帮助命令"));
+                sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + "&b使用 &f/af help &b来查看帮助命令"));
             } else {
-                sender.sendMessage(Utils.colora(MessageManager.prefix + "&c您没有权限使用此命令."));
+                sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + "&c您没有权限使用此命令."));
             }
             return;
         }
         SubCommand cmd = getSubCommandFromArgs(args[0]);
         if (cmd == null) {
-            sender.sendMessage(Utils.colora(MessageManager.prefix + defaultCommandWrongArgumentMessage));
+            sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + defaultCommandWrongArgumentMessage));
             return;
         }
         if (args[0].equals(cmd.getSubCommandId()) && args.length == cmd.argsSize()) {
             if (!cmd.allowedConsole() && !(sender instanceof ProxiedPlayer)) {
-                sender.sendMessage(Utils.colora(MessageManager.prefix + noPlayerMessage));
+                sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + noPlayerMessage));
                 return;
             }
             if (sender.hasPermission(cmd.getPermission())) {
                 cmd.execute(sender, args);
             } else {
-                sender.sendMessage(Utils.colora(MessageManager.prefix + noPermsMessage));
+                sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + noPermsMessage));
             }
         } else {
-            sender.sendMessage(Utils.colora(MessageManager.prefix + defaultCommandWrongArgumentMessage));
+            sender.sendMessage(ServerUtil.colorize(MessageManager.prefix + defaultCommandWrongArgumentMessage));
         }
     }
 

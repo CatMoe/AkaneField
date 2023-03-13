@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
 import dev.simplix.protocolize.api.Protocolize;
 import dev.simplix.protocolize.api.inventory.Inventory;
 import dev.simplix.protocolize.api.inventory.InventoryClick;
@@ -15,7 +14,6 @@ import dev.simplix.protocolize.api.player.ProtocolizePlayer;
 import dev.simplix.protocolize.data.ItemType;
 import dev.simplix.protocolize.data.inventory.InventoryType;
 
-import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 public abstract class GUIBuilder {
@@ -110,7 +108,7 @@ public abstract class GUIBuilder {
     }
 
     protected void setEmpty(ItemType itemtype) {
-        ItemStack item = new ItemBuilder(itemtype).amount(1).name(new TextComponent(ServerUtil.colorize(""))).build();
+        ItemStack item = new ItemBuilder(itemtype).amount(1).name("").build();
         int totalSlots = type.getTypicalSize(player.getPendingConnection().getVersion());
         for (int i = 0; i < totalSlots; i++) {
             emptyItems.add(item);
