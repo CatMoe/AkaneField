@@ -32,7 +32,6 @@ public class AntiBotManager implements IAntiBotManager {
     private final DynamicCounterThread pingPerSecond;
     private final DynamicCounterThread packetPerSecond;
     private final DynamicCounterThread connectionPerSecond;
-    private final AttackDurationDetector attackDurationDetector;
     private final BlackListService blackListService;
     private final WhitelistService whitelistService;
     private final QueueService queueService;
@@ -52,7 +51,7 @@ public class AntiBotManager implements IAntiBotManager {
         this.pingPerSecond = new DynamicCounterThread(plugin);
         this.packetPerSecond = new DynamicCounterThread(plugin);
         this.connectionPerSecond = new DynamicCounterThread(plugin);
-        this.attackDurationDetector = new AttackDurationDetector(plugin);
+        new AttackDurationDetector(plugin);
         this.queueService = new QueueService();
         this.blackListService = new BlackListService(plugin, queueService, plugin.getBlackList(), logHelper);
         this.whitelistService = new WhitelistService(queueService, plugin.getWhitelist(), logHelper);
@@ -92,7 +91,7 @@ public class AntiBotManager implements IAntiBotManager {
 
     @Override
     public long getAttackDuration() {
-        return attackDurationDetector.getAttackDuration();
+        return AttackDurationDetector.getAttackDuration();
     }
 
     @Override
@@ -336,7 +335,7 @@ public class AntiBotManager implements IAntiBotManager {
                 .replace("%totalpackets%", String.valueOf(packetPerSecond.getTotal()))
                 .replace("%prefix%", MessageManager.prefix)
                 .replace("%underverification%", String.valueOf(VPNService.getUnderVerificationSize()))
-                .replace("%duration%", TimeUtil.formatSeconds(attackDurationDetector.getAttackDuration()))
+                .replace("%duration%", TimeUtil.formatSeconds(AttackDurationDetector.getAttackDuration()))
                 .replace("%totalblocks%", String.valueOf(connectionPerSecond.getTotal()))
                 .replace("%cps%", String.valueOf(connectionPerSecond.getSlowCount()))
                 .replace("%connection%", String.valueOf(connectionPerSecond.getSpeedCount()));

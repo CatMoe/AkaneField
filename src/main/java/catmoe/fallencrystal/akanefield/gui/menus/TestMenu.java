@@ -1,4 +1,4 @@
-package catmoe.fallencrystal.akanefield.gui;
+package catmoe.fallencrystal.akanefield.gui.menus;
 
 import catmoe.fallencrystal.akanefield.gui.util.GUIBuilder;
 import catmoe.fallencrystal.akanefield.gui.util.ItemBuilder;
@@ -8,6 +8,7 @@ import catmoe.fallencrystal.akanefield.gui.util.ForceFormatCode;
 import dev.simplix.protocolize.api.inventory.InventoryClick;
 import dev.simplix.protocolize.data.ItemType;
 import dev.simplix.protocolize.data.inventory.InventoryType;
+
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 public class TestMenu extends GUIBuilder {
@@ -22,7 +23,7 @@ public class TestMenu extends GUIBuilder {
     public void define(ProxiedPlayer p) {
         super.define(p);
         this.type(InventoryType.GENERIC_9X3);
-        this.setTitle(ForceFormatCode.replaceFormat("&bAkane&fField"));
+        this.setTitle(ForceFormatCode.replaceFormat("&7Test"));
         setItem(13, new ItemBuilder(ItemType.GRAY_STAINED_GLASS_PANE)
                 .name("&b这是一块玻璃!")
                 .lore("&7\"非常抽象的无处不在\"")

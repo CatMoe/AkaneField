@@ -13,12 +13,12 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 public class AttackDurationDetector extends AbstractDetector {
     private final IAntiBotPlugin plugin;
-    private long duration;
+    private static long duration;
     private static final List<ProxiedPlayer> titles = new ArrayList<>();
 
     public AttackDurationDetector(IAntiBotPlugin plugin) {
         this.plugin = plugin;
-        this.duration = 0;
+        AttackDurationDetector.duration = 0;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class AttackDurationDetector extends AbstractDetector {
         duration = 0;
     }
 
-    public long getAttackDuration() {
+    public static long getAttackDuration() {
         return duration;
     }
 

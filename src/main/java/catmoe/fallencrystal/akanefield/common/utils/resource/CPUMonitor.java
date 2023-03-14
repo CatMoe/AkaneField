@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 @SuppressWarnings("all")
 public final class CPUMonitor {
     private int index = 0;
-    private volatile double recentProcessCpuLoadSnapshot = 0;
+    public volatile static double recentProcessCpuLoadSnapshot = 0;
     private volatile double recentSystemCpuLoadSnapshot = 0;
     private final double[] recentProcessUsage = new double[20];
 
