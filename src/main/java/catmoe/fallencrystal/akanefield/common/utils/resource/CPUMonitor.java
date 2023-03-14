@@ -9,6 +9,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+@SuppressWarnings("all")
 public final class CPUMonitor {
     private int index = 0;
     private volatile double recentProcessCpuLoadSnapshot = 0;

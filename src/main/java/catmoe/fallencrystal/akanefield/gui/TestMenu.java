@@ -2,18 +2,12 @@ package catmoe.fallencrystal.akanefield.gui;
 
 import catmoe.fallencrystal.akanefield.gui.util.GUIBuilder;
 import catmoe.fallencrystal.akanefield.gui.util.ItemBuilder;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import catmoe.fallencrystal.akanefield.common.utils.ServerUtil;
+import catmoe.fallencrystal.akanefield.utils.MessageSendUtil;
 import catmoe.fallencrystal.akanefield.gui.util.ForceFormatCode;
 
 import dev.simplix.protocolize.api.inventory.InventoryClick;
 import dev.simplix.protocolize.data.ItemType;
 import dev.simplix.protocolize.data.inventory.InventoryType;
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 public class TestMenu extends GUIBuilder {
@@ -22,7 +16,6 @@ public class TestMenu extends GUIBuilder {
     public void update() {
         clear();
         define(getPlayer());
-        open(getPlayer());
     }
 
     @Override
@@ -50,7 +43,7 @@ public class TestMenu extends GUIBuilder {
     public void onClick(InventoryClick e) {
         // 防止玻璃没了 所以必须确认该slot是否为玻璃 (至少我认为)
         if (e.slot() == 13 && e.clickedItem().itemType() == ItemType.GRAY_STAINED_GLASS_PANE) {
-            sendActionbarMessage(getPlayer(), "=w=");
+            MessageSendUtil.actionbar(getPlayer(), "=w=");
             update();
             // 检不检测屏障都无所谓惹 反正朝这点准关闭菜单
         } else if (e.slot() == 26) { // 保留屏障的可执行 尽管点其它东西都会关闭菜单
@@ -58,13 +51,6 @@ public class TestMenu extends GUIBuilder {
         } else {
             close();
         }
-    }
-
-    public static void sendActionbarMessage(ProxiedPlayer p, String string) {
-        List<ProxiedPlayer> actionbars = new ArrayList<>();
-        actionbars.add(p);
-        p.sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ServerUtil.colorize(string)));
-        actionbars.remove(p);
     }
 
     @Override
